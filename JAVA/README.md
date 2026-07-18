@@ -77,3 +77,18 @@ Before becoming Java, the language went through multiple names and finally recei
 
 9. IoT and Embedded Systems: Used in Internet of Things (IoT) devices and embedded applications because of its portability and reliability.
 ```
+
+## 2. Download and Install Java
+Installing Java is the first step to start Java development on any system. It allows you to run Java applications and build projects across different operating systems.
+
+- Java can be installed on Windows, Linux, and macOS using platform-specific steps.
+- Requires downloading and setting up the JDK (Java Development Kit).
+- Proper configuration of environment variables (JAVA_HOME, PATH) is essential.
+
+### `How to Install IntelliJ IDEA on Windows?`
+JetBrains developed IntelliJ IDEA, used for Java and Kotlin development. It provides smart code completion, debugging tools, version control support, and many advanced features that make application development faster and easier.
+
+- Supports Java, Kotlin, Spring Boot, Maven, Gradle, and many other technologies
+- Provides intelligent code suggestions and error detection
+- Includes built-in debugging, testing, and version control tools
+- Available in both Community Edition and Ultimate Edition
