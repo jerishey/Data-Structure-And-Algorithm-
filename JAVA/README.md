@@ -182,3 +182,83 @@ JetBrains developed IntelliJ IDEA, used for Java and Kotlin development. It prov
 - Provides intelligent code suggestions and error detection
 - Includes built-in debugging, testing, and version control tools
 - Available in both Community Edition and Ultimate Edition
+
+
+#### Step 1: Download IntelliJ IDEA
+
+Visit the official JetBrains website:
+
+- **JetBrains IntelliJ IDEA:** https://www.jetbrains.com/idea/download/
+
+> **Recommended Edition:** IntelliJ IDEA Community Edition (Free)
+
+---
+
+#### Step 2: Install IntelliJ IDEA
+
+1. Run the downloaded installer.
+2. Click **Next**.
+3. Choose the installation location (or keep the default).
+4. Select the following options (recommended):
+   - ✅ Create Desktop Shortcut
+   - ✅ Add "Open Folder as Project" (optional)
+   - ✅ Update PATH Variable (optional)
+5. Click **Next**.
+6. Click **Install**.
+7. After the installation is complete, click **Finish**.
+
+---
+
+#### Step 3: Launch IntelliJ IDEA
+
+1. Open **IntelliJ IDEA** from the Start Menu or Desktop shortcut.
+2. Accept the License Agreement (if prompted).
+3. Choose your preferred UI theme (Light or Dark).
+4. Click **Continue** to open the IDE.
+
+---
+
+#### Step 4: Create a New Java Project
+
+1. Click **New Project**.
+2. Select **Java**.
+3. Choose the installed **JDK**.
+   - If no JDK is detected, click **Add JDK** and select your JDK installation folder.
+4. Enter the project name.
+5. Click **Create**.
+
+---
+
+#### Step 5: Create Your First Java Program
+
+Create a new Java class named **Hello** and add the following code:
+
+```java
+public class Hello {
+    public static void main(String[] args) {
+        System.out.println("Hello, IntelliJ IDEA!");
+    }
+}
+```
+
+---
+
+#### Step 6: Run the Program
+
+1. Click the **Run (▶)** button or press **Shift + F10**.
+2. The output will appear in the **Run** window.
+
+Example Output:
+
+```text
+Hello, IntelliJ IDEA!
+```
+
+---
+
+#### Installation Checklist
+
+- ✅ IntelliJ IDEA installed successfully
+- ✅ JDK configured correctly
+- ✅ Java project created
+- ✅ First Java program executed successfully
