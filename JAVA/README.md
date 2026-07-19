@@ -85,6 +85,96 @@ Installing Java is the first step to start Java development on any system. It al
 - Requires downloading and setting up the JDK (Java Development Kit).
 - Proper configuration of environment variables (JAVA_HOME, PATH) is essential.
 
+### Download and Install Java (JDK)
+
+#### Step 1: Download Java
+
+Download the latest **Java Development Kit (JDK)** from one of the following sources:
+
+- **Oracle JDK:** https://www.oracle.com/java/technologies/downloads/
+- **Eclipse Temurin (Recommended):** https://adoptium.net/
+
+> **Recommended Version:** JDK 21 (LTS)
+
+---
+
+#### Step 2: Install Java
+
+1. Run the downloaded installer.
+2. Click **Next** through the installation wizard.
+3. Choose the installation directory (or keep the default location).
+4. Click **Install**.
+5. Click **Finish** after the installation completes.
+
+---
+
+#### Step 3: Verify the Installation
+
+Open **Command Prompt** and run the following commands:
+
+```bash
+java -version
+```
+
+Example Output:
+
+```text
+openjdk version "21.0.x"
+```
+
+Check the Java compiler:
+
+```bash
+javac -version
+```
+
+Example Output:
+
+```text
+javac 21.0.x
+```
+
+---
+
+#### Step 4: Test the Installation
+
+Create a file named **Hello.java**.
+
+```java
+public class Hello {
+    public static void main(String[] args) {
+        System.out.println("Hello, Java!");
+    }
+}
+```
+
+Compile the program:
+
+```bash
+javac Hello.java
+```
+
+Run the program:
+
+```bash
+java Hello
+```
+
+Output:
+
+```text
+Hello, Java!
+```
+
+---
+
+#### Installation Checklist
+
+- ✅ JDK installed successfully
+- ✅ `java -version` displays the installed version
+- ✅ `javac -version` displays the compiler version
+- ✅ First Java program runs successfully
+
 ### `How to Install IntelliJ IDEA on Windows?`
 JetBrains developed IntelliJ IDEA, used for Java and Kotlin development. It provides smart code completion, debugging tools, version control support, and many advanced features that make application development faster and easier.
 
