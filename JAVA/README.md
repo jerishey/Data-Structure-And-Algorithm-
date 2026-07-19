@@ -262,3 +262,263 @@ Hello, IntelliJ IDEA!
 - ✅ JDK configured correctly
 - ✅ Java project created
 - ✅ First Java program executed successfully
+
+## 3. Differences Between JDK, JRE and JVM
+JDK (Java Development Kit) provides tools and libraries to develop Java applications, working with JRE and JVM. JRE (Java Runtime Environment) offers the libraries and JVM needed to run Java programs. JVM (Java Virtual Machine) executes the compiled Java bytecode on the system.
+
+- JDK is mainly used by developers, while JRE is required by end-users to run applications.
+- The JVM executes bytecode, making programs platform-independent across systems.
+- Java bytecode can run on any machine with a JVM, but JVM implementations are platform-dependent for each operating system.
+
+### `1. JDK (Java Development Kit)`
+JDK is a software development kit used to build Java applications. It contains the JRE and a set of development tools.
+
+- Includes compiler (javac), debugger, and utilities like jar and javadoc.
+- Provides the JRE, so it also allows running Java programs.
+- Required by developers to write, compile, and debug code.
+
+`Contents of JDK :` The JDK has a private Java Virtual Machine (JVM) and a few other resources necessary for the development of a Java Application. 
+- Java Runtime Environment (JRE),
+- An interpreter/loader (Java),
+- A compiler (javac),
+- An archiver (jar) and many more.
+
+`Popular JDKs :`
+```bash
+1. Oracle JDK: the most popular JDK and the main distributor of Java11,
+2. OpenJDK: Ready for use: JDK 15, JDK 14, and JMC,
+3. Azul Systems Zing: efficient and low latency JDK for Linux os,
+4. Azul Systems: based Zulu brand for Linux, Windows, Mac OS X,
+5. IBM J9 JDK: for AIX, Linux, Windows, and many other OS,
+6. Amazon Corretto: the newest option with the no-cost build of OpenJDK and long-term support.
+```
+
+`Working of JDK :`
+- Source Code (.java): Developer writes a Java program.
+- Compilation: The JDK’s compiler (javac) converts the code into bytecode stored in .class files.
+- Execution: The JVM executes the bytecode, translating it into native instructions.
+---
+
+### `2. JRE (Java Runtime Environment)`
+JRE provides an environment to run Java programs but does not include development tools. It is intended for end-users who only need to execute applications.
+
+- Contains the JVM and standard class libraries.
+- Provides all runtime requirements for Java applications.
+- Does not support compilation or debugging.
+- JRE is only for running applications, not for developing them.
+- It is platform-dependent (different builds for different OS).
+
+#### `Components of Java JRE (Java Runtime Environment)`
+The **Java Runtime Environment (JRE)** provides the necessary components to run Java applications. It consists of the following components:
+
+`1. Java Virtual Machine (JVM)`
+- Executes Java bytecode.
+- Converts bytecode into machine code.
+- Provides platform independence.
+
+`2. Class Loader`
+- Loads Java class files into memory.
+- Dynamically loads classes when required.
+- Links and initializes classes before execution.
+
+`3. Bytecode Verifier`
+- Checks the bytecode for security and correctness.
+- Ensures the code does not violate Java language rules.
+- Prevents illegal memory access.
+
+`4. Java Class Libraries`
+- A collection of pre-built classes and packages.
+- Provides APIs for file handling, networking, collections, GUI, database connectivity, and more.
+- Reduces development time by offering reusable code.
+
+`5. Runtime Libraries`
+- Contains essential libraries required during program execution.
+- Includes core Java packages such as `java.lang`, `java.util`, `java.io`, and `java.net`.
+
+`6. Native Libraries`
+- Platform-specific libraries used by the JVM.
+- Enable Java programs to interact with the operating system.
+- Support features such as file systems, networking, and hardware access.
+
+`Working of JRE :`
+- Class Loading: Loads compiled .class files into memory.
+- Bytecode Verification: Ensures security and validity of bytecode.
+- Execution: Uses the JVM (interpreter + JIT compiler) to execute instructions and make system calls.
+
+---
+
+### `3. JVM (Java Virtual Machine)`
+JVM is the core execution engine of Java. It is responsible for converting bytecode into machine-specific instructions.
+
+- Part of both JDK and JRE.
+- Performs memory management and garbage collection.
+- Provides portability by executing the same bytecode on different platforms.
+
+`Note :`
+- JVM implementations are platform-dependent.
+- Bytecode is platform-independent and can run on any JVM.
+- Modern JVMs rely heavily on Just-In-Time (JIT) compilation for performance.
+
+#### `Components of JVM Architecture :` 
+The **Java Virtual Machine (JVM)** is the core component of Java that executes bytecode and provides a platform-independent runtime environment. It consists of the following components:
+
+`1. Class Loader`
+- Loads `.class` files into memory.
+- Dynamically loads classes when required.
+- Performs loading, linking, and initialization.
+
+`2. Method Area`
+- Stores class metadata, method information, static variables, and runtime constant pool.
+- Shared among all threads.
+
+`3. Heap Memory`
+- Stores objects and instance variables.
+- Shared among all threads.
+- Managed by the Garbage Collector.
+
+`4. Java Stack`
+- Stores local variables, method calls, and partial results.
+- Each thread has its own stack.
+- Memory is automatically released after method execution.
+
+`5. Program Counter (PC) Register`
+- Keeps track of the address of the current instruction being executed.
+- Each thread has its own PC Register.
+
+`6. Native Method Stack`
+- Stores information related to native (non-Java) methods.
+- Used when Java code interacts with platform-specific libraries.
+
+`7. Execution Engine`
+- Executes the bytecode loaded into memory.
+- Includes:
+  - **Interpreter** – Executes bytecode line by line.
+  - **JIT (Just-In-Time) Compiler** – Converts frequently used bytecode into native machine code for better performance.
+  - **Garbage Collector (GC)** – Automatically removes unused objects from heap memory.
+
+`8. Native Method Interface (JNI)`
+- Allows Java programs to interact with native applications and libraries written in languages such as C and C++.
+
+`9. Native Libraries`
+- Platform-specific libraries required by native methods.
+- Accessed through the JNI.
+
+---
+
+#### JVM Architecture Diagram
+
+```text
+               Java Source Code (.java)
+                        │
+                        ▼
+                  Java Compiler (javac)
+                        │
+                        ▼
+                  Bytecode (.class)
+                        │
+                        ▼
+                  +----------------+
+                  |  Class Loader  |
+                  +----------------+
+                        │
+        ┌───────────────┼────────────────┐
+        ▼               ▼                ▼
+ +---------------+ +-------------+ +----------------+
+ | Method Area   | | Heap Memory | | Java Stack     |
+ +---------------+ +-------------+ +----------------+
+        │                               │
+        └───────────────┬───────────────┘
+                        ▼
+               Program Counter Register
+                        │
+                        ▼
+               +----------------------+
+               |   Execution Engine   |
+               |----------------------|
+               | • Interpreter        |
+               | • JIT Compiler       |
+               | • Garbage Collector  |
+               +----------------------+
+                        │
+                        ▼
+         Native Method Interface (JNI)
+                        │
+                        ▼
+               Native Method Stack
+                        │
+                        ▼
+                Native Libraries
+```
+
+#### Working of JVM (Java Virtual Machine)
+
+The **Java Virtual Machine (JVM)** is responsible for executing Java bytecode. It loads the compiled class files, verifies them, converts the bytecode into machine code, and executes the program.
+
+
+`1. Load the Class`
+The **Class Loader** loads the compiled `.class` file into the JVM memory.
+
+`2. Verify the Bytecode`
+The **Bytecode Verifier** checks the bytecode for security, correctness, and validity before execution.
+
+`3. Store Data in Memory`
+The JVM stores the required data in different memory areas:
+- **Method Area** – Stores class metadata, methods, and static variables.
+- **Heap Memory** – Stores objects and instance variables.
+- **Java Stack** – Stores local variables and method calls.
+- **PC Register** – Tracks the current instruction being executed.
+- **Native Method Stack** – Stores information for native methods.
+
+`4. Execute the Bytecode`
+The **Execution Engine** executes the bytecode using:
+- **Interpreter** – Executes bytecode line by line.
+- **JIT (Just-In-Time) Compiler** – Converts frequently used bytecode into native machine code for faster execution.
+
+`5. Garbage Collection`
+The **Garbage Collector (GC)** automatically removes unused objects from the heap memory, freeing memory for future use.
+
+`6. Display the Output`
+The JVM executes the program and displays the output.
+
+---
+
+#### Working Flow
+
+```text
+Compiled Bytecode (.class)
+            │
+            ▼
+      Class Loader
+            │
+            ▼
+   Bytecode Verifier
+            │
+            ▼
+      JVM Memory
+ ┌──────────────────────────┐
+ │ • Method Area            │
+ │ • Heap Memory            │
+ │ • Java Stack             │
+ │ • PC Register            │
+ │ • Native Method Stack    │
+ └──────────────────────────┘
+            │
+            ▼
+     Execution Engine
+ ┌───────────────────────┐
+ │ • Interpreter         │
+ │ • JIT Compiler        │
+ │ • Garbage Collector   │
+ └───────────────────────┘
+            │
+            ▼
+       Machine Code
+            │
+            ▼
+     Program Execution
+            │
+            ▼
+           Output
+```
+
+---
