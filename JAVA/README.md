@@ -522,3 +522,79 @@ Compiled Bytecode (.class)
 ```
 
 ---
+
+## 4. Variables
+In Java, variables are containers used to store data in memory. Variables define how data is stored, accessed, and manipulated. A variable in Java has three components,
+
+- Data Type: Defines the kind of data stored (e.g., int, String, float).
+- Variable Name: A unique identifier following Java naming rules.
+- Value: The actual data assigned to the variable.
+
+`1. Variable Declaration :` Declaration means specifying the data type and variable name.
+```bash
+Syntax : dataType variableName;
+
+Example:
+int age;
+String name;
+double salary;
+```
+
+`2. Variable Initialization :` Initialization means assigning a value to a variable.
+```bash
+Syntax : variableName = value;
+
+Example:
+age = 22;
+name = "Nitish";
+salary = 45000.50;
+```
+
+### `Naming Rule 's of Java Variables`
+```bash
+1. Start with a Letter, $, or _ – Variable names must begin with a letter (a–z, A–Z), dollar sign $, or underscore _.
+
+2. No Keywords: Reserved Java keywords (e.g., int, class, if) cannot be used as variable names.
+
+3. Case Sensitive: age and Age are treated as different variables.
+
+4. Use Letters, Digits, $, or _ : After the first character, you can use letters, digits (0–9), $, or _.
+
+5. Meaningful Names: Choose descriptive names that reflect the purpose of the variable (e.g., studentName instead of s).
+
+6. No Spaces: Variable names cannot contain spaces.
+
+7. Follow Naming Conventions: Typically, use camelCase for variable names in Java (e.g., totalMarks).
+```
+
+### `Types of Java Variables`
+Variables in Java are used to store data values during program execution. Each variable is associated with a specific data type that defines the kind of value it can hold. Variables help in performing operations, storing user input, and managing data in a program.
+
+- Java variables must be declared before they are used in a program.
+- Variable names should follow Java naming conventions for better readability.
+- Different types of variables in Java include local variables, instance variables, and static variables.
+
+`1. Local Variables :`
+A variable defined within a block, method, or constructor is referred to as a local variable. 
+
+- The Local variable is created at the time of declaration and destroyed when the function completes its execution.
+- The scope of local variables exists only within the block in which they are declared.
+- We first need to initialize a local variable before using it within its scope.
+
+`2. Instance Variables :`
+Instance variables are known as non-static variables and are declared in a class outside of any method, constructor, or block.
+<br>
+Instance variables are created when an object is instantiated and destroyed when the object is destroyed.
+
+- Can have access specifiers; default access is used if none is specified.
+- Accessed only through objects of the class.
+- Instance Variables can be initialized using constructors or instance blocks.
+
+`3. Static Variables`
+Static variables in Java are variables declared with the static keyword inside a class but outside any method. They are shared among all objects of the class and exist for the entire lifetime of the program. 
+
+- There is only one copy of a static variable for the entire class, and all objects share it
+- Static variable are created at program start and destroyed when the program ends.
+- Can be initialized using static blocks.
+
+---
