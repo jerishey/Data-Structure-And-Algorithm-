@@ -598,3 +598,151 @@ Static variables in Java are variables declared with the static keyword inside a
 - Can be initialized using static blocks.
 
 ---
+
+## 5. Data Types
+Java data types define the type of data a variable can store in a program. They help the compiler allocate memory efficiently and ensure type safety. Java provides two main categories: primitive and non-primitive data types.
+
+- Memory allocation determines how much memory is required for each variable
+- Operations support defines what operations can be performed on data
+- Each data type has a default value when not initialized
+
+### `Types of Data Types`
+Data types in Java define the kind of data a variable can hold and the memory required to store it. They are broadly divided into two categories:
+
+#### `1. Primitive Data Types :` 
+Primitive data types are the basic built-in data types provided by Java. They store simple values directly and have a fixed size.
+
+`Primitive Data Types`
+
+**1. byte :** The `byte` data type is an 8-bit signed integer used to store small whole numbers. It is useful for saving memory when working with large arrays.
+
+**Example:**
+```java
+byte age = 25;
+```
+
+---
+
+**2. short :** The `short` data type is a 16-bit signed integer used to store whole numbers larger than `byte` but smaller than `int`.
+
+**Example:**
+```java
+short marks = 1500;
+```
+
+---
+
+**3. int :** The `int` data type is a 32-bit signed integer used to store whole numbers. It is the most commonly used integer data type in Java.
+
+**Example:**
+```java
+int salary = 50000;
+```
+
+---
+
+**4. long :** The `long` data type is a 64-bit signed integer used to store very large whole numbers. A long literal must end with `L` or `l`.
+
+**Example:**
+```java
+long population = 8000000000L;
+```
+
+---
+
+**5. float :** The `float` data type is a 32-bit floating-point type used to store decimal numbers with single precision. A float literal must end with `f` or `F`.
+
+**Example:**
+```java
+float price = 99.99f;
+```
+
+---
+
+**6. double :** The `double` data type is a 64-bit floating-point type used to store decimal numbers with double precision. It provides greater accuracy than `float`.
+
+**Example:**
+```java
+double pi = 3.141592653589793;
+```
+
+---
+
+**7. char :** The `char` data type is a 16-bit Unicode character type used to store a single character enclosed in single quotes.
+
+**Example:**
+```java
+char grade = 'A';
+```
+
+---
+
+**8. boolean :** The `boolean` data type is used to store logical values. It can have only two possible values: `true` or `false`.
+
+**Example:**
+```java
+boolean isPassed = true;
+```
+
+#### `2. Non-Primitive (Reference) Data Types`  
+Non-primitive data types, also known as **reference data types**, are data types that store references (memory addresses) to objects rather than the actual data. They are created by the programmer or provided by Java libraries and can contain methods and properties.
+
+`Types of Non-Primitive (Reference) Data Types`
+
+**1. String :** The `String` data type is used to store a sequence of characters (text). Strings are objects in Java and provide many built-in methods for text manipulation.
+
+**Example:**
+```java
+String name = "Rakesh";
+```
+
+---
+
+**2. Array :** An `Array` is a collection of elements of the same data type stored in contiguous memory locations. Each element is accessed using its index.
+
+**Example:**
+```java
+int[] numbers = {10, 20, 30, 40, 50};
+```
+
+---
+
+**3. Class :** A `Class` is a blueprint or template used to create objects. It defines the properties (fields) and behaviors (methods) of an object.
+
+**Example:**
+```java
+class Student {
+    String name = "Rakesh";
+}
+```
+
+---
+
+**4. Object :** An `Object` is an instance of a class. It is used to access the properties and methods defined in the class.
+
+**Example:**
+```java
+Student student = new Student();
+```
+
+---
+
+**5. Interface :** An `Interface` is a reference type that defines a set of abstract methods that a class must implement. It is used to achieve abstraction and multiple inheritance.
+
+**Example:**
+```java
+interface Animal {
+    void sound();
+}
+```
+
+---
+
+**6. Enum :** An `Enum` (Enumeration) is a special data type used to define a fixed set of constant values.
+
+**Example:**
+```java
+enum Day {
+    MONDAY, TUESDAY, WEDNESDAY
+}
+```
