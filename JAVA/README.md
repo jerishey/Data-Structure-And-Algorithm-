@@ -746,3 +746,187 @@ enum Day {
     MONDAY, TUESDAY, WEDNESDAY
 }
 ```
+
+## 6. Keywords
+Java keywords are reserved words with predefined meanings used by the compiler to perform specific operations. They are part of the language syntax and cannot be modified.
+
+- Keywords cannot be used as identifiers (variable, method, class, or object names).
+- Examples include int, class, if, return, etc.
+
+> **Note:** Java 21 has **55 reserved words**, which include **52 keywords** and **3 reserved literals**.
+
+### Hierarchy of Java Reserved Words
+
+```
+Reserved Words (55)
+│
+├── Keywords (52)
+│   ├── Used Keywords (50)
+│   └── Unused Keywords (2)
+│       ├── const
+│       └── goto
+│
+└── Reserved Literals (3)
+    ├── true
+    ├── false
+    └── null
+```
+
+#### 1. Used Keywords (50)
+
+| S.No | Keyword | S.No | Keyword | S.No | Keyword | S.No | Keyword | S.No | Keyword |
+|:---:|:---------|:---:|:---------|:---:|:---------|:---:|:---------|:---:|:---------|
+| 1 | `abstract` | 11 | `default` | 21 | `if` | 31 | `private` | 41 | `this` |
+| 2 | `assert` | 12 | `do` | 22 | `implements` | 32 | `protected` | 42 | `throw` |
+| 3 | `boolean` | 13 | `double` | 23 | `import` | 33 | `public` | 43 | `throws` |
+| 4 | `break` | 14 | `else` | 24 | `instanceof` | 34 | `return` | 44 | `transient` |
+| 5 | `byte` | 15 | `enum` | 25 | `int` | 35 | `short` | 45 | `try` |
+| 6 | `case` | 16 | `extends` | 26 | `interface` | 36 | `static` | 46 | `void` |
+| 7 | `catch` | 17 | `final` | 27 | `long` | 37 | `strictfp` | 47 | `volatile` |
+| 8 | `char` | 18 | `finally` | 28 | `native` | 38 | `super` | 48 | `while` |
+| 9 | `class` | 19 | `float` | 29 | `new` | 39 | `switch` | 49 | `yield` |
+| 10 | `continue` | 20 | `for` | 30 | `package` | 40 | `synchronized` | 50 | `var` |
+
+---
+
+#### 2. Unused Keywords (2)
+
+These keywords are reserved by Java but are **not used** in the language.
+
+- `const`
+- `goto`
+
+---
+
+#### 3. Reserved Literals (3)
+
+These are reserved values in Java and cannot be used as identifiers.
+
+- `true`
+- `false`
+- `null`
+
+---
+
+### Important Points:
+```bash
+1. The keywords const and goto are reserved, even though they are not currently used in Java.
+
+2. true, false, and null look like keywords, but in actuality they are literals. However, they still can't be used as identifiers in a program.
+
+3. In Java, keywords are case-sensitive, and writing Java keywords in upper case (like IF instead of if) will throw an error.
+```
+---
+### Java Keywords List
+Java keywords are reserved words that have predefined meanings in the language. They cannot be used as identifiers (like variable or method names).
+
+`1. Data Type Keywords :` Used to define variable types and specify the kind of data they can hold.
+```bash
+Keyword	                        Usage
+boolean	    ->       Defines a variable that holds true or false.
+byte	    ->       Defines an 8-bit signed integer.
+char	    ->       Defines a 16-bit Unicode character.
+short	    ->       Defines a 16-bit signed integer.
+int	        ->       Defines a 32-bit signed integer.
+long	    ->       Defines a 64-bit signed integer.
+float	    ->       Defines a 32-bit floating-point number.
+double	    ->       Defines a 64-bit floating-point number.
+void	    ->       Specifies that a method does not return any value.
+```
+
+`2. Control Flow Keywords :` Used to control the execution flow of a program, including loops, branching, and jumps.
+```bash
+Keyword	                            Usage
+if	          ->        Executes code when a condition is true.
+else	      ->        Defines an alternate block when an if condition is false.
+switch	      ->        Selects one block of code among multiple options.
+case	      ->        Defines an individual branch in a switch statement.
+default	      ->        Defines the block executed if no case matches.
+for	          ->        Starts a for loop.
+while	      ->        Starts a while loop.
+do	          ->        Starts a do-while loop.
+break	      ->        Terminates the nearest loop or switch.
+continue      ->        Skips to the next iteration of a loop.
+return	      ->        Exits from a method and optionally returns a value.
+```
+
+`3. Exception Handling Keywords :` Used for handling and managing runtime errors in programs.
+```bash
+Keyword	                        Usage
+try	           ->    Defines a block of code to test for exceptions.
+catch	       ->    Defines a block to handle exceptions thrown by try.
+finally	       ->    Defines a block that always executes after try and catch.
+throw	       ->    Used to manually throw an exception.
+throws	       ->    Declares the exceptions a method can throw.
+assert	       ->    Tests assumptions during program execution for debugging.
+```
+
+`4. Object-Oriented Keywords :` Used to define classes, interfaces, and objects, as well as inheritance and encapsulation properties.
+```bash
+Keyword	                    Usage
+class	      ->      Declares a class.
+interface	  ->      Declares an interface.
+extends	      ->      Indicates inheritance from a superclass.
+implements	  ->      Indicates that a class implements an interface.
+new	          ->      Creates new objects.
+this	      ->      Refers to the current object.
+super	      ->      Refers to the superclass of the current object.
+abstract	  ->      Declares a class or method that must be implemented in a subclass.  
+final	      ->      Prevents inheritance, overriding, or modification.
+static	      ->      Declares class-level variables or methods.
+sealed	      ->      Restricts which classes can extend a given class.
+permits	      ->      Specifies the subclasses allowed to extend a sealed class.
+enum          ->      Declares a fixed set of constants.
+record        ->      Declares an immutable data class (Java 16+).
+instanceof    ->      Checks whether an object is of a specific type.
+```
+
+`5. Access Control Keywords :` Define the visibility or accessibility of classes, methods, and variables.
+```bash
+Keyword	                    Usage
+public	      ->      Accessible from anywhere in the program.
+protected	  ->      Accessible within the same package or by subclasses.
+private	      ->      Accessible only within the same class.
+```
+
+`6. Package and Import Keywords :` Used to organize classes and access external code.
+```bash
+Keyword	                    Usage
+package	     ->       Defines a namespace for classes.
+import	     ->       Allows access to classes from other packages.
+```
+
+`7. Multithreading and Synchronization Keywords :` Used to handle concurrent execution of code and ensure thread safety.
+```bash
+Keyword	                        Usage
+synchronized	  ->     Defines critical sections that only one thread can access at a time.     
+volatile	      ->     Indicates that a variable may change asynchronously.
+```
+
+`8. Memory Management and Object Serialization Keywords :` Handle object persistence, garbage collection, and native method calls.
+```bash
+Keyword	                        Usage
+transient	   ->     Excludes a variable from serialization.
+native	       ->     Specifies that a method is implemented in native (non-Java) code.
+```
+
+`9. Modifier and Utility Keywords :` Define additional behaviors and precision control.
+```bash
+Keyword	                        Usage
+strictfp	     ->       Ensures consistent floating-point calculations across platforms.
+```
+
+`10. Reserved (Unused) Keywords :` These keywords are reserved but not currently used by Java.
+```bash
+Keyword	                        Usage
+const	     ->       Reserved for future use; not currently implemented.
+goto	     ->       Reserved for future use; not currently implemented.
+```
+
+`11. Special Literals :` Special literals represent predefined constant values in Java and cannot be used as identifiers.
+```bash
+Keyword	                        Usage
+true	     ->          Represents the boolean value true.
+false	     ->          Represents the boolean value false.
+null	     ->          Represents the absence of any reference value.
+```
