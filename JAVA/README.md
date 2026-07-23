@@ -1247,3 +1247,89 @@ public class ScannerMethods {
 - `nextInt()`, `nextDouble()`, `nextFloat()`, etc., read specific data types.
 - After using methods like `nextInt()` or `nextDouble()`, call `nextLine()` if you plan to read a full line of text next to consume the leftover newline character.
 
+## 10. System.out.println in Java
+System.out.println() in Java is one of the most commonly used statements to display output on the console. It prints the given data and then moves the cursor to the next line, making it ideal for readable output.
+
+- Used to display text, variables, and expressions on the console.
+- Automatically adds a newline after printing the output.
+- Commonly used for debugging, testing, and displaying program results.
+
+**`Syntax`**
+```bash
+System.out.println(parameter)
+
+- Parameter: The parameter can be a value of any data type such as int, double, char, String, or even no parameter at all.
+```
+
+### Understanding `System.out.println()` in Java
+
+The statement **`System.out.println()`** can be understood by breaking it into three parts:
+
+
+**Breakdown of `System.out.println()`**
+```bash
+1. System: System is a final class present in the java.lang package. It provides access to system-related resources such as input, output, and error streams.
+
+2. out: out is a public static object of type PrintStream defined inside the System class. It represents the standard output stream, usually the console.
+
+3. println(): println() is a method of the PrintStream class. It prints the specified value and then adds a new line at the end of the output. It is an enhanced version of print().
+```
+
+**`Example`**
+
+```java
+public class PrintExample {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+        System.out.println("Welcome to Java Programming.");
+    }
+}
+```
+
+**`Output`**
+
+```text
+Hello, World!
+Welcome to Java Programming.
+```
+
+### Difference Between `print()` and `println()`
+
+| Feature | `System.out.print()` | `System.out.println()` |
+|---------|-----------------------|-------------------------|
+| **New line after output** | Prints the output without moving the cursor to the next line. | Prints the output and moves the cursor to the next line. |
+| **Cursor position** | Remains at the end of the printed text. | Moves to the beginning of the next line. |
+| **Parameter requirement** | Requires at least one argument to print. | Accepts an argument or no argument. Calling `println()` with no argument prints a blank line. |
+| **Blank line printing** | Cannot print a blank line directly. | Can print a blank line using `System.out.println();`. |
+| **Common usage** | Used when output should continue on the same line. | Used when each output should appear on a separate line. |
+
+**`Example`**
+
+```java
+System.out.print("Hello ");
+System.out.print("World");
+```
+
+**`Output:`**
+```text
+Hello World
+```
+
+```java
+System.out.println("Hello");
+System.out.println("World");
+```
+
+**Output:**
+```text
+Hello
+World
+```
+
+**`Key Points`**
+
+- `System` is a predefined class in Java.
+- `out` is an object of the `PrintStream` class.
+- `println()` is a method used to print output followed by a new line.
+- `System.out.println()` is commonly used to display messages, variables, and program results on the console.
+- No additional library import is required because `System` belongs to the `java.lang` package, which is imported automatically.
