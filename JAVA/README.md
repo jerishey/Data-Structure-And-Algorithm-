@@ -930,3 +930,118 @@ true	     ->          Represents the boolean value true.
 false	     ->          Represents the boolean value false.
 null	     ->          Represents the absence of any reference value.
 ```
+
+## 7. Identifiers
+An identifier in Java is a name given to programming elements such as variables, classes, methods, packages, and interfaces. It is used to uniquely identify these elements in a program.
+
+- Identifiers help in naming and accessing different elements in a Java program
+- Each identifier must follow Java naming rules to avoid compilation errors
+
+`Rules For Naming Java Identifiers :`
+```bash
+1. The only allowed characters for identifiers are all alphanumeric characters([A-Z],[a-z],[0-9]), '$'(dollar sign) and '_' (underscore). 
+For example, "geek@" is not a valid Java identifier as it contains a '@', a special character.
+
+2. Identifiers should not start with digits([0-9]). For example, "123geeks" is not a valid Java identifier.
+
+3. Java identifiers are case-sensitive.
+
+4. There is no limit on the length of the identifier, but it is advisable to use an optimum length of 4 - 15 letters only.
+
+5. Reserved Words can't be used as an identifier. For example, "int while = 20;" is an invalid statement as a while is a reserved word.
+```
+
+`Examples :`
+```bash
+For Valid Idenfiers :
+MyVariable
+MYVARIABLE
+myvariable
+x
+i
+x1
+i1
+_myvariable
+$myvariable
+sum_of_array
+
+For Invalid Identifiers :
+My Variable                         // contains a space
+123geeks                            // Begins with a digit
+a+c                                 // plus sign is not an alphanumeric character
+variable-2                          // hyphen is not an alphanumeric character
+sum_&_difference                    // ampersand is not an alphanumeric character
+```
+
+## 8. Literals
+In Java, a Literal is a value of boolean, numeric, character, or string data. Any constant value that can be assigned to the variable is called a literal. 
+
+```bash
+// Here 100 is a constant/literal.
+int x = 100; 
+```
+
+`Types of Literals in Java :`
+
+`1. Integral Literals :` For Integral data types (byte, short, int, long), we can specify literals in four ways, which are listed below:
+```bash
+1.1 Decimal literals (Base 10): In this form, the allowed digits are 0-9.
+
+int x = 101;
+
+1.2 Octal literals (Base 8): In this form, the allowed digits are 0-7.
+
+// The octal number should be prefix with 0.
+
+int x = 0146; 
+
+1.3 Hexadecimal literals (Base 16): In this form, the allowed digits are 0-9, and characters are a-f. We can use both uppercase and lowercase characters, as we know that Java is a case-sensitive programming language, but here Java is not case-sensitive.
+
+// The hexa-decimal number should be prefix
+
+// with 0X or 0x.
+
+int x = 0X123Face; 
+
+1.4. Binary literals: From 1.7 onward, we can specify literal value even in binary form also, allowed digits are 0 and 1. Literals value should be prefixed with 0b or 0B.
+
+int x = 0b1111;
+```
+
+`2. Floating-Point Literals :` For Floating-point data types, Java supports decimal as well as hexadecimal floating-point literals. Octal floating-point literals are not supported.
+```bash
+2.1 Decimal literals(Base 10): In this form, the allowed digits are 0-9. 
+
+double d = 123.456;
+```
+
+`3. Char Literals :` For char data types, we can specify literals in four ways : 
+```bash
+1 Single quote: We can specify literal to a char data type as a single character within the single quote.
+
+char ch = 'a';
+
+2. Char literal as Integral literal: we can specify char literal as integral literal, which represents the Unicode value of the character, and that integral literal can be specified either in Decimal, Octal, and Hexadecimal forms. But the allowed range is 0 to 65535.
+
+char ch = 062;  // Octal literal representing character with Unicode code 50 (which is '2')
+
+3. Unicode Representation: We can specify char literals in Unicode representation ‘\uxxxx’. Here xxxx represents 4 hexadecimal numbers.
+
+char ch = '\u0061';// Here /u0061 represent a.
+
+4. Escape Sequence: Every escape character can be specified as char literals.
+
+char ch = '\n';
+```
+
+`4. String Literals :` Any sequence of characters within double quotes is treated as String literals. 
+```bash
+String s = "Hello";
+```
+
+`5. Boolean Literals :` Only two values are allowed for Boolean literals, i.e., true and false. 
+```bash
+boolean b = true;
+
+boolean c = false;
+```
