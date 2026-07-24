@@ -1550,3 +1550,245 @@ System.out.println(~num); // Output: -6
 ```
 
 > **Note:** The `~` operator works only with integral data types (`byte`, `short`, `int`, `long`, and `char`). It cannot be used with `float`, `double`, or `boolean`.
+---
+<br>
+
+`3. Assignment Operators :`
+
+An **Assignment Operator** in Java is used to **assign a value to a variable**. It can also perform an arithmetic or bitwise operation and assign the result back to the same variable.
+
+**`Key Points`**
+- Assignment operators assign values to variables.
+- They help write shorter and more readable code.
+- Compound assignment operators combine an operation with assignment.
+
+**`Types of Assignment Operators in Java`**
+
+`1. Simple Assignment Operator (`=`)`
+
+The **Simple Assignment (`=`)** operator assigns the value on the right-hand side to the variable on the left-hand side.
+
+**Syntax**
+```java
+variable = value;
+```
+
+**Example**
+```java
+int num = 10;
+System.out.println(num); // Output: 10
+```
+
+---
+
+`2. Add and Assign Operator (`+=`)`
+
+The **Add and Assign (`+=`)** operator adds the right operand to the left operand and assigns the result to the left operand.
+
+**Syntax**
+```java
+variable += value;
+```
+
+**Example**
+```java
+int num = 10;
+num += 5;
+
+System.out.println(num); // Output: 15
+```
+
+---
+
+`3. Subtract and Assign Operator (`-=`)`
+
+The **Subtract and Assign (`-=`)** operator subtracts the right operand from the left operand and assigns the result.
+
+**Syntax**
+```java
+variable -= value;
+```
+
+**Example**
+```java
+int num = 10;
+num -= 3;
+
+System.out.println(num); // Output: 7
+```
+
+---
+
+`4. Multiply and Assign Operator (`*=`)`
+
+The **Multiply and Assign (`*=`)** operator multiplies the left operand by the right operand and assigns the result.
+
+**Syntax**
+```java
+variable *= value;
+```
+
+**Example**
+```java
+int num = 10;
+num *= 4;
+
+System.out.println(num); // Output: 40
+```
+
+---
+
+`5. Divide and Assign Operator (`/=`)`
+
+The **Divide and Assign (`/=`)** operator divides the left operand by the right operand and assigns the result.
+
+**Syntax**
+```java
+variable /= value;
+```
+
+**Example**
+```java
+int num = 20;
+num /= 4;
+
+System.out.println(num); // Output: 5
+```
+
+---
+
+`6. Modulus and Assign Operator (`%=`)`
+
+The **Modulus and Assign (`%=`)** operator finds the remainder after division and assigns it to the variable.
+
+**Syntax**
+```java
+variable %= value;
+```
+
+**Example**
+```java
+int num = 20;
+num %= 6;
+
+System.out.println(num); // Output: 2
+```
+
+---
+
+`7. Bitwise AND and Assign Operator (`&=`)`
+
+The **Bitwise AND and Assign (`&=`)** operator performs a bitwise AND operation and assigns the result.
+
+**Syntax**
+```java
+variable &= value;
+```
+
+**Example**
+```java
+int num = 10; // 1010
+num &= 6;     // 0110
+
+System.out.println(num); // Output: 2
+```
+
+---
+
+`8. Bitwise OR and Assign Operator (`|=`)`
+
+The **Bitwise OR and Assign (`|=`)** operator performs a bitwise OR operation and assigns the result.
+
+**Syntax**
+```java
+variable |= value;
+```
+
+**Example**
+```java
+int num = 10; // 1010
+num |= 6;     // 0110
+
+System.out.println(num); // Output: 14
+```
+
+---
+
+`9. Bitwise XOR and Assign Operator (`^=`)`
+
+The **Bitwise XOR and Assign (`^=`)** operator performs a bitwise XOR operation and assigns the result.
+
+**Syntax**
+```java
+variable ^= value;
+```
+
+**Example**
+```java
+int num = 10; // 1010
+num ^= 6;     // 0110
+
+System.out.println(num); // Output: 12
+```
+
+---
+
+`10. Left Shift and Assign Operator (`<<=`)`
+
+The **Left Shift and Assign (`<<=`)** operator shifts the bits of the left operand to the left and assigns the result.
+
+**Syntax**
+```java
+variable <<= value;
+```
+
+**Example**
+```java
+int num = 5;
+
+num <<= 1;
+
+System.out.println(num); // Output: 10
+```
+
+---
+
+`11. Right Shift and Assign Operator (`>>=`)`
+
+The **Right Shift and Assign (`>>=`)** operator shifts the bits of the left operand to the right and assigns the result.
+
+**Syntax**
+```java
+variable >>= value;
+```
+
+**Example**
+```java
+int num = 20;
+
+num >>= 2;
+
+System.out.println(num); // Output: 5
+```
+
+---
+
+`12. Unsigned Right Shift and Assign Operator (`>>>=`)`
+
+The **Unsigned Right Shift and Assign (`>>>=`)** operator shifts the bits to the right without preserving the sign bit and assigns the result.
+
+**Syntax**
+```java
+variable >>>= value;
+```
+
+**Example**
+```java
+int num = 20;
+
+num >>>= 2;
+
+System.out.println(num); // Output: 5
+```
+
+---
