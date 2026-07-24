@@ -1792,3 +1792,179 @@ System.out.println(num); // Output: 5
 ```
 
 ---
+
+<br>
+
+`4. Relational Operators`
+
+A **Relational Operator** in Java is used to **compare two values or expressions**. It returns a **boolean value** (`true` or `false`) based on the result of the comparison. Relational operators are commonly used in decision-making statements such as `if`, `if-else`, `while`, and `for` loops.
+
+**`Key Points`**
+- Relational operators compare two operands.
+- The result of a relational operation is always a **boolean** value (`true` or `false`).
+- They are widely used in conditional and looping statements.
+
+**`Types of Relational Operators in Java`**
+
+`1. Equal To Operator (`==`)`
+
+The **Equal To (`==`)** operator checks whether two operands are equal. It returns true if both operands are equal; otherwise, it returns false.
+
+**Syntax**
+```java
+operand1 == operand2
+```
+
+**Example**
+```java
+int a = 10;
+int b = 10;
+
+System.out.println(a == b); // Output: true
+```
+
+---
+
+`2. Not Equal To Operator (`!=`)`
+
+The **Not Equal To (`!=`)** operator checks whether two operands are not equal. It works opposite to the equal-to operator.
+
+**Syntax**
+```java
+operand1 != operand2
+```
+
+**Example**
+```java
+int a = 10;
+int b = 20;
+
+System.out.println(a != b); // Output: true
+```
+
+---
+
+`3. Greater Than Operator (`>`)`
+
+The **Greater Than (`>`)** operator checks whether the left operand is greater than the right operand.
+- Returns true if the left operand is greater.
+- Useful for comparing numeric values.
+
+**Syntax**
+```java
+operand1 > operand2
+```
+
+**Example**
+```java
+int a = 20;
+int b = 10;
+
+System.out.println(a > b); // Output: true
+```
+
+---
+
+`4. Less Than Operator (`<`)`
+
+The **Less Than (`<`)** operator checks whether the left operand is less than the right operand.
+- Returns true if the left operand is less than the right operand.
+- Often used in loops and conditional expressions.
+
+**Syntax**
+```java
+operand1 < operand2
+```
+
+**Example**
+```java
+int a = 10;
+int b = 20;
+
+System.out.println(a < b); // Output: true
+```
+
+---
+
+`5. Greater Than or Equal To Operator (`>=`)`
+
+The **Greater Than or Equal To (`>=`)** operator checks whether the left operand is greater than or equal to the right operand.
+- Returns true if the left operand is greater than or equal to the right operand.
+- Useful when equality should also satisfy the condition.
+
+**Syntax**
+```java
+operand1 >= operand2
+```
+
+**Example**
+```java
+int a = 20;
+int b = 20;
+
+System.out.println(a >= b); // Output: true
+```
+
+---
+
+`6. Less Than or Equal To Operator (`<=`)`
+
+The **Less Than or Equal To (`<=`)** operator checks whether the left operand is less than or equal to the right operand.
+- Returns true if the left operand is less than or equal to the right operand.
+- Commonly used for range checking and loop conditions.
+
+**Syntax**
+```java
+operand1 <= operand2
+```
+
+**Example**
+```java
+int a = 10;
+int b = 20;
+
+System.out.println(a <= b); // Output: true
+```
+
+---
+
+**`Summary`**
+
+| Operator | Name | Description | Example |
+|----------|------|-------------|---------|
+| `==` | Equal To | Checks if two operands are equal. | `a == b` |
+| `!=` | Not Equal To | Checks if two operands are not equal. | `a != b` |
+| `>` | Greater Than | Checks if the left operand is greater than the right operand. | `a > b` |
+| `<` | Less Than | Checks if the left operand is less than the right operand. | `a < b` |
+| `>=` | Greater Than or Equal To | Checks if the left operand is greater than or equal to the right operand. | `a >= b` |
+| `<=` | Less Than or Equal To | Checks if the left operand is less than or equal to the right operand. | `a <= b` |
+
+**`Example Program`**
+
+```java
+public class RelationalOperators {
+    public static void main(String[] args) {
+
+        int a = 20;
+        int b = 10;
+
+        System.out.println("a == b : " + (a == b));
+        System.out.println("a != b : " + (a != b));
+        System.out.println("a > b  : " + (a > b));
+        System.out.println("a < b  : " + (a < b));
+        System.out.println("a >= b : " + (a >= b));
+        System.out.println("a <= b : " + (a <= b));
+    }
+}
+```
+
+**`Output`**
+
+```text
+a == b : false
+a != b : true
+a > b  : true
+a < b  : false
+a >= b : true
+a <= b : false
+```
