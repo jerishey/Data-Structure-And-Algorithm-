@@ -1333,3 +1333,220 @@ World
 - `println()` is a method used to print output followed by a new line.
 - `System.out.println()` is commonly used to display messages, variables, and program results on the console.
 - No additional library import is required because `System` belongs to the `java.lang` package, which is imported automatically.
+
+
+## 11. Operators
+Java operators are symbols used to perform operations on variables and values. They play a key role in expressions, calculations, and decision-making in programs. Operators help simplify complex logic into concise statements.
+
+- They follow a defined precedence and associativity to determine execution order.
+- Some operators work on a single operand (unary), while others require two or more operands.
+
+**`1. Arithmetic Operators :`** **Arithmetic operators** are used to perform mathematical operations on numeric values. Java provides arithmetic operators to carry out operations such as addition, subtraction, multiplication, division, and finding the remainder.
+
+**`Arithmetic Operators`**
+
+| Operator | Name | Description | Example |
+|----------|------|-------------|---------|
+| `+` | Addition | Adds two operands. | `10 + 5` → `15` |
+| `-` | Subtraction | Subtracts the second operand from the first. | `10 - 5` → `5` |
+| `*` | Multiplication | Multiplies two operands. | `10 * 5` → `50` |
+| `/` | Division | Divides the first operand by the second operand. | `10 / 5` → `2` |
+| `%` | Modulus (Remainder) | Returns the remainder after division. | `10 % 3` → `1` |
+
+**`Example Program`**
+
+```java
+public class ArithmeticOperators {
+    public static void main(String[] args) {
+
+        int a = 10;
+        int b = 5;
+
+        System.out.println("Addition: " + (a + b));
+        System.out.println("Subtraction: " + (a - b));
+        System.out.println("Multiplication: " + (a * b));
+        System.out.println("Division: " + (a / b));
+        System.out.println("Modulus: " + (a % b));
+    }
+}
+```
+
+**`Output`**
+
+```text
+Addition: 15
+Subtraction: 5
+Multiplication: 50
+Division: 2
+Modulus: 0
+```
+
+**`Key Points`**
+
+- The `+` operator is used for **addition** and also for **string concatenation**.
+- The `/` operator performs **integer division** when both operands are integers.
+- The `%` operator returns the **remainder** after division.
+- Arithmetic operators can be used with `byte`, `short`, `int`, `long`, `float`, and `double` data types.
+- Parentheses `()` can be used to control the order of evaluation in arithmetic expressions.
+
+<br>
+
+**`2. Unary Operators :`** A **Unary Operator** in Java is an operator that performs an operation on **a single operand**. It is commonly used to modify a value, change its sign, invert a boolean value, or manipulate bits.
+
+**`Key Points`**
+- Unary operators work on **only one operand**.
+- They are used for value modification, logical operations, and bit manipulation.
+- They help write concise and readable code.
+
+**`Types of Unary Operators in Java`**
+
+`1. Unary Plus Operator (`+`)`
+
+The **Unary Plus (`+`)** operator indicates that the operand is positive. It does not change the value of the operand but can improve code readability.
+
+**Syntax**
+```java
++operand
+```
+
+**Example**
+```java
+int num = 10;
+System.out.println(+num); // Output: 10
+```
+
+---
+
+`2. Unary Minus Operator (`-`)`
+
+The **Unary Minus (`-`)** operator changes the sign of its operand. It converts a positive value into a negative value and a negative value into a positive value.
+
+**Syntax**
+```java
+-operand
+```
+
+**Example**
+```java
+int num = 10;
+System.out.println(-num); // Output: -10
+```
+
+---
+
+`3. Logical NOT Operator (`!`)`
+
+The **Logical NOT (`!`)** operator reverses a boolean value. If the operand is `true`, it becomes `false`, and vice versa.
+
+**Syntax**
+```java
+!operand
+```
+
+**Example**
+```java
+boolean isPassed = true;
+System.out.println(!isPassed); // Output: false
+```
+
+---
+
+`4. Increment Operator (`++`)`
+
+The **Increment (`++`)** operator increases the value of a variable by **1**.
+
+**`4.1 Post-Increment (`num++`)`**
+
+The **Post-Increment** operator first uses the current value of the variable and then increases it by **1**.
+
+**Syntax**
+```java
+num++
+```
+
+**Example**
+```java
+int num = 10;
+
+System.out.println(num++); // Output: 10
+System.out.println(num);   // Output: 11
+```
+
+---
+
+**`4.2 Pre-Increment (`++num`)`**
+
+The **Pre-Increment** operator increases the value of the variable by **1** before it is used.
+
+**Syntax**
+```java
+++num
+```
+
+**Example**
+```java
+int num = 10;
+
+System.out.println(++num); // Output: 11
+```
+
+---
+
+`5. Decrement Operator (`--`)`
+
+The **Decrement (`--`)** operator decreases the value of a variable by **1**.
+
+**`5.1 Post-Decrement (`num--`)`**
+
+The **Post-Decrement** operator first uses the current value of the variable and then decreases it by **1**.
+
+**Syntax**
+```java
+num--
+```
+
+**Example**
+```java
+int num = 10;
+
+System.out.println(num--); // Output: 10
+System.out.println(num);   // Output: 9
+```
+
+---
+
+**`5.2 Pre-Decrement (`--num`)`**
+
+The **Pre-Decrement** operator decreases the value of the variable by **1** before it is used.
+
+**Syntax**
+```java
+--num
+```
+
+**Example**
+```java
+int num = 10;
+
+System.out.println(--num); // Output: 9
+```
+
+---
+
+`6. Bitwise Complement Operator (`~`)`
+
+The **Bitwise Complement (`~`)** operator inverts every bit of an integer value. Every `0` becomes `1`, and every `1` becomes `0`.
+
+**Syntax**
+```java
+~operand
+```
+
+**Example**
+```java
+int num = 5;
+
+System.out.println(~num); // Output: -6
+```
+
+> **Note:** The `~` operator works only with integral data types (`byte`, `short`, `int`, `long`, and `char`). It cannot be used with `float`, `double`, or `boolean`.
