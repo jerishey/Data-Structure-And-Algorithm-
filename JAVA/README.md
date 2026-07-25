@@ -2122,3 +2122,419 @@ This reduces unnecessary computations and improves program performance.
 3. Complex Expressions : Using many logical operators in a single expression can reduce code readability and make maintenance more difficult. Breaking complex conditions into smaller expressions improves code quality.
 ```
 ---
+
+### **`6. Ternary Operator`**
+A **Ternary Operator** in Java is a **conditional operator** that evaluates a boolean expression and returns one of two values depending on whether the condition is `true` or `false`. It is a shorthand form of the `if-else` statement.
+
+**`Key Points`**
+- The ternary operator works with **three operands**.
+- It is represented by the symbols `?` and `:`.
+- It is used as a shorter alternative to the `if-else` statement.
+- It returns a value based on the result of a condition.
+
+**`Syntax`**
+
+```java
+condition ? expression1 : expression2;
+```
+
+- If the **condition is `true`**, `expression1` is executed.
+- If the **condition is `false`**, `expression2` is executed.
+
+---
+
+`Example 1: Find the Largest Number`
+
+```java
+int a = 10;
+int b = 20;
+
+int largest = (a > b) ? a : b;
+
+System.out.println("Largest Number: " + largest);
+```
+
+**Output**
+```text
+Largest Number: 20
+```
+
+---
+
+`Example 2: Check Even or Odd`
+
+```java
+int num = 15;
+
+String result = (num % 2 == 0) ? "Even" : "Odd";
+
+System.out.println(result);
+```
+
+**Output**
+```text
+Odd
+```
+
+---
+
+`Equivalent `if-else` Statement`
+
+```java
+int a = 10;
+int b = 20;
+int largest;
+
+if (a > b) {
+    largest = a;
+} else {
+    largest = b;
+}
+
+System.out.println(largest);
+```
+
+---
+
+**`Advantages of Ternary Operator`**
+```java
+1. Concise Code : The ternary operator reduces the number of lines of code compared to an `if-else` statement.
+
+2. Improved Readability : For simple conditions, it makes the code shorter and easier to understand.
+
+3. Returns a Value : Unlike an `if-else` statement, the ternary operator directly returns a value, making it useful in assignments and return statements.
+
+4. Better Code Maintainability : Using the ternary operator for simple conditions makes the code cleaner and easier to maintain.
+```
+
+---
+
+**`Disadvantages of Ternary Operator`**
+```java
+1. Difficult to Read for Complex Conditions : Nested ternary operators can make the code confusing and difficult to understand.
+
+2. Not Suitable for Multiple Statements : The ternary operator can evaluate only expressions. It cannot replace an `if-else` block that contains multiple statements.
+
+3. Reduced Readability When Overused : Using several ternary operators in a single expression can make the code difficult to debug and maintain.
+```
+---
+
+### **`7. Bitwise Operators`**
+A **Bitwise Operator** in Java is used to perform operations on the **binary (bit-level)** representation of integer data types. These operators manipulate individual bits of operands and are commonly used in low-level programming, optimization, and bit manipulation tasks.
+
+**`Key Points`**
+- Bitwise operators work on the **binary representation** of numbers.
+- They are applicable only to **integral data types** (`byte`, `short`, `int`, `long`, and `char`).
+- They are commonly used in bit manipulation, encryption, networking, and system programming.
+- The result of a bitwise operation is an integer value.
+
+**`Types of Bitwise Operators in Java`**
+
+`1. Bitwise AND Operator (`&`)`
+
+The **Bitwise AND (`&`)** operator compares each bit of two operands. It returns `1` only if **both corresponding bits are `1`**; otherwise, it returns `0`.
+
+**Syntax**
+```java
+operand1 & operand2
+```
+
+**Example**
+```java
+int a = 10; // 1010
+int b = 6;  // 0110
+
+System.out.println(a & b); // Output: 2
+```
+
+---
+
+`2. Bitwise OR Operator (`|`)`
+
+The **Bitwise OR (`|`)** operator compares each bit of two operands. It returns `1` if **at least one corresponding bit is `1`**.
+
+**Syntax**
+```java
+operand1 | operand2
+```
+
+**Example**
+```java
+int a = 10; // 1010
+int b = 6;  // 0110
+
+System.out.println(a | b); // Output: 14
+```
+
+---
+
+`3. Bitwise XOR Operator (`^`)`
+
+The **Bitwise XOR (`^`)** operator compares each bit of two operands. It returns `1` if the corresponding bits are **different**; otherwise, it returns `0`.
+
+**Syntax**
+```java
+operand1 ^ operand2
+```
+
+**Example**
+```java
+int a = 10; // 1010
+int b = 6;  // 0110
+
+System.out.println(a ^ b); // Output: 12
+```
+
+---
+
+`4. Bitwise Complement Operator (`~`)`
+
+The **Bitwise Complement (`~`)** operator inverts every bit of an operand. Every `0` becomes `1`, and every `1` becomes `0`.
+
+**Syntax**
+```java
+~operand
+```
+
+**Example**
+```java
+int a = 10;
+
+System.out.println(~a); // Output: -11
+```
+
+---
+
+`5. Left Shift Operator (`<<`)`
+
+The **Left Shift (`<<`)** operator shifts the bits of the left operand to the left by the specified number of positions. Each left shift effectively multiplies the value by `2`.
+
+**Syntax**
+```java
+operand << positions
+```
+
+**Example**
+```java
+int a = 5;
+
+System.out.println(a << 1); // Output: 10
+```
+
+---
+
+`6. Right Shift Operator (`>>`)`
+
+The **Right Shift (`>>`)** operator shifts the bits of the left operand to the right by the specified number of positions. Each right shift effectively divides the value by `2` while preserving the sign bit.
+
+**Syntax**
+```java
+operand >> positions
+```
+
+**Example**
+```java
+int a = 20;
+
+System.out.println(a >> 2); // Output: 5
+```
+
+---
+
+`7. Unsigned Right Shift Operator (`>>>`)`
+
+The **Unsigned Right Shift (`>>>`)** operator shifts the bits of the operand to the right without preserving the sign bit. Empty leftmost positions are filled with `0`.
+
+**Syntax**
+```java
+operand >>> positions
+```
+
+**Example**
+```java
+int a = 20;
+
+System.out.println(a >>> 2); // Output: 5
+```
+
+---
+
+**`Example Program`**
+
+```java
+public class BitwiseOperators {
+    public static void main(String[] args) {
+
+        int a = 10;
+        int b = 6;
+
+        System.out.println("Bitwise AND (&): " + (a & b));
+        System.out.println("Bitwise OR (|): " + (a | b));
+        System.out.println("Bitwise XOR (^): " + (a ^ b));
+        System.out.println("Bitwise Complement (~): " + (~a));
+        System.out.println("Left Shift (<<): " + (a << 1));
+        System.out.println("Right Shift (>>): " + (a >> 1));
+        System.out.println("Unsigned Right Shift (>>>): " + (a >>> 1));
+    }
+}
+```
+
+**`Output`**
+
+```text
+Bitwise AND (&): 2
+Bitwise OR (|): 14
+Bitwise XOR (^): 12
+Bitwise Complement (~): -11
+Left Shift (<<): 20
+Right Shift (>>): 5
+Unsigned Right Shift (>>>): 5
+```
+
+---
+
+**`Advantages of Bitwise Operators`**
+```java
+1. Faster Execution : Bitwise operations are generally faster than arithmetic operations because they work directly on individual bits.
+
+2. Efficient Memory Usage : They enable efficient manipulation of binary data without requiring additional memory.
+
+3. Useful in Low-Level Programming : Bitwise operators are widely used in operating systems, embedded systems, device drivers, networking, and cryptography.
+
+4. Supports Bit Manipulation : They simplify tasks such as setting, clearing, toggling, and checking individual bits.
+
+5. Performance Optimization : Bitwise operations can improve performance in applications that require frequent binary computations.
+```
+---
+
+**`Disadvantages of Bitwise Operators`**
+```java
+1. Difficult to Understand : Bitwise operations can be difficult for beginners because they require knowledge of binary representation.
+
+2. Reduced Code Readability : Programs using many bitwise operations may become harder to read and maintain.
+
+3. Limited Usage : Bitwise operators work only with integral data types (`byte`, `short`, `int`, `long`, and `char`).
+
+4. Prone to Errors : A small mistake in bit manipulation can produce unexpected results, making debugging more challenging.
+```
+---
+
+### **`8. instanceof Operator`**
+
+The **`instanceof` operator** in Java is used to **check whether an object is an instance of a particular class or interface**. It returns a **boolean value** (`true` or `false`) based on the result of the check.
+
+**`Key Points`**
+- The `instanceof` operator checks the type of an object at runtime.
+- It returns `true` if the object belongs to the specified class or implements the specified interface.
+- It returns `false` if the object is not an instance of the specified class or interface.
+- It is commonly used before type casting to avoid `ClassCastException`.
+
+**`Syntax`**
+
+```java
+object instanceof ClassName
+```
+
+- Returns `true` if `object` is an instance of `ClassName`.
+- Otherwise, it returns `false`.
+
+---
+
+`Example 1: Checking an Object's Type`
+
+```java
+class Animal {
+}
+
+public class InstanceOfExample {
+    public static void main(String[] args) {
+
+        Animal obj = new Animal();
+
+        System.out.println(obj instanceof Animal);
+    }
+}
+```
+
+**Output**
+
+```text
+true
+```
+
+---
+
+`Example 2: Checking a String Object`
+
+```java
+public class InstanceOfExample {
+    public static void main(String[] args) {
+
+        String name = "Java";
+
+        System.out.println(name instanceof String);
+    }
+}
+```
+
+**Output**
+
+```text
+true
+```
+
+---
+
+**Example 3: Using `instanceof` Before Type Casting**
+
+```java
+class Animal {
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Dog is barking...");
+    }
+}
+
+public class InstanceOfExample {
+    public static void main(String[] args) {
+
+        Animal animal = new Dog();
+
+        if (animal instanceof Dog) {
+            Dog dog = (Dog) animal;
+            dog.bark();
+        }
+    }
+}
+```
+
+**Output**
+
+```text
+Dog is barking...
+```
+
+---
+
+`Advantages of instanceof Operator`
+```java
+1. Runtime Type Checking : It allows checking the actual type of an object during program execution.
+
+2. Safe Type Casting : It helps prevent `ClassCastException` by verifying the object's type before casting.
+
+3. Supports Inheritance : It works correctly with inheritance and interfaces, making it useful in object-oriented programming.
+
+4. Improves Program Reliability : By ensuring that objects belong to the expected type, it reduces runtime errors.
+```
+---
+
+`Disadvantages of instanceof Operator`
+```java
+1. Can Reduce Code Flexibility : Frequent use of `instanceof` may indicate poor object-oriented design and tight coupling.
+
+2. Not Suitable for Complex Type Logic : Using multiple `instanceof` checks can make the code difficult to read and maintain.
+
+3. Encourages Type Checking Instead of Polymorphism : Overusing `instanceof` may reduce the benefits of polymorphism, where method overriding is often a better solution.
+```
