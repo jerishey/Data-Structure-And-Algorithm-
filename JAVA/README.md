@@ -1341,7 +1341,8 @@ Java operators are symbols used to perform operations on variables and values. T
 - They follow a defined precedence and associativity to determine execution order.
 - Some operators work on a single operand (unary), while others require two or more operands.
 
-**`1. Arithmetic Operators :`** **Arithmetic operators** are used to perform mathematical operations on numeric values. Java provides arithmetic operators to carry out operations such as addition, subtraction, multiplication, division, and finding the remainder.
+### **`1. Arithmetic Operators :`** 
+**Arithmetic operators** are used to perform mathematical operations on numeric values. Java provides arithmetic operators to carry out operations such as addition, subtraction, multiplication, division, and finding the remainder.
 
 **`Arithmetic Operators`**
 
@@ -1391,7 +1392,8 @@ Modulus: 0
 
 <br>
 
-**`2. Unary Operators :`** A **Unary Operator** in Java is an operator that performs an operation on **a single operand**. It is commonly used to modify a value, change its sign, invert a boolean value, or manipulate bits.
+### **`2. Unary Operators :`** 
+A **Unary Operator** in Java is an operator that performs an operation on **a single operand**. It is commonly used to modify a value, change its sign, invert a boolean value, or manipulate bits.
 
 **`Key Points`**
 - Unary operators work on **only one operand**.
@@ -1553,7 +1555,7 @@ System.out.println(~num); // Output: -6
 ---
 <br>
 
-`3. Assignment Operators :`
+### **`3. Assignment Operators :`**
 
 An **Assignment Operator** in Java is used to **assign a value to a variable**. It can also perform an arithmetic or bitwise operation and assign the result back to the same variable.
 
@@ -1795,7 +1797,7 @@ System.out.println(num); // Output: 5
 
 <br>
 
-`4. Relational Operators`
+### **`4. Relational Operators`**
 
 A **Relational Operator** in Java is used to **compare two values or expressions**. It returns a **boolean value** (`true` or `false`) based on the result of the comparison. Relational operators are commonly used in decision-making statements such as `if`, `if-else`, `while`, and `for` loops.
 
@@ -1968,3 +1970,155 @@ a < b  : false
 a >= b : true
 a <= b : false
 ```
+
+### **`5. Logical Operators`**
+A **Logical Operator** in Java is used to **combine or reverse boolean expressions**. It operates on boolean values (`true` or `false`) and returns a boolean result. Logical operators are commonly used in decision-making statements such as `if`, `if-else`, `while`, and `for` loops.
+
+**`Key Points`**
+- Logical operators work only with **boolean** values.
+- They are used to combine multiple conditions or reverse a condition.
+- The result of a logical operation is always `true` or `false`.
+
+**`Types of Logical Operators in Java`**
+
+`1. Logical AND Operator (`&&`)`
+
+The **Logical AND (`&&`)** operator returns `true` only if **both operands are true**. If either operand is `false`, the result is `false`.
+
+**Syntax**
+```java
+condition1 && condition2
+```
+
+**Example**
+```java
+int age = 20;
+
+System.out.println(age >= 18 && age <= 25); // Output: true
+```
+
+---
+
+`2. Logical OR Operator (`||`)`
+
+The **Logical OR (`||`)** operator returns `true` if **at least one operand is true**. It returns `false` only when both operands are `false`.
+
+**Syntax**
+```java
+condition1 || condition2
+```
+
+**Example**
+```java
+int age = 16;
+
+System.out.println(age < 18 || age >= 60); // Output: true
+```
+
+---
+
+`3. Logical NOT Operator (`!`)`
+
+The **Logical NOT (`!`)** operator reverses the boolean value of its operand. It changes `true` to `false` and `false` to `true`.
+
+**Syntax**
+```java
+!condition
+```
+
+**Example**
+```java
+boolean isPassed = true;
+
+System.out.println(!isPassed); // Output: false
+```
+
+---
+
+**`Truth Tables`**
+
+`Logical AND (`&&`)`
+
+| Condition 1 | Condition 2 | Result |
+|:-----------:|:-----------:|:------:|
+| `true` | `true` | `true` |
+| `true` | `false` | `false` |
+| `false` | `true` | `false` |
+| `false` | `false` | `false` |
+
+---
+
+`Logical OR (`||`)`
+
+| Condition 1 | Condition 2 | Result |
+|:-----------:|:-----------:|:------:|
+| `true` | `true` | `true` |
+| `true` | `false` | `true` |
+| `false` | `true` | `true` |
+| `false` | `false` | `false` |
+
+---
+
+`Logical NOT (`!`)`
+
+| Condition | Result |
+|:---------:|:------:|
+| `true` | `false` |
+| `false` | `true` |
+
+---
+
+
+**`Example Program`**
+
+```java
+public class LogicalOperators {
+    public static void main(String[] args) {
+
+        int age = 20;
+        boolean hasLicense = true;
+
+        System.out.println("Logical AND: " + (age >= 18 && hasLicense));
+        System.out.println("Logical OR : " + (age < 18 || hasLicense));
+        System.out.println("Logical NOT: " + (!hasLicense));
+    }
+}
+```
+
+**`Output`**
+
+```text
+Logical AND: true
+Logical OR : true
+Logical NOT: false
+```
+---
+
+**`Advantages of Logical Operators`**
+```bash
+1. Short-Circuit Evaluation : Logical operators (`&&` and `||`) support **short-circuit evaluation**.
+
+- **Logical AND (`&&`)**: If the first condition is `false`, Java does not evaluate the second condition because the overall result will always be `false`.
+- **Logical OR (`||`)**: If the first condition is `true`, Java does not evaluate the second condition because the overall result will always be `true`.
+
+This reduces unnecessary computations and improves program performance.
+
+2. Improved Readability : Logical operators make code easier to read and understand by allowing multiple conditions to be expressed in a single statement.
+
+3. Flexibility : Logical operators allow developers to combine multiple conditions in different ways, making it easier to handle complex decision-making.
+
+4. Reusability : Logical expressions can be reused in different parts of a program, reducing code duplication and improving maintainability.
+
+5. Easier Debugging : Well-structured logical expressions make it easier to identify and fix errors during debugging.
+```
+---
+
+**`Disadvantages of Logical Operators`**
+```bash
+1. Limited Expressiveness : Logical operators alone are not suitable for very complex conditions that require multiple decisions or sequential checks. In such cases, `if-else` statements or nested conditions provide better clarity.
+
+2. Potential for Confusion : Complex logical expressions can be difficult to understand, especially when multiple operators are used together. Using parentheses `()` helps clarify the order of evaluation.
+
+3. Complex Expressions : Using many logical operators in a single expression can reduce code readability and make maintenance more difficult. Breaking complex conditions into smaller expressions improves code quality.
+```
+---
