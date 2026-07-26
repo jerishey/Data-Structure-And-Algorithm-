@@ -2753,3 +2753,194 @@ System.out.println(result);
 
 4. Performance Overhead : Checking many conditions may slightly affect performance, especially in deeply nested structures.
 ```
+
+## **`13. Java Loops`**
+
+A **Loop** in Java is a control flow statement that **repeatedly executes a block of code** as long as a specified condition is `true`. Loops help reduce code duplication and make programs more efficient by automating repetitive tasks.
+
+**`Key Points`**
+- Loops execute a block of code multiple times.
+- They continue execution until the specified condition becomes `false`.
+- Loops reduce code repetition and improve readability.
+- They are commonly used for traversing arrays, processing collections, and performing repetitive operations.
+
+### Types of Loops in Java
+
+1. `for` Loop
+2. `while` Loop
+3. `do-while` Loop
+4. Enhanced `for` Loop (For-Each Loop)
+
+---
+
+**`1. for Loop`**
+
+The **`for` loop** is used when the number of iterations is known in advance. It consists of **initialization**, **condition**, and **update** expressions.
+
+**Syntax**
+
+```java
+for (initialization; condition; update) {
+    // Code to be executed
+}
+```
+
+**Example**
+
+```java
+for (int i = 1; i <= 5; i++) {
+    System.out.println(i);
+}
+```
+
+**Output**
+
+```text
+1
+2
+3
+4
+5
+```
+
+---
+
+**`2. while Loop`**
+
+The **`while` loop** repeatedly executes a block of code **as long as the specified condition is true**. The condition is checked before each iteration.
+
+**Syntax**
+
+```java
+while (condition) {
+    // Code to be executed
+}
+```
+
+**Example**
+
+```java
+int i = 1;
+
+while (i <= 5) {
+    System.out.println(i);
+    i++;
+}
+```
+
+**Output**
+
+```text
+1
+2
+3
+4
+5
+```
+
+---
+
+**`3. do-while Loop`**
+
+The **`do-while` loop** executes the block of code **at least once**, even if the condition is initially `false`. The condition is checked after executing the loop body.
+
+**Syntax**
+
+```java
+do {
+    // Code to be executed
+} while (condition);
+```
+
+**Example**
+
+```java
+int i = 1;
+
+do {
+    System.out.println(i);
+    i++;
+} while (i <= 5);
+```
+
+**Output**
+
+```text
+1
+2
+3
+4
+5
+```
+
+---
+
+**`4. Enhanced for Loop (For-Each Loop)`**
+
+The **Enhanced `for` loop**, also known as the **For-Each Loop**, is used to iterate through arrays or collections without using an index.
+
+**Syntax**
+
+```java
+for (dataType variable : array) {
+    // Code to be executed
+}
+```
+
+**Example**
+
+```java
+int[] numbers = {10, 20, 30, 40, 50};
+
+for (int num : numbers) {
+    System.out.println(num);
+}
+```
+
+**Output**
+
+```text
+10
+20
+30
+40
+50
+```
+
+---
+
+**`Difference Between Loops`**
+
+| Loop | Condition Check | Minimum Executions | Best Used When |
+|------|-----------------|-------------------|----------------|
+| `for` | Before execution | 0 | Number of iterations is known. |
+| `while` | Before execution | 0 | Number of iterations is unknown. |
+| `do-while` | After execution | 1 | The loop must execute at least once. |
+| Enhanced `for` | Before execution | 0 | Traversing arrays or collections. |
+
+---
+
+**`Advantages of Loops`**
+```java
+1. Reduces Code Duplication : Loops eliminate the need to write the same code multiple times.
+
+2. Improves Readability : Programs become shorter, cleaner, and easier to understand.
+
+3. Saves Development Time : A single loop can replace many repeated statements.
+
+4. Efficient Data Processing : Loops make it easy to process arrays, collections, and large datasets.
+
+5. Simplifies Complex Tasks : Many algorithms, such as searching, sorting, and counting, rely on loops.
+```
+---
+
+**`Disadvantages of Loops`**
+```java
+1. Infinite Loops : An incorrect loop condition may cause the loop to execute forever.
+
+2. Reduced Readability : Deeply nested loops can make the code difficult to understand.
+
+3. Performance Issues : Using unnecessary or inefficient loops can slow down program execution.
+
+4. Debugging Complexity : Finding errors in nested or complex loops can be challenging.
+```
