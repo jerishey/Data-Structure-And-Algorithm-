@@ -2538,3 +2538,218 @@ Dog is barking...
 
 3. Encourages Type Checking Instead of Polymorphism : Overusing `instanceof` may reduce the benefits of polymorphism, where method overriding is often a better solution.
 ```
+
+## **`12. Decision Making in Java – Conditional Statements`**
+
+**Decision Making** in Java is the process of executing different blocks of code based on whether a specified condition is **true** or **false**. Java uses **conditional statements** to control the flow of program execution and make decisions during runtime.
+
+**`Key Points`**
+- Conditional statements evaluate one or more conditions.
+- The result of a condition is always `true` or `false`.
+- They help execute different code blocks based on different situations.
+- Conditional statements improve the flexibility and intelligence of a program.
+
+### **`Types of Conditional Statements in Java`**
+
+1. `if` Statement
+2. `if-else` Statement
+3. `if-else-if` Ladder
+4. Nested `if` Statement
+5. `switch` Statement
+6. Ternary Operator (`? :`)
+
+---
+
+**`1. if Statement`**
+
+The **`if` statement** executes a block of code **only if** the specified condition is `true`.
+
+**Syntax**
+```java
+if (condition) {
+    // Code to execute if the condition is true
+}
+```
+
+**Example**
+```java
+int age = 20;
+
+if (age >= 18) {
+    System.out.println("Eligible to vote.");
+}
+```
+
+---
+
+**`2. if-else Statement`**
+
+The **`if-else` statement** executes one block of code if the condition is `true` and another block if the condition is `false`.
+
+**Syntax**
+```java
+if (condition) {
+    // Executes if the condition is true
+} else {
+    // Executes if the condition is false
+}
+```
+
+**Example**
+```java
+int age = 16;
+
+if (age >= 18) {
+    System.out.println("Eligible to vote.");
+} else {
+    System.out.println("Not eligible to vote.");
+}
+```
+
+---
+
+**`3. if-else-if Ladder`**
+
+The **`if-else-if` ladder** is used to check multiple conditions one after another. The first condition that evaluates to `true` is executed.
+
+**Syntax**
+```java
+if (condition1) {
+    // Code
+} else if (condition2) {
+    // Code
+} else if (condition3) {
+    // Code
+} else {
+    // Default code
+}
+```
+
+**Example**
+```java
+int marks = 85;
+
+if (marks >= 90) {
+    System.out.println("Grade A+");
+} else if (marks >= 80) {
+    System.out.println("Grade A");
+} else if (marks >= 70) {
+    System.out.println("Grade B");
+} else {
+    System.out.println("Grade C");
+}
+```
+
+---
+
+**`4. Nested if Statement`**
+
+A **Nested `if` statement** is an `if` statement placed inside another `if` statement. It is used when one condition depends on another.
+
+**Syntax**
+```java
+if (condition1) {
+    if (condition2) {
+        // Code
+    }
+}
+```
+
+**Example**
+```java
+int age = 22;
+boolean hasLicense = true;
+
+if (age >= 18) {
+    if (hasLicense) {
+        System.out.println("Eligible to drive.");
+    }
+}
+```
+
+---
+
+**`5. switch Statement`**
+
+The **`switch` statement** is used to execute one block of code from multiple alternatives based on the value of an expression.
+
+**Syntax**
+```java
+switch (expression) {
+    case value1:
+        // Code
+        break;
+
+    case value2:
+        // Code
+        break;
+
+    default:
+        // Default code
+}
+```
+
+**Example**
+```java
+int day = 2;
+
+switch (day) {
+    case 1:
+        System.out.println("Monday");
+        break;
+
+    case 2:
+        System.out.println("Tuesday");
+        break;
+
+    default:
+        System.out.println("Invalid Day");
+}
+```
+
+---
+
+**6. Ternary Operator (`? :`)**
+
+The **Ternary Operator** is a shorthand form of the `if-else` statement. It evaluates a condition and returns one of two values.
+
+**Syntax**
+```java
+condition ? expression1 : expression2;
+```
+
+**Example**
+```java
+int age = 20;
+
+String result = (age >= 18) ? "Adult" : "Minor";
+
+System.out.println(result);
+```
+
+---
+
+**`Advantages of Conditional Statements`**
+```java
+1. Decision Making : Conditional statements enable programs to make decisions based on different conditions.
+
+2. Improved Code Readability : They organize program logic into clear and structured blocks.
+
+3. Flexibility : Different actions can be performed for different situations.
+
+4. Code Reusability : The same program can handle multiple scenarios without duplicating code.
+
+5. Better Control Flow : Conditional statements control the order in which program statements are executed.
+```
+---
+
+**`Disadvantages of Conditional Statements`**
+```java
+1. Complex Nested Conditions : Using too many nested `if` statements can make the code difficult to understand.
+
+2. Reduced Readability : Long `if-else-if` ladders may decrease code readability.
+
+3. Maintenance Difficulty : Complex decision structures can be harder to debug and maintain.
+
+4. Performance Overhead : Checking many conditions may slightly affect performance, especially in deeply nested structures.
+```
