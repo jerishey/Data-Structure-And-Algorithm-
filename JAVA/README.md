@@ -2944,3 +2944,169 @@ for (int num : numbers) {
 
 4. Debugging Complexity : Finding errors in nested or complex loops can be challenging.
 ```
+
+## **`14. Jump Statements in Java`**
+
+**Jump Statements** in Java are control flow statements that **transfer the program's execution from one point to another**. They are used to alter the normal flow of loops, conditional statements, and methods.
+
+**`Key Points`**
+- Jump statements change the normal execution flow of a program.
+- They are mainly used with loops and `switch` statements.
+- They help control program execution efficiently.
+- Java provides **three jump statements**:
+  - `break`
+  - `continue`
+  - `return`
+
+---
+
+### Types of Jump Statements in Java
+
+1. `break` Statement
+2. `continue` Statement
+3. `return` Statement
+
+---
+
+**1. `break` Statement**
+
+The **`break` statement** is used to **immediately terminate a loop or `switch` statement**. After the `break` statement is executed, control moves to the first statement following the loop or `switch`.
+
+**Syntax**
+
+```java
+break;
+```
+
+**Example**
+
+```java
+for (int i = 1; i <= 5; i++) {
+
+    if (i == 3) {
+        break;
+    }
+
+    System.out.println(i);
+}
+```
+
+**Output**
+
+```text
+1
+2
+```
+
+---
+
+**2. `continue` Statement**
+
+The **`continue` statement** is used to **skip the current iteration** of a loop and continue with the next iteration.
+
+**Syntax**
+
+```java
+continue;
+```
+
+**Example**
+
+```java
+for (int i = 1; i <= 5; i++) {
+
+    if (i == 3) {
+        continue;
+    }
+
+    System.out.println(i);
+}
+```
+
+**Output**
+
+```text
+1
+2
+4
+5
+```
+
+---
+
+**3. `return` Statement**
+
+The **`return` statement** is used to **exit a method**. It can optionally return a value to the method that called it.
+
+**Syntax**
+
+```java
+return;
+```
+
+or
+
+```java
+return value;
+```
+
+**Example**
+
+```java
+public class ReturnExample {
+
+    static int add(int a, int b) {
+        return a + b;
+    }
+
+    public static void main(String[] args) {
+
+        int sum = add(10, 20);
+
+        System.out.println(sum);
+    }
+}
+```
+
+**Output**
+
+```text
+30
+```
+
+---
+
+**`Difference Between Jump Statements`**
+
+| Statement | Purpose | Used With | Effect |
+|-----------|---------|-----------|--------|
+| `break` | Terminates the loop or `switch`. | Loops, `switch` | Exits immediately. |
+| `continue` | Skips the current iteration. | Loops | Continues with the next iteration. |
+| `return` | Exits a method and optionally returns a value. | Methods | Ends method execution. |
+
+---
+
+**`Advantages of Jump Statements`**
+```java
+1. Better Control Flow : Jump statements provide better control over the execution of loops and methods.
+
+2. Improves Efficiency : They avoid unnecessary iterations or statements, improving program performance.
+
+3. Cleaner Code : They simplify program logic by reducing unnecessary nested conditions.
+
+4. Early Method Exit : The `return` statement allows a method to terminate as soon as the required result is obtained.
+
+5. Easier Loop Management : The `break` and `continue` statements make it easier to manage complex looping conditions.
+```
+---
+
+**`Disadvantages of Jump Statements`**
+```java
+1. Reduced Readability : Excessive use of jump statements can make the code difficult to understand.
+
+2. Difficult Debugging : Frequent jumps in execution flow can make debugging more challenging.
+
+3. Poor Program Structure : Improper use of `break`, `continue`, or `return` may reduce code maintainability.
+
+4. Hidden Logic : Using too many jump statements may hide the actual program flow, making it harder for other developers to follow the code.
+```
