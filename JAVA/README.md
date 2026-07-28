@@ -3305,3 +3305,161 @@ int number = obj;
 4. Autoboxing Overhead : Frequent autoboxing and unboxing can reduce application performance.
 ```
 ---
+
+
+## **`15. Type Casting in Java`**
+
+**Type Casting** in Java is the process of **converting a value from one data type to another**. It allows compatibility between different data types and is commonly used when assigning values or performing arithmetic operations.
+
+**`Key Points`**
+- Type casting converts one data type into another.
+- It helps maintain compatibility between different data types.
+- Java supports **two types of type casting**:
+  1. Implicit (Widening) Casting
+  2. Explicit (Narrowing) Casting
+
+---
+
+### Types of Type Casting in Java
+
+1. Widening Type Casting (Implicit Casting)
+2. Narrowing Type Casting (Explicit Casting)
+
+---
+
+**`1. Widening Type Casting (Implicit Casting)`**
+
+**Widening Type Casting** is the automatic conversion of a **smaller data type into a larger data type**. It is performed automatically by the Java compiler because there is no risk of data loss.
+
+`Conversion Order`
+
+```text
+byte → short → int → long → float → double
+          ↘
+           char → int → long → float → double
+```
+
+**Syntax**
+
+```java
+largerDataType variable = smallerDataTypeValue;
+```
+
+**Example**
+
+```java
+int number = 100;
+double value = number;
+
+System.out.println(value);
+```
+
+**Output**
+
+```text
+100.0
+```
+
+`Advantages`
+- Performed automatically by the compiler.
+- No explicit casting is required.
+- No loss of data occurs.
+
+---
+
+**`2. Narrowing Type Casting (Explicit Casting)`**
+
+**Narrowing Type Casting** is the manual conversion of a **larger data type into a smaller data type**. Since this conversion may result in data loss, the programmer must explicitly specify the target data type.
+
+**Syntax**
+
+```java
+smallerDataType variable = (smallerDataType) largerDataTypeValue;
+```
+
+**Example**
+
+```java
+double value = 99.99;
+int number = (int) value;
+
+System.out.println(number);
+```
+
+**Output**
+
+```text
+99
+```
+
+> **Note:** The decimal part (`0.99`) is discarded during the conversion.
+
+---
+
+**`Example`**
+
+```java
+public class TypeCastingExample {
+    public static void main(String[] args) {
+
+        // Widening Casting
+        int num = 50;
+        double decimal = num;
+
+        System.out.println("Widening Casting: " + decimal);
+
+        // Narrowing Casting
+        double price = 99.99;
+        int amount = (int) price;
+
+        System.out.println("Narrowing Casting: " + amount);
+    }
+}
+```
+
+**Output**
+
+```text
+Widening Casting: 50.0
+Narrowing Casting: 99
+```
+
+---
+
+**`Difference Between Widening and Narrowing Casting`**
+
+| Feature | Widening Casting | Narrowing Casting |
+|---------|------------------|-------------------|
+| Conversion | Smaller type → Larger type | Larger type → Smaller type |
+| Performed By | Java Compiler | Programmer |
+| Casting Required | No | Yes |
+| Data Loss | No | Possible |
+| Also Known As | Implicit Casting | Explicit Casting |
+
+---
+
+**`Advantages of Type Casting`**
+```java
+1. Data Type Compatibility : Allows different data types to work together in expressions and assignments.
+
+2. Efficient Memory Usage : Enables choosing appropriate data types for better memory management.
+
+3. Supports Arithmetic Operations : Allows calculations between different numeric data types.
+
+4. Flexible Programming : Makes it easier to convert data between different formats when required.
+
+5. Better Code Reusability : Allows methods and APIs to work with multiple compatible data types.
+```
+---
+
+**`Disadvantages of Type Casting`**
+```java
+1. Possible Data Loss : Narrowing casting may lose information, such as decimal values or large numbers.
+
+2. Reduced Precision : Converting from a higher-precision type to a lower-precision type can reduce accuracy.
+
+3. Runtime Errors : Incorrect casting between incompatible object types can cause a `ClassCastException`.
+
+4. Additional Overhead : Frequent type casting can make the code less readable and slightly affect performance.
+```
+---
