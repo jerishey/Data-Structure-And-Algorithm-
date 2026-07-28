@@ -3463,3 +3463,149 @@ Narrowing Casting: 99
 4. Additional Overhead : Frequent type casting can make the code less readable and slightly affect performance.
 ```
 ---
+
+## **`16. Comments in Java`**
+
+**Comments** in Java are **non-executable statements** used to explain code, improve readability, and provide documentation. Comments are ignored by the Java compiler and do not affect the execution of a program.
+
+**`Key Points`**
+- Comments are ignored by the Java compiler.
+- They make code easier to read and understand.
+- They are used to explain program logic and improve code documentation.
+- Comments do not affect the program's output or performance.
+
+---
+
+### Types of Comments in Java
+
+1. Single-Line Comment
+2. Multi-Line Comment
+3. Documentation Comment (Javadoc)
+
+---
+
+**`1. Single-Line Comment`**
+
+A **Single-Line Comment** is used to write a comment on a single line. It begins with `//`, and everything after `//` on the same line is treated as a comment.
+
+**Syntax**
+
+```java
+// This is a single-line comment
+```
+
+**Example**
+
+```java
+public class SingleLineComment {
+    public static void main(String[] args) {
+
+        // Display a message
+        System.out.println("Hello, Java!");
+    }
+}
+```
+
+---
+
+**`2. Multi-Line Comment`**
+
+A **Multi-Line Comment** is used to write comments that span multiple lines. It begins with `/*` and ends with `*/`.
+
+**Syntax**
+
+```java
+/*
+   This is a
+   multi-line comment.
+*/
+```
+
+**Example**
+
+```java
+public class MultiLineComment {
+    public static void main(String[] args) {
+
+        /*
+         This program
+         prints a message.
+        */
+        System.out.println("Welcome to Java!");
+    }
+}
+```
+
+---
+
+**`3. Documentation Comment (Javadoc)`**
+
+A **Documentation Comment**, also known as a **Javadoc Comment**, is used to generate API documentation. It begins with `/**` and ends with `*/`.
+
+**Syntax**
+
+```java
+/**
+ * Documentation comment
+ */
+```
+
+**Example**
+
+```java
+/**
+ * This class demonstrates Javadoc comments.
+ */
+public class Calculator {
+
+    /**
+     * Adds two integers.
+     *
+     * @param a First number
+     * @param b Second number
+     * @return Sum of the two numbers
+     */
+    public static int add(int a, int b) {
+        return a + b;
+    }
+}
+```
+
+---
+
+**`Difference Between Java Comments`**
+
+| Comment Type | Symbol | Purpose |
+|--------------|--------|---------|
+| Single-Line Comment | `//` | Used for short explanations on a single line. |
+| Multi-Line Comment | `/* ... */` | Used for comments that span multiple lines. |
+| Documentation Comment | `/** ... */` | Used to generate API documentation using Javadoc. |
+
+---
+
+**`Advantages of Comments`**
+```java
+1. Improves Readability : Comments make the source code easier to read and understand.
+
+2. Better Documentation : They help explain the purpose and functionality of classes, methods, and variables.
+
+3. Easier Maintenance : Well-commented code is easier to update and maintain.
+
+4. Simplifies Debugging : Comments help developers quickly understand the program logic while debugging.
+
+5. Supports Team Collaboration : Comments make it easier for other developers to understand and work on the code.
+```
+---
+
+**`Disadvantages of Comments`**
+```java
+1. Outdated Comments : If comments are not updated when the code changes, they can become misleading.
+
+2. Excessive Comments : Too many unnecessary comments can reduce code readability.
+
+3. Maintenance Overhead : Comments must be maintained along with the code to remain accurate.
+
+4. Cannot Replace Good Code : Comments should explain **why** the code exists, not compensate for poorly written or unclear code.
+```
+---
+
