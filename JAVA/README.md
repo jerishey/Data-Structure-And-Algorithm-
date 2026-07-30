@@ -3886,4 +3886,232 @@ greet("Rakesh");                   // Argument
 ```
 ---
 
+### **`Method Call Stack in Java`**
 
+
+A **Method Call Stack** is a memory structure used by the Java Virtual Machine (JVM) to keep track of active method calls during program execution. Each time a method is called, a new **stack frame** is created and pushed onto the call stack. When the method finishes execution, its stack frame is removed (popped).
+
+**`Key Points`**
+
+- The JVM uses a **Last In, First Out (LIFO)** structure for method execution.
+- Each method call creates a new stack frame.
+- Local variables, parameters, and return addresses are stored in the stack frame.
+- When a method completes, its stack frame is automatically removed.
+
+**Example**
+
+```java
+public class CallStackExample {
+
+    static void methodA() {
+        System.out.println("Method A");
+    }
+
+    static void methodB() {
+        methodA();
+        System.out.println("Method B");
+    }
+
+    public static void main(String[] args) {
+        methodB();
+    }
+}
+```
+
+**Execution Order**
+
+```text
+main()
+   ↓
+methodB()
+   ↓
+methodA()
+   ↑
+methodB()
+   ↑
+main()
+```
+
+---
+
+### Different Ways to Create Java Methods
+
+Methods in Java can be created in different ways depending on whether they accept parameters and/or return a value.
+
+**`1. Without Parameters and Without Return Value`**
+
+```java
+static void display() {
+    System.out.println("Hello Java");
+}
+```
+
+---
+
+**`2. With Parameters and Without Return Value`**
+
+```java
+static void greet(String name) {
+    System.out.println("Hello " + name);
+}
+```
+
+---
+
+**`3. Without Parameters and With Return Value`**
+
+```java
+static int getNumber() {
+    return 100;
+}
+```
+
+---
+
+**`4. With Parameters and With Return Value`**
+
+```java
+static int add(int a, int b) {
+    return a + b;
+}
+```
+
+---
+
+### Method Signature
+
+A **Method Signature** uniquely identifies a method in Java. It consists of the **method name** and the **parameter list** (number, type, and order of parameters).
+
+> **Note:** The return type is **not** part of the method signature.
+
+**Syntax**
+
+```java
+methodName(parameterType1, parameterType2, ...)
+```
+
+**Example**
+
+```java
+void display()
+
+int add(int a, int b)
+
+double area(double radius)
+```
+
+These methods have different signatures because their parameter lists are different.
+
+---
+
+**`Naming a Method`**
+
+A method name should clearly describe the action it performs. Java follows the **camelCase** naming convention for methods.
+
+**Rules**
+
+- Method names should start with a lowercase letter.
+- Use **camelCase** for multiple words.
+- Use meaningful and descriptive names.
+- Avoid spaces and special characters.
+- Do not use Java reserved keywords as method names.
+
+**Good Examples**
+
+```java
+calculateSum()
+printDetails()
+findMaximum()
+isPrime()
+getName()
+```
+
+**Poor Examples**
+
+```java
+abc()
+A()
+test123()
+```
+
+---
+
+### **`Calling Different Types of Methods in Java`**
+
+**`1. Calling a Static Method`**
+
+A static method belongs to the class and can be called without creating an object.
+
+```java
+public class Demo {
+
+    static void display() {
+        System.out.println("Static Method");
+    }
+
+    public static void main(String[] args) {
+        display();
+    }
+}
+```
+
+---
+
+**`2. Calling a Non-Static (Instance) Method`**
+
+A non-static method belongs to an object, so an object must be created before calling it.
+
+```java
+public class Demo {
+
+    void display() {
+        System.out.println("Instance Method");
+    }
+
+    public static void main(String[] args) {
+
+        Demo obj = new Demo();
+
+        obj.display();
+    }
+}
+```
+
+---
+
+**`3. Calling a Method with Parameters`**
+
+```java
+public class Demo {
+
+    static void greet(String name) {
+        System.out.println("Hello " + name);
+    }
+
+    public static void main(String[] args) {
+        greet("Rakesh");
+    }
+}
+```
+
+---
+
+**`4. Calling a Method that Returns a Value`**
+
+```java
+public class Demo {
+
+    static int square(int num) {
+        return num * num;
+    }
+
+    public static void main(String[] args) {
+
+        int result = square(5);
+
+        System.out.println(result);
+    }
+}
+```
+
+---
