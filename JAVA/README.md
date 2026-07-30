@@ -3609,3 +3609,281 @@ public class Calculator {
 ```
 ---
 
+## **`17. Java Methods`**
+
+A **Method** in Java is a **block of code** that performs a specific task. A method is executed only when it is called (invoked). Methods help organize code into reusable, modular, and manageable units.
+
+**`Key Points`**
+- A method is used to perform a specific task.
+- It improves code reusability by allowing the same code to be used multiple times.
+- It makes programs more organized, readable, and easier to maintain.
+- A method can accept parameters and return a value.
+
+---
+
+**Syntax of a Method**
+
+```java
+accessModifier returnType methodName(parameters) {
+    // Method body
+    return value; // optional (only if returnType is not void)
+}
+
+Exaplanation:
+- Modifier: Defines access level (public, private, protected, default)
+- Return Type: Specifies what value the method returns or void if no return
+- Method Name: Name of the method, follows camelCase convention
+- Parameters: Optional inputs passed to the method
+- Method Body: Contains the logic or statements to be executed
+```
+
+**Example**
+
+```java
+public static void greet() {
+    System.out.println("Hello, Java!");
+}
+```
+
+---
+
+**`Parts of a Method`**
+
+| Part | Description |
+|------|-------------|
+| Access Modifier | Specifies the accessibility of the method (e.g., `public`, `private`, `protected`). |
+| Return Type | Specifies the type of value returned by the method. Use `void` if no value is returned. |
+| Method Name | The name used to call the method. |
+| Parameters | Input values passed to the method (optional). |
+| Method Body | Contains the statements that define the method's task. |
+
+---
+
+### **`Types of Methods in Java`**
+
+1. Predefined (Built-in) Methods
+2. User-Defined Methods
+
+---
+
+**`1. Predefined (Built-in) Methods`**
+
+Predefined methods are already provided by Java libraries. They can be used directly without creating them.
+
+**Example**
+
+```java
+public class BuiltInMethod {
+    public static void main(String[] args) {
+
+        System.out.println(Math.max(10, 20));
+        System.out.println(Math.sqrt(25));
+    }
+}
+```
+
+**Output**
+
+```text
+20
+5.0
+```
+
+---
+
+**`2. User-Defined Methods`**
+
+User-defined methods are created by the programmer to perform a specific task.
+
+**Example**
+
+```java
+public class UserDefinedMethod {
+
+    static void greet() {
+        System.out.println("Welcome to Java!");
+    }
+
+    public static void main(String[] args) {
+
+        greet();
+    }
+}
+```
+
+**Output**
+
+```text
+Welcome to Java!
+```
+
+---
+
+### **`Types of User-Defined Methods`**
+
+**`1. Method Without Parameters and Without Return Value`**
+
+```java
+public class Demo {
+
+    static void display() {
+        System.out.println("Hello, Java!");
+    }
+
+    public static void main(String[] args) {
+        display();
+    }
+}
+```
+
+---
+
+**`2. Method With Parameters and Without Return Value`**
+
+```java
+public class Demo {
+
+    static void add(int a, int b) {
+        System.out.println("Sum = " + (a + b));
+    }
+
+    public static void main(String[] args) {
+        add(10, 20);
+    }
+}
+```
+
+---
+
+**`3. Method Without Parameters and With Return Value`**
+
+```java
+public class Demo {
+
+    static int number() {
+        return 100;
+    }
+
+    public static void main(String[] args) {
+
+        int value = number();
+
+        System.out.println(value);
+    }
+}
+```
+
+---
+
+**`4. Method With Parameters and With Return Value`**
+
+```java
+public class Demo {
+
+    static int add(int a, int b) {
+        return a + b;
+    }
+
+    public static void main(String[] args) {
+
+        int sum = add(10, 20);
+
+        System.out.println("Sum = " + sum);
+    }
+}
+```
+
+---
+
+**`Method Calling`**
+
+A method is executed only when it is called.
+
+**Syntax**
+
+```java
+methodName();
+```
+
+**Example**
+
+```java
+greet();
+```
+
+---
+
+**`Method Parameters`**
+
+Parameters are variables used to receive values when a method is called.
+
+**Example**
+
+```java
+static void display(String name) {
+    System.out.println(name);
+}
+
+display("Rakesh");
+```
+
+---
+
+**`Return Statement`**
+
+The `return` statement is used to send a value back to the calling method and terminate the execution of the current method.
+
+**Example**
+
+```java
+static int square(int number) {
+    return number * number;
+}
+```
+
+---
+
+**`Difference Between Parameters and Arguments`**
+
+| Parameters | Arguments |
+|------------|-----------|
+| Variables declared in the method definition. | Actual values passed during the method call. |
+| Used to receive data. | Used to send data. |
+
+**Example**
+
+```java
+static void greet(String name) {   // Parameter
+    System.out.println(name);
+}
+
+greet("Rakesh");                   // Argument
+```
+
+---
+
+**`Advantages of Methods`**
+```java
+1. Code Reusability : Methods allow the same code to be reused multiple times.
+
+2. Improves Readability : Breaking a program into methods makes it easier to read and understand.
+
+3. Easier Maintenance : Changes made inside a method automatically apply wherever the method is called.
+
+4. Reduces Code Duplication : Methods eliminate the need to write the same code repeatedly.
+
+5. Supports Modular Programming : Large programs can be divided into smaller, manageable modules.
+```
+---
+
+**`Disadvantages of Methods`**
+```java
+1. Slight Performance Overhead : Calling a method introduces a small amount of execution overhead.
+
+2. Complex Method Design : Poorly designed methods with many parameters can reduce readability.
+
+3. Difficult Debugging : A large number of interconnected methods can make debugging more challenging.
+```
+---
+
+
