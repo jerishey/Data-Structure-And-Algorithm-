@@ -4271,3 +4271,177 @@ public class Test {
 - Use **default (package-private)** access for members that should only be used within the same package.
 
 ---
+
+### **`Variable Arguments (Varargs) in Java`**
+
+
+**Variable Arguments (Varargs)** in Java allow a method to **accept a variable number of arguments** of the same data type. Instead of passing a fixed number of arguments, you can pass zero, one, or multiple values to a method. Varargs were introduced in **Java 5** and are represented using three dots (`...`).
+
+**`Key Points`**
+- Varargs allow methods to accept **zero or more arguments**.
+- They reduce the need for method overloading.
+- Varargs are represented using `...` (three dots).
+- Internally, Java treats varargs as an **array**.
+- A method can have **only one varargs parameter**, and it must be the **last parameter** in the method declaration.
+
+---
+
+**Syntax**
+
+```java
+returnType methodName(dataType... variableName) {
+    // Method body
+}
+```
+
+**Example**
+
+```java
+static void display(int... numbers) {
+
+    for (int num : numbers) {
+        System.out.print(num + " ");
+    }
+}
+```
+
+---
+
+**`Example 1: Printing Numbers`**
+
+```java
+public class VarargsExample {
+
+    static void display(int... numbers) {
+
+        for (int num : numbers) {
+            System.out.print(num + " ");
+        }
+    }
+
+    public static void main(String[] args) {
+
+        display(10);
+        display(10, 20, 30);
+        display(5, 10, 15, 20, 25);
+    }
+}
+```
+
+**Output**
+
+```text
+10
+10 20 30
+5 10 15 20 25
+```
+
+---
+
+**`Example 2: Sum of Numbers`**
+
+```java
+public class VarargsExample {
+
+    static int sum(int... numbers) {
+
+        int total = 0;
+
+        for (int num : numbers) {
+            total += num;
+        }
+
+        return total;
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println(sum(10, 20));
+        System.out.println(sum(10, 20, 30));
+        System.out.println(sum(5, 10, 15, 20));
+    }
+}
+```
+
+**Output**
+
+```text
+30
+60
+50
+```
+
+---
+
+**`Rules of Varargs`**
+
+**`1. Only One Varargs Parameter`**
+
+A method can have **only one** varargs parameter.
+
+```java
+void display(int... a) { }
+```
+
+---
+
+**`2. Varargs Must Be the Last Parameter`**
+
+If a method has multiple parameters, the varargs parameter must be declared last.
+
+```java
+void display(String name, int... marks) { }
+```
+
+**`Invalid`**
+
+```java
+void display(int... marks, String name) { }
+```
+
+---
+
+**`3. Varargs Can Accept Zero Arguments`**
+
+```java
+display();
+
+
+This is valid because varargs can receive zero values.
+```
+---
+
+**`Advantages of Varargs`**
+```java
+1. Flexible Method Calls : A single method can accept any number of arguments.
+
+2. Reduces Method Overloading : Eliminates the need to create multiple methods with different numbers of parameters.
+
+3. Cleaner Code : Makes method calls shorter and easier to read.
+
+4. Easy to Use : No need to create an array explicitly when calling the method.
+
+5. Improved Readability : Programs become more concise and maintainable.
+```
+---
+
+**`Disadvantages of Varargs`**
+```java
+1. Performance Overhead : Java creates an array internally for varargs, which may add slight overhead.
+
+2. Same Data Type Only : All arguments passed to a varargs parameter must be of the same type.
+
+3. Limited to One Varargs Parameter : A method cannot have more than one varargs parameter.
+
+4. Must Be the Last Parameter : The varargs parameter must always appear at the end of the parameter list.
+```
+---
+
+**`Best Practices`**
+
+- Use varargs when the number of arguments is unknown.
+- Avoid using varargs if a fixed number of parameters is sufficient.
+- Declare the varargs parameter as the last parameter in the method.
+- Use meaningful parameter names for better readability.
+
+---
