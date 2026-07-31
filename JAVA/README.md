@@ -4115,3 +4115,159 @@ public class Demo {
 ```
 
 ---
+
+### **`Access Modifiers in Java`**
+
+
+**Access Modifiers** in Java are keywords used to **control the visibility and accessibility** of classes, methods, variables, and constructors. They determine where these members can be accessed within a program, helping to implement **encapsulation** and **data security**.
+
+**`Key Points`**
+- Access modifiers control the accessibility of class members.
+- They help protect data from unauthorized access.
+- They support encapsulation in object-oriented programming.
+- Java provides **four access modifiers**:
+  1. `public`
+  2. `protected`
+  3. `default` (Package-Private)
+  4. `private`
+
+---
+
+**`Types of Access Modifiers in Java`**
+
+**1. `public`**
+
+The **`public`** access modifier allows a class member to be accessed from **anywhere** in the program.
+
+**Example**
+
+```java
+public class Student {
+
+    public String name = "Rakesh";
+}
+```
+
+---
+
+**2. `protected`**
+
+The **`protected`** access modifier allows a class member to be accessed:
+- Within the same class.
+- Within the same package.
+- By subclasses (child classes), even if they are in different packages.
+
+**Example**
+
+```java
+class Animal {
+
+    protected void sound() {
+        System.out.println("Animal makes a sound.");
+    }
+}
+```
+
+---
+
+**3. `default` (Package-Private)**
+
+If no access modifier is specified, Java uses the **default** (package-private) access level. Members can be accessed **only within the same package**.
+
+**Example**
+
+```java
+class Student {
+
+    int rollNo = 101; // Default access
+}
+```
+
+---
+
+**4. `private`**
+
+The **`private`** access modifier allows a class member to be accessed **only within the same class**.
+
+**Example**
+
+```java
+class Student {
+
+    private int marks = 95;
+
+    void display() {
+        System.out.println(marks);
+    }
+}
+```
+
+---
+
+**`Example Program`**
+
+```java
+class Demo {
+
+    public int a = 10;
+    protected int b = 20;
+    int c = 30;          // Default access
+    private int d = 40;
+
+    void display() {
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+        System.out.println(d);
+    }
+}
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        Demo obj = new Demo();
+
+        System.out.println(obj.a); // Accessible
+        System.out.println(obj.b); // Accessible (same package)
+        System.out.println(obj.c); // Accessible (same package)
+
+        // System.out.println(obj.d); // Error: private access
+    }
+}
+```
+
+---
+
+**`Advantages of Access Modifiers`**
+```java
+1. Data Hiding : Sensitive data can be protected using the `private` access modifier.
+
+2. Encapsulation : Access modifiers help implement encapsulation by controlling access to class members.
+
+3. Improved Security : They prevent unauthorized access to variables and methods.
+
+4. Better Code Organization : Access modifiers clearly define which members are accessible inside and outside a class.
+
+5. Easier Maintenance : Restricting access reduces dependencies, making code easier to maintain and modify.
+```
+---
+
+**`Disadvantages of Access Modifiers`**
+```java
+1. Increased Code Size : Private members often require getter and setter methods, resulting in additional code.
+
+2. Learning Curve : Understanding the scope of each access modifier may be challenging for beginners.
+
+3. Reduced Flexibility : Overusing restrictive access modifiers can make extending or reusing classes more difficult.
+```
+---
+
+**`Best Practices`**
+
+- Use **`private`** for instance variables to protect data.
+- Use **`public`** only when members need to be accessed from anywhere.
+- Use **`protected`** for members intended to be accessed by subclasses.
+- Use **default (package-private)** access for members that should only be used within the same package.
+
+---
