@@ -4445,3 +4445,325 @@ This is valid because varargs can receive zero values.
 - Use meaningful parameter names for better readability.
 
 ---
+
+## **`18. Arrays in Java`**
+
+An **Array** in Java is a **data structure** that stores **multiple values of the same data type** in a single variable. Arrays have a fixed size, and each element is accessed using an **index**, starting from `0`.
+
+**`Key Points`**
+- Arrays store multiple values of the same data type.
+- All elements in an array must be of the same type.
+- The size of an array is fixed once it is created.
+- Array indexing starts from `0`.
+- Arrays are objects in Java.
+
+---
+
+**`Advantages of Arrays`**
+```java
+1. Efficient Data Storage : Arrays allow multiple values of the same type to be stored using a single variable.
+
+2. Fast Access : Elements can be accessed directly using their index.
+
+3. Easy Traversal : Arrays can be easily traversed using loops.
+
+4. Better Memory Management : Elements are stored in contiguous memory locations, making access efficient.
+
+5. Simplifies Code : Arrays reduce the need to create multiple variables of the same type.
+```
+---
+
+**`Disadvantages of Arrays`**
+```java
+1. Fixed Size : The size of an array cannot be changed after creation.
+
+2. Same Data Type : Arrays can store only elements of the same data type.
+
+3. Memory Wastage : If the array size is larger than required, unused memory is wasted.
+
+4. Costly Insertions and Deletions : Adding or removing elements requires shifting existing elements.
+```
+---
+
+**`Declaration of an Array`**
+
+An array is declared by specifying the data type followed by square brackets (`[]`).
+
+**Syntax**
+
+```java
+dataType[] arrayName;
+```
+
+**Example**
+
+```java
+int[] numbers;
+```
+
+---
+
+**`Array Initialization`**
+
+An array can be initialized using the `new` keyword.
+
+**Syntax**
+
+```java
+dataType[] arrayName = new dataType[size];
+```
+
+**Example**
+
+```java
+int[] numbers = new int[5];
+```
+
+---
+
+**`Array Declaration and Initialization Together`**
+
+```java
+int[] numbers = {10, 20, 30, 40, 50};
+```
+
+---
+
+**`Creating an Array`**
+
+```java
+public class ArrayExample {
+
+    public static void main(String[] args) {
+
+        int[] numbers = {10, 20, 30, 40, 50};
+
+        System.out.println(numbers[0]);
+        System.out.println(numbers[1]);
+        System.out.println(numbers[2]);
+    }
+}
+```
+
+**Output**
+
+```text
+10
+20
+30
+```
+
+---
+
+**`Accessing Array Elements`**
+
+Array elements are accessed using their index.
+
+**Syntax**
+
+```java
+arrayName[index]
+```
+
+**Example**
+
+```java
+int[] numbers = {10, 20, 30};
+
+System.out.println(numbers[1]);
+```
+
+**Output**
+
+```text
+20
+```
+
+---
+
+**`Modifying Array Elements`**
+
+Array elements can be updated using their index.
+
+**Example**
+
+```java
+int[] numbers = {10, 20, 30};
+
+numbers[1] = 50;
+
+System.out.println(numbers[1]);
+```
+
+**Output**
+
+```text
+50
+```
+
+---
+
+**`Array Length`**
+
+The `length` property returns the number of elements in an array.
+
+**Example**
+
+```java
+int[] numbers = {10, 20, 30, 40};
+
+System.out.println(numbers.length);
+```
+
+**Output**
+
+```text
+4
+```
+
+---
+
+**`Traversing an Array Using for loop`**
+
+```java
+public class ArrayTraversal {
+
+    public static void main(String[] args) {
+
+        int[] numbers = {10, 20, 30, 40, 50};
+
+        for (int i = 0; i < numbers.length; i++) {
+            System.out.println(numbers[i]);
+        }
+    }
+}
+```
+
+---
+
+**`Traversing an Array Using Enhanced for Loop`**
+
+```java
+public class ForEachExample {
+
+    public static void main(String[] args) {
+
+        int[] numbers = {10, 20, 30, 40, 50};
+
+        for (int num : numbers) {
+            System.out.println(num);
+        }
+    }
+}
+```
+
+---
+
+**`Types of Arrays in Java`**
+
+**1. One-Dimensional Array**
+
+A **One-Dimensional Array** stores elements in a single row.
+
+**Example**
+
+```java
+int[] marks = {75, 80, 95, 90};
+```
+
+---
+
+**`2. Two-Dimensional Array`**
+
+A **Two-Dimensional Array** stores data in rows and columns, similar to a table or matrix.
+
+**Syntax**
+
+```java
+dataType[][] arrayName = new dataType[rows][columns];
+```
+
+**Example**
+
+```java
+int[][] matrix = {
+    {1, 2, 3},
+    {4, 5, 6}
+};
+
+System.out.println(matrix[1][2]);
+```
+
+**Output**
+
+```text
+6
+```
+
+---
+
+**`Common Operations on Arrays`**
+
+`Find Sum of Elements`
+
+```java
+int[] numbers = {10, 20, 30};
+
+int sum = 0;
+
+for (int num : numbers) {
+    sum += num;
+}
+
+System.out.println(sum);
+```
+
+---
+
+`Find Largest Element`
+
+```java
+int[] numbers = {15, 25, 10, 50};
+
+int largest = numbers[0];
+
+for (int num : numbers) {
+
+    if (num > largest) {
+        largest = num;
+    }
+}
+
+System.out.println(largest);
+```
+
+---
+
+`Find Smallest Element`
+
+```java
+int[] numbers = {15, 25, 10, 50};
+
+int smallest = numbers[0];
+
+for (int num : numbers) {
+
+    if (num < smallest) {
+        smallest = num;
+    }
+}
+
+System.out.println(smallest);
+```
+
+---
+
+**Difference Between `for` Loop and Enhanced `for` Loop**
+
+| `for` Loop | Enhanced `for` Loop |
+|------------|---------------------|
+| Uses an index. | Does not use an index. |
+| Can modify array elements. | Primarily used for reading elements. |
+| Suitable when index is required. | Suitable for simple traversal. |
+
+---
