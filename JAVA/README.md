@@ -4767,3 +4767,256 @@ System.out.println(smallest);
 | Suitable when index is required. | Suitable for simple traversal. |
 
 ---
+
+## **`19. Java Multi-Dimensional Arrays`**
+
+A **Multi-Dimensional Array** in Java is an **array of arrays** that stores data in multiple dimensions. It is commonly used to represent data in the form of **rows and columns**, such as matrices, tables, spreadsheets, and game boards.
+
+**`Key Points`**
+- A multi-dimensional array is an array whose elements are themselves arrays.
+- The most commonly used multi-dimensional array is the **two-dimensional (2D) array**.
+- Elements are accessed using **multiple indices**.
+- Indexing starts from `0` for each dimension.
+- Multi-dimensional arrays can have two or more dimensions.
+
+---
+
+**`Types of Multi-Dimensional Arrays`**
+
+1. Two-Dimensional Array (2D Array)
+2. Three-Dimensional Array (3D Array)
+
+---
+
+**`1. Two-Dimensional Array (2D Array)`**
+
+A **Two-Dimensional Array** stores data in **rows and columns**, similar to a matrix or table.
+
+**Syntax**
+
+```java
+dataType[][] arrayName = new dataType[rows][columns];
+```
+
+**Example**
+
+```java
+int[][] marks = new int[2][3];
+```
+
+This creates an array with **2 rows** and **3 columns**.
+
+---
+
+**`Declaration and Initialization`**
+
+```java
+int[][] matrix = {
+    {10, 20, 30},
+    {40, 50, 60}
+};
+```
+
+**`Representation`**
+
+```text
+      Column
+       0   1   2
+Row 0 10  20  30
+Row 1 40  50  60
+```
+
+---
+
+**`Accessing Elements`**
+
+Elements are accessed using the row and column indices.
+
+**Syntax**
+
+```java
+arrayName[row][column]
+```
+
+**Example**
+
+```java
+int[][] matrix = {
+    {10, 20, 30},
+    {40, 50, 60}
+};
+
+System.out.println(matrix[1][2]);
+```
+
+**Output**
+
+```text
+60
+```
+
+---
+
+**`Traversing a 2D Array`**
+
+```java
+public class TwoDArray {
+
+    public static void main(String[] args) {
+
+        int[][] matrix = {
+            {10, 20, 30},
+            {40, 50, 60}
+        };
+
+        for (int i = 0; i < matrix.length; i++) {
+
+            for (int j = 0; j < matrix[i].length; j++) {
+
+                System.out.print(matrix[i][j] + " ");
+            }
+
+            System.out.println();
+        }
+    }
+}
+```
+
+**Output**
+
+```text
+10 20 30
+40 50 60
+```
+
+---
+
+**`Traversing Using Enhanced for Loop`**
+
+```java
+int[][] matrix = {
+    {10, 20},
+    {30, 40}
+};
+
+for (int[] row : matrix) {
+
+    for (int value : row) {
+
+        System.out.print(value + " ");
+    }
+
+    System.out.println();
+}
+```
+
+**Output**
+
+```text
+10 20
+30 40
+```
+
+---
+
+**`2. Three-Dimensional Array (3D Array)`**
+
+A **Three-Dimensional Array** stores data in three dimensions. It is often used in scientific computing, graphics, and simulations.
+
+**Syntax**
+
+```java
+dataType[][][] arrayName = new dataType[x][y][z];
+```
+
+**Example**
+
+```java
+int[][][] numbers = new int[2][2][2];
+```
+
+---
+
+**`Example`**
+
+```java
+public class ThreeDArray {
+
+    public static void main(String[] args) {
+
+        int[][][] numbers = {
+            {
+                {1, 2},
+                {3, 4}
+            },
+            {
+                {5, 6},
+                {7, 8}
+            }
+        };
+
+        System.out.println(numbers[1][0][1]);
+    }
+}
+```
+
+**Output**
+
+```text
+6
+```
+
+---
+
+**`Jagged Array (Irregular Array)`**
+
+A **Jagged Array** is a multi-dimensional array in which each row can have a different number of columns.
+
+**Example**
+
+```java
+int[][] jagged = {
+    {10, 20},
+    {30, 40, 50},
+    {60}
+};
+```
+
+---
+
+**`Difference Between One-Dimensional and Multi-Dimensional Arrays`**
+
+| One-Dimensional Array | Multi-Dimensional Array |
+|------------------------|-------------------------|
+| Stores data in a single row. | Stores data in rows and columns (or more dimensions). |
+| Uses one index. | Uses two or more indices. |
+| Simpler structure. | More suitable for matrix-like data. |
+| Example: `int[]` | Example: `int[][]` |
+
+---
+
+**`Advantages of Multi-Dimensional Arrays`**
+```java
+1. Organized Data Storage : Stores related data in rows and columns.
+
+2. Efficient Matrix Operations : Useful for performing mathematical and matrix-based computations.
+
+3. Better Data Representation : Represents tables, grids, game boards, and spreadsheets naturally.
+
+4. Easy Traversal : Nested loops can efficiently process all elements.
+
+5. Supports Complex Data Structures : Useful in image processing, graphics, simulations, and scientific applications.
+```
+---
+
+**`Disadvantages of Multi-Dimensional Arrays`**
+```java
+1. Fixed Size : The number of rows and columns cannot be changed after creation.
+
+2. Higher Memory Usage : They consume more memory than one-dimensional arrays.
+
+3. Complex Traversal : Nested loops make the code more complex.
+
+4. Difficult to Maintain : Managing large multi-dimensional arrays can become challenging.
+```
+---
