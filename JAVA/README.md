@@ -5020,3 +5020,245 @@ int[][] jagged = {
 4. Difficult to Maintain : Managing large multi-dimensional arrays can become challenging.
 ```
 ---
+
+## **`20. Java Strings`**
+
+A **String** in Java is a **sequence of characters** used to store and manipulate text. Unlike primitive data types, a `String` is an **object** of the `String` class in the `java.lang` package. Strings in Java are **immutable**, which means their value cannot be changed after they are created.
+
+**`Key Points`**
+- A string is a sequence of characters.
+- Strings are objects of the `String` class.
+- Strings are immutable (unchangeable).
+- The `String` class belongs to the `java.lang` package.
+- Strings are enclosed in **double quotes (`" "`)**.
+
+---
+
+**`Creating Strings`**
+
+There are two common ways to create a string in Java.
+
+**1. Using String Literal**
+
+A string literal is stored in the **String Pool**.
+
+```java
+String name = "Rakesh";
+```
+
+---
+
+**2. Using the `new` Keyword**
+
+A new string object is created in heap memory.
+
+```java
+String name = new String("Rakesh");
+```
+
+---
+
+**String Example**
+
+```java
+public class StringExample {
+
+    public static void main(String[] args) {
+
+        String message = "Hello, Java!";
+
+        System.out.println(message);
+    }
+}
+```
+
+**Output**
+
+```text
+Hello, Java!
+```
+
+---
+
+**`Common String Methods`**
+
+| Method | Description | Example |
+|---------|-------------|---------|
+| `length()` | Returns the length of the string. | `str.length()` |
+| `charAt()` | Returns the character at the specified index. | `str.charAt(2)` |
+| `substring()` | Returns a part of the string. | `str.substring(1,4)` |
+| `toUpperCase()` | Converts the string to uppercase. | `str.toUpperCase()` |
+| `toLowerCase()` | Converts the string to lowercase. | `str.toLowerCase()` |
+| `equals()` | Compares two strings for equality. | `str1.equals(str2)` |
+| `equalsIgnoreCase()` | Compares strings ignoring case. | `str1.equalsIgnoreCase(str2)` |
+| `compareTo()` | Compares two strings lexicographically. | `str1.compareTo(str2)` |
+| `contains()` | Checks whether a string contains another string. | `str.contains("Java")` |
+| `startsWith()` | Checks if the string starts with a prefix. | `str.startsWith("He")` |
+| `endsWith()` | Checks if the string ends with a suffix. | `str.endsWith("a")` |
+| `replace()` | Replaces characters or substrings. | `str.replace('a','o')` |
+| `trim()` | Removes leading and trailing spaces. | `str.trim()` |
+| `indexOf()` | Returns the first index of a character or substring. | `str.indexOf("a")` |
+| `lastIndexOf()` | Returns the last index of a character or substring. | `str.lastIndexOf("a")` |
+| `isEmpty()` | Checks whether the string is empty. | `str.isEmpty()` |
+
+---
+
+**`Example Program`**
+
+```java
+public class StringMethods {
+
+    public static void main(String[] args) {
+
+        String str = "Java Programming";
+
+        System.out.println("Length: " + str.length());
+        System.out.println("Uppercase: " + str.toUpperCase());
+        System.out.println("Lowercase: " + str.toLowerCase());
+        System.out.println("Character at Index 5: " + str.charAt(5));
+        System.out.println("Substring: " + str.substring(5));
+        System.out.println("Contains Java: " + str.contains("Java"));
+    }
+}
+```
+
+**Output**
+
+```text
+Length: 16
+Uppercase: JAVA PROGRAMMING
+Lowercase: java programming
+Character at Index 5: P
+Substring: Programming
+Contains Java: true
+```
+
+---
+
+**`String Comparison`**
+
+**Using `equals()`**
+
+Compares the contents of two strings.
+
+```java
+String s1 = "Java";
+String s2 = "Java";
+
+System.out.println(s1.equals(s2));
+```
+
+**Output**
+
+```text
+true
+```
+
+---
+
+**Using `==`**
+
+Compares the memory references of two strings.
+
+```java
+String s1 = new String("Java");
+String s2 = new String("Java");
+
+System.out.println(s1 == s2);
+```
+
+**Output**
+
+```text
+false
+```
+
+---
+
+**`String Concatenation`**
+
+Strings can be joined using the `+` operator or the `concat()` method.
+
+**Using `+`**
+
+```java
+String first = "Hello";
+String second = "Java";
+
+System.out.println(first + " " + second);
+```
+
+---
+
+**Using `concat()`**
+
+```java
+String first = "Hello ";
+
+System.out.println(first.concat("Java"));
+```
+
+---
+
+**`String Immutability`**
+
+Strings are **immutable**, meaning their values cannot be changed after creation.
+
+```java
+String str = "Java";
+
+str.concat(" Programming");
+
+System.out.println(str);
+```
+
+**Output**
+
+```text
+Java
+```
+
+To store the modified string:
+
+```java
+str = str.concat(" Programming");
+```
+
+---
+
+**`String Pool`**
+
+The **String Pool** is a special memory area inside the JVM where string literals are stored to improve memory efficiency.
+
+```java
+String s1 = "Java";
+String s2 = "Java";
+```
+
+Both `s1` and `s2` refer to the same object in the String Pool.
+
+---
+
+**`Advantages of Strings`**
+```java
+1. Easy Text Handling : Strings provide built-in methods for manipulating text.
+
+2. Immutable : Immutability improves security and thread safety.
+
+3. Rich API : The `String` class offers many useful methods.
+
+4. Memory Efficient : The String Pool reduces memory usage by reusing string literals.
+
+5. Widely Used : Strings are essential for handling user input, file names, messages, and data processing.
+```
+---
+
+**`Disadvantages of Strings`**
+```java
+1. Immutable Nature : Any modification creates a new string object, which may increase memory usage.
+
+2. Performance Overhead : Frequent string modifications can reduce performance.
+
+3. Additional Memory : Creating many temporary string objects consumes extra memory.
+```
+---
