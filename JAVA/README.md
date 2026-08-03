@@ -5262,3 +5262,210 @@ Both `s1` and `s2` refer to the same object in the String Pool.
 3. Additional Memory : Creating many temporary string objects consumes extra memory.
 ```
 ---
+
+## **`21. Java OOP (Object-Oriented Programming)`**
+
+**Object-Oriented Programming (OOP)** is a programming paradigm that organizes software around **objects** rather than functions or logic. An object represents a real-world entity that contains **data (attributes)** and **behavior (methods)**. OOP helps create modular, reusable, secure, and maintainable programs.
+
+Java is a **fully object-oriented programming language** (except for primitive data types) and is based on the concepts of classes and objects.
+
+**`Key Points`**
+- OOP stands for **Object-Oriented Programming**.
+- It organizes programs using **classes** and **objects**.
+- Objects contain **attributes (data)** and **methods (behavior)**.
+- OOP improves **code reusability**, **security**, and **maintainability**.
+- Java supports the four main principles of OOP:
+  - Encapsulation
+  - Inheritance
+  - Polymorphism
+  - Abstraction
+
+---
+
+**`Why Use OOP?`**
+
+- Organizes large programs into smaller, manageable modules.
+- Promotes code reuse through inheritance.
+- Improves security using encapsulation.
+- Simplifies maintenance and debugging.
+- Makes programs more flexible and scalable.
+
+---
+
+**`Basic Terminology`**
+
+**`1. Class`**
+
+A **Class** is a blueprint or template used to create objects. It defines the properties (variables) and behaviors (methods) that objects will have.
+
+**Example**
+
+```java
+class Student {
+
+    String name;
+    int age;
+
+    void display() {
+        System.out.println(name + " " + age);
+    }
+}
+```
+
+---
+
+**`2. Object`**
+
+An **Object** is an instance of a class. It occupies memory and can access the variables and methods defined in the class.
+
+**Example**
+
+```java
+Student s1 = new Student();
+
+s1.name = "Rakesh";
+s1.age = 20;
+
+s1.display();
+```
+
+---
+
+**`Four Pillars of OOP`**
+
+`1. Encapsulation`
+
+Encapsulation is the process of **wrapping data (variables) and methods into a single unit (class)** while restricting direct access to the data using access modifiers.
+
+**Example**
+
+```java
+class Student {
+
+    private int marks;
+
+    public void setMarks(int marks) {
+        this.marks = marks;
+    }
+
+    public int getMarks() {
+        return marks;
+    }
+}
+```
+
+---
+
+`2. Inheritance`
+
+Inheritance is the process in which one class **inherits the properties and methods of another class**, promoting code reusability.
+
+**Example**
+
+```java
+class Animal {
+
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+
+    void bark() {
+        System.out.println("Dog barks");
+    }
+}
+```
+
+---
+
+`3. Polymorphism`
+
+Polymorphism means **one interface, many forms**. The same method can perform different tasks depending on the object.
+
+**Types**
+- Compile-Time Polymorphism (Method Overloading)
+- Run-Time Polymorphism (Method Overriding)
+
+**Example**
+
+```java
+class Calculator {
+
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+}
+```
+
+---
+
+`4. Abstraction`
+
+Abstraction is the process of **hiding implementation details** and showing only the essential features.
+
+**Example**
+
+```java
+abstract class Vehicle {
+
+    abstract void start();
+}
+
+class Car extends Vehicle {
+
+    void start() {
+        System.out.println("Car starts with a key.");
+    }
+}
+```
+
+---
+
+**`Advantages of OOP`**
+```java
+1. Code Reusability : Inheritance allows existing code to be reused.
+
+2. Data Security : Encapsulation protects sensitive data from unauthorized access.
+
+3. Easy Maintenance : Programs are divided into smaller classes, making maintenance easier.
+
+4. Modularity : Each class performs a specific task, improving code organization.
+
+5. Scalability : New features can be added without affecting existing code.
+
+6. Flexibility : Polymorphism allows methods to behave differently depending on the object.
+
+7. Real-World Modeling : Objects represent real-world entities, making programs easier to design.
+```
+---
+
+**`Disadvantages of OOP`**
+```java
+1. Complex Design : OOP may be difficult for beginners to understand.
+
+2. Larger Program Size : Creating multiple classes can increase program size.
+
+3. Higher Memory Usage : Objects consume additional memory.
+
+4. Slower Execution : Method calls and object creation may introduce slight overhead.
+```
+---
+
+**`Real-Life Example of OOP`**
+
+Consider a **Car**:
+
+- **Class:** Car
+- **Object:** BMW, Audi, Tesla
+- **Attributes:** Color, Model, Speed
+- **Methods:** Start(), Stop(), Accelerate()
+
+Each car object has its own properties but shares the same behavior defined by the `Car` class.
+
+---
