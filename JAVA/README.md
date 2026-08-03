@@ -5469,3 +5469,293 @@ Consider a **Car**:
 Each car object has its own properties but shares the same behavior defined by the `Car` class.
 
 ---
+
+## **`22. Classes in Java`**
+
+
+A **Class** in Java is a **user-defined blueprint or template** used to create objects. It defines the **data (attributes/fields)** and **behavior (methods)** of the objects. A class itself does not occupy memory until an object is created from it.
+
+**`Key Points`**
+
+- A class is a blueprint for creating objects.
+- It groups variables and methods into a single unit.
+- A class is a user-defined data type.
+- A class does not occupy memory until an object is created.
+- Multiple objects can be created from the same class.
+
+---
+
+`Syntax of a Class`
+
+```java
+class ClassName {
+
+    // Instance variables
+
+    // Constructors
+
+    // Methods
+}
+```
+
+---
+
+**`Components of a Class`**
+
+A class can contain the following members:
+
+- Fields (Instance Variables)
+- Constructors
+- Methods
+- Blocks (Static and Instance)
+- Nested Classes
+
+**Example**
+
+```java
+class Student {
+
+    // Instance Variables
+    String name;
+    int age;
+
+    // Constructor
+    Student() {
+        name = "Unknown";
+        age = 0;
+    }
+
+    // Method
+    void display() {
+        System.out.println(name + " " + age);
+    }
+}
+```
+
+---
+
+**`Declaring a Class`**
+
+A class is declared using the `class` keyword followed by the class name.
+
+**Syntax**
+
+```java
+class ClassName {
+
+}
+```
+
+**Example**
+
+```java
+class Car {
+
+}
+```
+
+---
+
+**`Creating a Class`**
+
+```java
+class Student {
+
+    String name;
+    int age;
+
+    void display() {
+        System.out.println("Name : " + name);
+        System.out.println("Age : " + age);
+    }
+}
+```
+
+---
+
+**`Example Program`**
+
+```java
+class Student {
+
+    String name = "Rakesh";
+    int age = 20;
+
+    void display() {
+        System.out.println("Name : " + name);
+        System.out.println("Age : " + age);
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student student = new Student();
+
+        student.display();
+    }
+}
+```
+
+**Output**
+
+```text
+Name : Rakesh
+Age : 20
+```
+
+---
+
+**`Class Naming Conventions`**
+
+Java follows **PascalCase** for class names.
+
+**Rules**
+
+- Begin with an uppercase letter.
+- Use meaningful names.
+- Follow PascalCase for multiple words.
+- Avoid spaces and special characters.
+- Do not use Java keywords as class names.
+
+`Good Examples`
+
+```java
+Student
+Employee
+BankAccount
+BookStore
+OnlineShopping
+```
+
+`Poor Examples`
+
+```java
+student
+my_class
+abc
+int
+```
+
+---
+
+**`Types of Classes in Java`**
+
+- Concrete Class
+- Abstract Class
+- Final Class
+- Static Nested Class
+- Inner Class
+- Anonymous Class
+
+---
+
+`1. Concrete Class`
+
+A **Concrete Class** is a normal class that can be instantiated and contains implemented methods.
+
+```java
+class Student {
+
+    void display() {
+        System.out.println("Concrete Class");
+    }
+}
+```
+
+---
+
+`2. Abstract Class`
+
+An **Abstract Class** cannot be instantiated directly and may contain abstract and non-abstract methods.
+
+```java
+abstract class Animal {
+
+    abstract void sound();
+}
+```
+
+---
+
+`3. Final Class`
+
+A **Final Class** cannot be inherited.
+
+```java
+final class MathConstants {
+
+}
+```
+
+---
+
+`4. Static Nested Class`
+
+A class declared with the `static` keyword inside another class.
+
+```java
+class Outer {
+
+    static class Inner {
+
+    }
+}
+```
+
+---
+
+`5. Inner Class`
+
+A non-static class declared inside another class.
+
+```java
+class Outer {
+
+    class Inner {
+
+    }
+}
+```
+
+---
+
+`6. Anonymous Class`
+
+A class without a name, usually created for one-time use.
+
+```java
+Runnable r = new Runnable() {
+
+    public void run() {
+        System.out.println("Running...");
+    }
+};
+```
+
+---
+
+**`Advantages of Classes`**
+```java
+1. Code Reusability : A single class can be used to create multiple objects.
+
+2. Modularity : Classes divide large programs into smaller, manageable units.
+
+3. Easy Maintenance : Changes made in a class automatically apply to all objects created from it.
+
+4. Data Organization : Related variables and methods are grouped together.
+
+5. Real-World Modeling : Classes represent real-world entities such as Student, Car, or Employee.
+```
+---
+
+**`Disadvantages of Classes`**
+```java
+1. Increased Complexity : Using many classes can make simple programs more complex.
+
+2. Additional Memory Usage : Objects created from classes consume memory.
+
+3. Design Overhead : Proper class design requires planning and understanding of object-oriented concepts.
+```
+---
