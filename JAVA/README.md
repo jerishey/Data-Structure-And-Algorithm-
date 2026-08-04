@@ -5759,3 +5759,301 @@ Runnable r = new Runnable() {
 3. Design Overhead : Proper class design requires planning and understanding of object-oriented concepts.
 ```
 ---
+
+## **`23. Objects in Java`**
+
+
+An **Object** in Java is an **instance of a class**. It represents a real-world entity and contains its own **state (data)** and **behavior (methods)**. Objects are created using the `new` keyword and occupy memory when they are instantiated.
+
+**`Key Points`**
+
+- An object is an instance of a class.
+- Objects are created using the `new` keyword.
+- Each object has its own copy of instance variables.
+- Objects can access the variables and methods of their class.
+- Multiple objects can be created from a single class.
+
+---
+
+**`Syntax of Creating an Object`**
+
+```java
+ClassName objectName = new ClassName();
+```
+
+### Example
+
+```java
+Student student = new Student();
+```
+
+Here:
+
+- `Student` → Class Name
+- `student` → Object Reference
+- `new Student()` → Creates an object
+
+---
+
+**`Creating an Object`**
+
+```java
+class Student {
+
+    String name = "Rakesh";
+    int age = 20;
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student student = new Student();
+
+        System.out.println(student.name);
+        System.out.println(student.age);
+    }
+}
+```
+
+**Output**
+
+```text
+Rakesh
+20
+```
+
+---
+
+**`Accessing Object Members`**
+
+Object members are accessed using the **dot (`.`) operator**.
+
+**Syntax**
+
+```java
+objectName.variableName;
+
+objectName.methodName();
+```
+
+**Example**
+
+```java
+Student student = new Student();
+
+student.name = "Rahul";
+
+student.display();
+```
+
+---
+
+**`Example Program`**
+
+```java
+class Student {
+
+    String name;
+    int age;
+
+    void display() {
+        System.out.println("Name : " + name);
+        System.out.println("Age  : " + age);
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student student = new Student();
+
+        student.name = "Rakesh";
+        student.age = 20;
+
+        student.display();
+    }
+}
+```
+
+**Output**
+
+```text
+Name : Rakesh
+Age  : 20
+```
+
+---
+
+**`Multiple Objects`**
+
+A single class can create multiple objects, and each object maintains its own data.
+
+```java
+class Student {
+
+    String name;
+    int age;
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student s1 = new Student();
+        Student s2 = new Student();
+
+        s1.name = "Rakesh";
+        s1.age = 20;
+
+        s2.name = "Rahul";
+        s2.age = 21;
+
+        System.out.println(s1.name + " " + s1.age);
+        System.out.println(s2.name + " " + s2.age);
+    }
+}
+```
+
+**Output**
+
+```text
+Rakesh 20
+Rahul 21
+```
+
+---
+
+**`Object Initialization`**
+
+Objects can be initialized in different ways.
+
+`1. Using Reference Variable`
+
+```java
+Student s1 = new Student();
+
+s1.name = "Rakesh";
+s1.age = 20;
+```
+
+---
+
+`2. Using a Method`
+
+```java
+class Student {
+
+    String name;
+    int age;
+
+    void setData(String n, int a) {
+        name = n;
+        age = a;
+    }
+}
+```
+
+---
+
+`3. Using a Constructor`
+
+```java
+class Student {
+
+    String name;
+    int age;
+
+    Student(String n, int a) {
+        name = n;
+        age = a;
+    }
+}
+```
+
+---
+
+`Anonymous Object`
+
+An **Anonymous Object** is an object that has no reference variable. It is generally used for one-time use.
+
+### Example
+
+```java
+class Demo {
+
+    void display() {
+        System.out.println("Hello Java");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        new Demo().display();
+    }
+}
+```
+
+---
+
+**`Memory Representation`**
+
+```text
+Class: Student
+------------------------
+name
+age
+display()
+------------------------
+
+          |
+          | new
+          ▼
+
+Object (student)
+------------------------
+name = "Rakesh"
+age  = 20
+------------------------
+```
+
+---
+
+**`Difference Between Class and Object`**
+
+| Class | Object |
+|--------|--------|
+| A blueprint or template. | An instance of a class. |
+| Declared using the `class` keyword. | Created using the `new` keyword. |
+| Does not occupy memory. | Occupies memory when created. |
+| Defines properties and methods. | Uses the properties and methods defined by the class. |
+| One class can create many objects. | Each object has its own state (data). |
+
+---
+
+**`Advantages of Objects`**
+```java
+1. Real-World Representation : Objects represent real-world entities such as Student, Car, or Employee.
+
+2. Code Reusability : Multiple objects can be created from the same class.
+
+3. Easy Maintenance : Changes made in the class automatically affect all objects created from it.
+
+4. Better Organization : Objects group related data and methods together.
+
+5. Supports Object-Oriented Programming : Objects are the foundation of OOP concepts such as encapsulation, inheritance, and polymorphism.
+```
+---
+
+**`Disadvantages of Objects`**
+```java
+1. Memory Consumption : Each object occupies memory.
+
+2. Slight Performance Overhead : Creating and managing many objects may slightly affect performance.
+
+3. Increased Complexity : Using a large number of objects may make small programs more complex.
+```
+---
