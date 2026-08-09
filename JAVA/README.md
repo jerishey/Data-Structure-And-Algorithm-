@@ -5781,7 +5781,7 @@ An **Object** in Java is an **instance of a class**. It represents a real-world 
 ClassName objectName = new ClassName();
 ```
 
-### Example
+**Example**
 
 ```java
 Student student = new Student();
@@ -5978,7 +5978,7 @@ class Student {
 
 An **Anonymous Object** is an object that has no reference variable. It is generally used for one-time use.
 
-### Example
+**Example**
 
 ```java
 class Demo {
@@ -6055,5 +6055,381 @@ age  = 20
 2. Slight Performance Overhead : Creating and managing many objects may slightly affect performance.
 
 3. Increased Complexity : Using a large number of objects may make small programs more complex.
+```
+---
+
+## **`24. Java Constructors`** 
+
+A **Constructor** in Java is a special type of method that is used to **initialize objects**. It is automatically called when an object is created and has the **same name as the class**.
+
+**`Key Points`**
+
+- A constructor is used to initialize an object.
+- It has the same name as the class.
+- A constructor does not have a return type, not even `void`.
+- It is automatically called when an object is created.
+- Constructors can be overloaded.
+- If no constructor is declared, Java provides a default constructor automatically.
+
+---
+
+**`Syntax of Constructor`**
+
+```java
+class ClassName {
+
+    ClassName() {
+        // Constructor body
+    }
+}
+```
+
+**Example**
+
+```java
+class Student {
+
+    Student() {
+        System.out.println("Constructor Called");
+    }
+}
+```
+
+When an object is created:
+
+```java
+Student student = new Student();
+```
+
+The constructor is automatically executed.
+
+**Output:**
+
+```text
+Constructor Called
+```
+
+---
+
+**`Types of Constructors in Java`**
+
+There are mainly two commonly discussed types of constructors:
+
+1. No-Argument Constructor
+2. Parameterized Constructor
+
+Java also supports constructor overloading, where a class can have multiple constructors with different parameter lists.
+
+---
+
+`1. No-Argument Constructor`
+
+A **No-Argument Constructor** is a constructor that does not take any parameters.
+
+**Example**
+
+```java
+class Student {
+
+    String name;
+    int age;
+
+    Student() {
+        name = "Rakesh";
+        age = 20;
+    }
+
+    void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student student = new Student();
+
+        student.display();
+    }
+}
+```
+
+**Output:**
+
+```text
+Name: Rakesh
+Age: 20
+```
+
+---
+
+`2. Parameterized Constructor`
+
+A **Parameterized Constructor** is a constructor that accepts parameters to initialize an object's instance variables.
+
+**Example**
+
+```java
+class Student {
+
+    String name;
+    int age;
+
+    Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student student = new Student("Rakesh", 20);
+
+        student.display();
+    }
+}
+```
+
+**Output:**
+
+```text
+Name: Rakesh
+Age: 20
+```
+
+---
+
+`Constructor with User Input`
+
+Constructors can also be used with values entered by the user.
+
+```java
+import java.util.Scanner;
+
+class Student {
+
+    String name;
+    int age;
+
+    Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    void display() {
+        System.out.println("\nStudent Details");
+        System.out.println("----------------");
+        System.out.println("Name : " + name);
+        System.out.println("Age  : " + age);
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Student Name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter Student Age: ");
+        int age = sc.nextInt();
+
+        Student student = new Student(name, age);
+
+        student.display();
+
+        sc.close();
+    }
+}
+```
+
+**Output:**
+
+```text
+Enter Student Name: Rakesh
+Enter Student Age: 20
+
+Student Details
+----------------
+Name : Rakesh
+Age  : 20
+```
+
+---
+
+**`Constructor Overloading`**
+
+**Constructor Overloading** occurs when a class has multiple constructors with different parameter lists.
+
+**Example**
+
+```java
+class Student {
+
+    String name;
+    int age;
+
+    Student() {
+        name = "Unknown";
+        age = 0;
+    }
+
+    Student(String name) {
+        this.name = name;
+        age = 0;
+    }
+
+    Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    void display() {
+        System.out.println(name + " " + age);
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student s1 = new Student();
+        Student s2 = new Student("Rakesh");
+        Student s3 = new Student("Rahul", 21);
+
+        s1.display();
+        s2.display();
+        s3.display();
+    }
+}
+```
+
+**Output:**
+
+```text
+Unknown 0
+Rakesh 0
+Rahul 21
+```
+
+---
+
+**`Default Constructor`**
+
+If a class does **not contain any constructor**, Java automatically provides a **default constructor**.
+
+**Example**
+
+```java
+class Student {
+
+    String name;
+    int age;
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student student = new Student();
+
+        System.out.println(student.name);
+        System.out.println(student.age);
+    }
+}
+```
+
+**Output:**
+
+```text
+null
+0
+```
+
+> **Important:** If you define any constructor yourself, Java does not automatically provide the default constructor.
+
+---
+
+**`this` Keyword in Constructor**
+
+The `this` keyword refers to the **current object**.
+
+It is commonly used when constructor parameters have the same names as instance variables.
+
+```java
+class Student {
+
+    String name;
+    int age;
+
+    Student(String name, int age) {
+
+        this.name = name;
+        this.age = age;
+    }
+}
+```
+
+Here:
+
+```java
+this.name
+```
+
+refers to the instance variable, while:
+
+```java
+name
+```
+
+refers to the constructor parameter.
+
+---
+
+**`Constructor vs Method`**
+
+| Constructor | Method |
+|-------------|--------|
+| Used to initialize objects. | Used to perform an operation or define behavior. |
+| Must have the same name as the class. | Can have any valid name. |
+| Does not have a return type. | Can have a return type. |
+| Called automatically when an object is created. | Called explicitly. |
+| Cannot be inherited. | Methods can be inherited. |
+| Can be overloaded. | Can be overloaded. |
+
+---
+
+**`Important Rules of Constructors`**
+
+- Constructor name must be the same as the class name.
+- A constructor cannot have a return type.
+- Constructors are automatically called when an object is created.
+- Constructors can be overloaded.
+- Constructors cannot be declared as `static`, `abstract`, or `final`.
+- A constructor can have access modifiers such as `public`, `private`, `protected`, or default access.
+- If no constructor is declared, Java provides a default constructor.
+
+---
+
+**`Advantages of Constructors`**
+```java
+1. Object Initialization : Constructors initialize instance variables when an object is created.
+
+2. Code Reusability : The same initialization logic can be reused whenever objects are created.
+
+3. Cleaner Code : Objects can be initialized directly during creation.
+
+4. Constructor Overloading : Different constructors can initialize objects in different ways.
 ```
 ---
