@@ -6433,3 +6433,319 @@ refers to the constructor parameter.
 4. Constructor Overloading : Different constructors can initialize objects in different ways.
 ```
 ---
+
+## **`25. Java this Keyword`**
+
+The **`this` keyword** in Java is a reference variable that refers to the **current object**. It is mainly used to access the current object's instance variables, methods, and constructors.
+
+**`Key Points`**
+
+- `this` refers to the current object.
+- It is commonly used when instance variables and method or constructor parameters have the same name.
+- It can be used to call the current object's methods.
+- It can be used to call another constructor of the same class.
+- It helps make code clear and easier to understand.
+
+---
+
+**`Uses of this Keyword`**
+
+1. To refer to the current object's instance variables.
+2. To call the current object's method.
+3. To call another constructor of the same class.
+4. To pass the current object as an argument.
+5. To return the current object.
+
+---
+
+**1. Using `this` to Refer to Instance Variables**
+
+When a constructor parameter has the same name as an instance variable, `this` is used to distinguish between them.
+
+**Example**
+
+```java
+class Student {
+
+    String name;
+    int age;
+
+    Student(String name, int age) {
+
+        this.name = name;
+        this.age = age;
+    }
+
+    void display() {
+
+        System.out.println("Name: " + this.name);
+        System.out.println("Age: " + this.age);
+    }
+}
+```
+
+Here:
+
+```java
+this.name
+```
+
+refers to the instance variable, while:
+
+```java
+name
+```
+
+refers to the constructor parameter.
+
+---
+
+**2. Using `this` to Call a Method**
+
+The `this` keyword can be used to call a method of the current object.
+
+**Example**
+
+```java
+class Student {
+
+    void display() {
+        System.out.println("Student Details");
+    }
+
+    void show() {
+
+        this.display();
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student student = new Student();
+
+        student.show();
+    }
+}
+```
+
+**Output**
+
+```text
+Student Details
+```
+
+---
+
+**3. Using `this()` to Call Another Constructor**
+
+The `this()` keyword is used to call another constructor of the **same class**.
+
+**Example**
+
+```java
+class Student {
+
+    String name;
+    int age;
+
+    Student() {
+
+        this("Unknown", 0);
+    }
+
+    Student(String name, int age) {
+
+        this.name = name;
+        this.age = age;
+    }
+
+    void display() {
+
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student student = new Student();
+
+        student.display();
+    }
+}
+```
+
+**Output**
+
+```text
+Name: Unknown
+Age: 0
+```
+
+> **Note:** `this()` must be the **first statement** inside a constructor.
+
+---
+
+**4. Passing `this` as an Argument**
+
+The `this` keyword can be passed as an argument to another method or constructor.
+
+**Example**
+
+```java
+class Student {
+
+    void display(Student student) {
+
+        System.out.println("Student object received.");
+    }
+
+    void show() {
+
+        display(this);
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student student = new Student();
+
+        student.show();
+    }
+}
+```
+
+**Output**
+
+```text
+Student object received.
+```
+
+Here:
+
+```java
+display(this);
+```
+
+passes the **current object** to the `display()` method.
+
+---
+
+**5. Returning `this`**
+
+The `this` keyword can be returned from a method to return the current object.
+
+**Example**
+
+```java
+class Student {
+
+    Student getStudent() {
+
+        return this;
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student student = new Student();
+
+        Student result = student.getStudent();
+
+        System.out.println(result);
+    }
+}
+```
+
+Here, `this` represents the current `student` object.
+
+---
+
+**Example with User Input**
+
+```java
+import java.util.Scanner;
+
+class Student {
+
+    String name;
+    int age;
+
+    Student(String name, int age) {
+
+        this.name = name;
+        this.age = age;
+    }
+
+    void display() {
+
+        System.out.println("\nStudent Details");
+        System.out.println("----------------");
+        System.out.println("Name : " + this.name);
+        System.out.println("Age  : " + this.age);
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Student Name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter Student Age: ");
+        int age = sc.nextInt();
+
+        Student student = new Student(name, age);
+
+        student.display();
+
+        sc.close();
+    }
+}
+```
+
+**Output**
+
+```text
+Enter Student Name: Rakesh
+Enter Student Age: 20
+
+Student Details
+----------------
+Name : Rakesh
+Age  : 20
+```
+
+---
+
+**`Difference Between this and this()`**
+
+| `this` | `this()` |
+|--------|----------|
+| Refers to the current object. | Calls another constructor of the same class. |
+| Used with variables and methods. | Used only inside constructors. |
+| Example: `this.name` | Example: `this("Rakesh", 20)` |
+| Can refer to the current object's members. | Must be the first statement in a constructor. |
+
+---
+
+**`Important Rules of this`**
+
+- `this` refers to the current object.
+- `this()` calls another constructor of the same class.
+- `this()` must be the first statement inside a constructor.
+- `this` cannot be used in a static context to refer to an object.
+- `this` is especially useful when parameter names and instance variable names are the same.
+
+---
