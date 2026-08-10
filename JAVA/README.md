@@ -6749,3 +6749,275 @@ Age  : 20
 - `this` is especially useful when parameter names and instance variable names are the same.
 
 ---
+
+## **`26. super Keyword in Java`**
+
+The **`super` keyword** in Java is a reference variable used to refer to the **immediate parent class object**. It is mainly used in inheritance to access the parent class's variables, methods, and constructors.
+
+**`Key Points`**
+
+- `super` refers to the immediate parent class.
+- It is used with **inheritance**.
+- It can access parent class variables.
+- It can call parent class methods.
+- It can call the parent class constructor.
+- `super()` must be the first statement inside a constructor.
+
+---
+
+**`Uses of super Keyword`**
+
+1. To access the parent class variable.
+2. To call the parent class method.
+3. To call the parent class constructor.
+
+---
+
+**`1. Accessing Parent Class Variable`**
+
+When the child class and parent class have variables with the same name, `super` is used to access the parent class variable.
+
+**Example**
+
+```java
+class Animal {
+
+    String name = "Animal";
+}
+
+class Dog extends Animal {
+
+    String name = "Dog";
+
+    void display() {
+
+        System.out.println("Child Class : " + name);
+        System.out.println("Parent Class: " + super.name);
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Dog dog = new Dog();
+
+        dog.display();
+    }
+}
+```
+
+**Output**
+
+```text
+Child Class : Dog
+Parent Class: Animal
+```
+
+Here:
+
+```java
+name
+```
+
+refers to the child class variable, while:
+
+```java
+super.name
+```
+
+refers to the parent class variable.
+
+---
+
+**`2. Calling Parent Class Method`**
+
+The `super` keyword can be used to call a method of the parent class.
+
+**Example**
+
+```java
+class Animal {
+
+    void sound() {
+
+        System.out.println("Animal makes a sound.");
+    }
+}
+
+class Dog extends Animal {
+
+    void sound() {
+
+        System.out.println("Dog barks.");
+    }
+
+    void display() {
+
+        sound();
+        super.sound();
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Dog dog = new Dog();
+
+        dog.display();
+    }
+}
+```
+
+**Output**
+
+```text
+Dog barks.
+Animal makes a sound.
+```
+
+Here:
+
+```java
+sound();
+```
+
+calls the child class method, while:
+
+```java
+super.sound();
+```
+
+calls the parent class method.
+
+---
+
+**`3. Calling Parent Class Constructor`**
+
+The `super()` keyword is used to call the constructor of the immediate parent class.
+
+**Example**
+
+```java
+class Animal {
+
+    Animal() {
+
+        System.out.println("Animal Constructor");
+    }
+}
+
+class Dog extends Animal {
+
+    Dog() {
+
+        super();
+
+        System.out.println("Dog Constructor");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Dog dog = new Dog();
+    }
+}
+```
+
+**Output**
+
+```text
+Animal Constructor
+Dog Constructor
+```
+
+When the `Dog` object is created, the parent constructor is executed first.
+
+> **Note:** If you do not explicitly write `super()`, Java automatically inserts a call to the no-argument constructor of the parent class, provided that such a constructor is accessible.
+
+---
+
+**`Example with Parameterized Constructor`**
+
+```java
+class Person {
+
+    String name;
+
+    Person(String name) {
+
+        this.name = name;
+    }
+}
+
+class Student extends Person {
+
+    int age;
+
+    Student(String name, int age) {
+
+        super(name);
+        this.age = age;
+    }
+
+    void display() {
+
+        System.out.println("Name: " + name);
+        System.out.println("Age : " + age);
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student student = new Student("Rakesh", 20);
+
+        student.display();
+    }
+}
+```
+
+**Output**
+
+```text
+Name: Rakesh
+Age : 20
+```
+
+Here:
+
+```java
+super(name);
+```
+
+calls the parameterized constructor of the `Person` class.
+
+---
+
+**`super` vs `this`**
+
+| `super` | `this` |
+|---------|--------|
+| Refers to the immediate parent class. | Refers to the current object. |
+| Used in inheritance. | Used with the current class/object. |
+| Accesses parent class variables. | Accesses current class variables. |
+| Calls parent class methods. | Calls current class methods. |
+| `super()` calls parent constructor. | `this()` calls another constructor of the same class. |
+
+---
+
+**`Important Rules of super`**
+
+- `super` refers to the immediate parent class.
+- `super.variable` accesses a parent class variable.
+- `super.method()` calls a parent class method.
+- `super()` calls the parent class constructor.
+- `super()` must be the first statement in a constructor.
+- `super()` cannot be used inside a static context.
+- A child class cannot use `super` to directly access members of a grandparent class while skipping its immediate parent.
+
+---
