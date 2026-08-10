@@ -7021,3 +7021,311 @@ calls the parameterized constructor of the `Person` class.
 - A child class cannot use `super` to directly access members of a grandparent class while skipping its immediate parent.
 
 ---
+
+## **`27. Encapsulation in Java`**
+
+**Encapsulation** in Java is the process of **wrapping data (variables) and methods into a single unit (class)** and restricting direct access to the data. It is commonly achieved by declaring variables as `private` and providing **public getter and setter methods** to access and modify them.
+
+Encapsulation helps protect the internal state of an object and provides controlled access to its data.
+
+**`Key Points`**
+
+- Encapsulation binds data and methods together inside a class.
+- Instance variables are usually declared as `private`.
+- `public` getter and setter methods are used to access and modify private variables.
+- It provides **data hiding** and controlled access.
+- Encapsulation improves security, maintainability, and flexibility.
+
+---
+
+**`Example of Encapsulation`**
+
+```java
+class Student {
+
+    private String name;
+    private int age;
+
+    // Setter for name
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Getter for name
+    public String getName() {
+        return name;
+    }
+
+    // Setter for age
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    // Getter for age
+    public int getAge() {
+        return age;
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student student = new Student();
+
+        student.setName("Rakesh");
+        student.setAge(20);
+
+        System.out.println("Name: " + student.getName());
+        System.out.println("Age : " + student.getAge());
+    }
+}
+```
+
+**Output**
+
+```text
+Name: Rakesh
+Age : 20
+```
+
+---
+
+**Why Use `private`?**
+
+If variables are declared `public`, they can be accessed and modified directly from outside the class.
+
+```java
+class Student {
+
+    public int age;
+}
+```
+
+Anyone can change the value:
+
+```java
+Student student = new Student();
+
+student.age = -10;
+```
+
+This can lead to invalid data.
+
+With encapsulation:
+
+```java
+class Student {
+
+    private int age;
+
+    public void setAge(int age) {
+
+        if (age >= 0) {
+            this.age = age;
+        }
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
+```
+
+Now the class can **control how the data is modified**.
+
+---
+
+**`Getter and Setter Methods`**
+
+**`Getter`**
+
+A **Getter** is a method used to retrieve the value of a private variable.
+
+**Syntax**
+
+```java
+public dataType getVariableName() {
+    return variableName;
+}
+```
+
+**Example**
+
+```java
+public String getName() {
+    return name;
+}
+```
+
+---
+
+**`Setter`**
+
+A **Setter** is a method used to modify the value of a private variable.
+
+**Syntax**
+
+```java
+public void setVariableName(dataType variableName) {
+    this.variableName = variableName;
+}
+```
+
+**Example**
+
+```java
+public void setName(String name) {
+    this.name = name;
+}
+```
+
+---
+
+**`Encapsulation with User Input`**
+
+```java
+import java.util.Scanner;
+
+class BankAccount {
+
+    private String accountHolder;
+    private double balance;
+
+    public void setAccountHolder(String accountHolder) {
+        this.accountHolder = accountHolder;
+    }
+
+    public String getAccountHolder() {
+        return accountHolder;
+    }
+
+    public void setBalance(double balance) {
+
+        if (balance >= 0) {
+            this.balance = balance;
+        } else {
+            System.out.println("Balance cannot be negative.");
+        }
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        BankAccount account = new BankAccount();
+
+        System.out.print("Enter Account Holder Name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter Initial Balance: ");
+        double balance = sc.nextDouble();
+
+        account.setAccountHolder(name);
+        account.setBalance(balance);
+
+        System.out.println("\nAccount Details");
+        System.out.println("----------------");
+        System.out.println("Account Holder : " + account.getAccountHolder());
+        System.out.println("Balance        : ₹" + account.getBalance());
+
+        sc.close();
+    }
+}
+```
+
+**Output**
+
+```text
+Enter Account Holder Name: Rakesh
+Enter Initial Balance: 10000
+
+Account Details
+----------------
+Account Holder : Rakesh
+Balance        : ₹10000.0
+```
+
+---
+
+**`Advantages of Encapsulation`**
+
+`1. Data Hiding :` Encapsulation hides the internal data of a class from direct external access.
+
+`2. Data Security` : Private variables prevent unauthorized or uncontrolled modification of data.
+
+`3. Controlled Access :` Getter and setter methods allow the programmer to control how data is accessed and modified.
+
+`4. Data Validation : ` Setters can validate data before storing it.
+
+```java
+public void setAge(int age) {
+
+    if (age >= 0) {
+        this.age = age;
+    }
+}
+```
+
+`5. Easy Maintenance :` Internal implementation can be changed without affecting the code that uses the class.
+
+`6. Increased Flexibility :` The programmer can change the getter or setter logic without changing how other classes interact with the object.
+
+`7. Improved Code Organization : ` Related data and methods are grouped together inside a class.
+
+---
+
+**`Disadvantages of Encapsulation`**
+
+`1. More Code`
+
+Encapsulation often requires additional getter and setter methods.
+
+```java
+private String name;
+
+public String getName() {
+    return name;
+}
+
+public void setName(String name) {
+    this.name = name;
+}
+```
+
+`2. Increased Complexity :` For very small programs, using getters and setters for every variable can make the code more verbose.
+
+`3. Performance Overhead : ` Frequent method calls through getters and setters can introduce a very small performance overhead, although it is usually negligible in normal applications.
+
+`4. Requires Proper Design :` Poorly designed getters and setters can expose too much of the object's internal state and reduce the benefits of encapsulation.
+
+---
+
+**`Encapsulation vs Data Hiding`**
+
+| Encapsulation | Data Hiding |
+|---------------|-------------|
+| Combines data and methods into a single unit. | Restricts direct access to internal data. |
+| Achieved using classes and access modifiers. | Commonly achieved using `private` variables. |
+| Focuses on organizing and controlling data and behavior. | Focuses mainly on protecting data. |
+| Provides controlled access to object data. | Prevents unauthorized direct access. |
+
+---
+
+**`Best Practices`**
+
+- Declare sensitive instance variables as `private`.
+- Use getters and setters only when external access is actually required.
+- Validate values inside setter methods.
+- Avoid exposing internal implementation unnecessarily.
+- Use meaningful names for getter and setter methods.
+- Prefer immutable objects when the object's state should not change after creation.
+
+---
