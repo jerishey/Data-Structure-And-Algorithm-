@@ -7329,3 +7329,587 @@ public void setName(String name) {
 - Prefer immutable objects when the object's state should not change after creation.
 
 ---
+
+## **`28. Inheritance in Java`**
+
+**Inheritance** in Java is an OOP concept in which one class **acquires the properties and behaviors of another class**. It allows a child class to reuse the fields and methods of a parent class.
+
+Inheritance is mainly used for **code reusability**, **method overriding**, and creating a relationship between classes.
+
+**`Key Points`**
+
+- Inheritance represents an **"is-a" relationship**.
+- The existing class is called the **Parent/Superclass/Base class**.
+- The new class is called the **Child/Subclass/Derived class**.
+- The `extends` keyword is used to inherit from a class.
+- Java supports inheritance through classes and interfaces.
+- A child class can add its own variables and methods.
+- A child class can override methods inherited from the parent class.
+
+---
+
+**Syntax**
+
+```java
+class Parent {
+
+    // Parent class members
+}
+
+class Child extends Parent {
+
+    // Child class members
+}
+```
+
+---
+
+**Basic Example**
+
+```java
+class Animal {
+
+    void eat() {
+        System.out.println("Animal is eating.");
+    }
+}
+
+class Dog extends Animal {
+
+    void bark() {
+        System.out.println("Dog is barking.");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Dog dog = new Dog();
+
+        dog.eat();
+        dog.bark();
+    }
+}
+```
+
+**Output**
+
+```text
+Animal is eating.
+Dog is barking.
+```
+
+Here:
+
+```java
+class Dog extends Animal
+```
+
+means that `Dog` inherits the accessible members of `Animal`.
+
+Therefore, the `Dog` object can call:
+
+```java
+dog.eat();
+```
+
+even though the `eat()` method is defined in the `Animal` class.
+
+---
+
+**`Parent Class and Child Class`**
+
+Consider:
+
+```java
+class Animal {
+    
+}
+
+class Dog extends Animal {
+    
+}
+```
+
+Here:
+
+- `Animal` → Parent/Superclass
+- `Dog` → Child/Subclass
+- `extends` → Keyword used for inheritance
+
+Relationship:
+
+```text
+        Animal
+        Parent
+           |
+           |
+        extends
+           |
+           ▼
+          Dog
+         Child
+```
+
+---
+
+**`Types of Inheritance in Java`**
+
+Java supports the following types of inheritance using classes:
+
+1. Single Inheritance
+2. Multilevel Inheritance
+3. Hierarchical Inheritance
+
+Java does **not** support multiple inheritance through classes, but multiple inheritance of type can be achieved using interfaces.
+
+---
+
+**`1. Single Inheritance`**
+
+**Single Inheritance** occurs when one child class inherits from one parent class.
+
+```text
+    Parent
+       |
+       ▼
+     Child
+```
+
+**Example**
+
+```java
+class Animal {
+
+    void eat() {
+        System.out.println("Animal eats.");
+    }
+}
+
+class Dog extends Animal {
+
+    void bark() {
+        System.out.println("Dog barks.");
+    }
+}
+```
+
+Here, `Dog` inherits from `Animal`.
+
+---
+
+**`2. Multilevel Inheritance`**
+
+**Multilevel Inheritance** occurs when a class inherits from another child class, forming a chain of inheritance.
+
+```text
+    Animal
+       |
+       ▼
+     Dog
+       |
+       ▼
+    Puppy
+```
+
+**Example**
+
+```java
+class Animal {
+
+    void eat() {
+        System.out.println("Animal eats.");
+    }
+}
+
+class Dog extends Animal {
+
+    void bark() {
+        System.out.println("Dog barks.");
+    }
+}
+
+class Puppy extends Dog {
+
+    void play() {
+        System.out.println("Puppy plays.");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Puppy puppy = new Puppy();
+
+        puppy.eat();
+        puppy.bark();
+        puppy.play();
+    }
+}
+```
+
+**Output**
+
+```text
+Animal eats.
+Dog barks.
+Puppy plays.
+```
+
+---
+
+**`3. Hierarchical Inheritance`**
+
+**Hierarchical Inheritance** occurs when multiple child classes inherit from the same parent class.
+
+```text
+          Animal
+         /      \
+        /        \
+      Dog        Cat
+```
+
+**Example**
+
+```java
+class Animal {
+
+    void eat() {
+        System.out.println("Animal eats.");
+    }
+}
+
+class Dog extends Animal {
+
+    void bark() {
+        System.out.println("Dog barks.");
+    }
+}
+
+class Cat extends Animal {
+
+    void meow() {
+        System.out.println("Cat meows.");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Dog dog = new Dog();
+        Cat cat = new Cat();
+
+        dog.eat();
+        dog.bark();
+
+        cat.eat();
+        cat.meow();
+    }
+}
+```
+
+**Output**
+
+```text
+Animal eats.
+Dog barks.
+Animal eats.
+Cat meows.
+```
+
+---
+
+**`Multiple Inheritance`**
+
+**Multiple Inheritance** occurs when one class inherits from multiple parent classes.
+
+Java does **not support multiple inheritance using classes**.
+
+For example, this is not allowed:
+
+```java
+class A {
+}
+
+class B {
+}
+
+class C extends A, B {
+}
+```
+
+This would create ambiguity about which parent implementation should be used.
+
+However, Java supports multiple inheritance through **interfaces**.
+
+---
+
+**`Method Overriding with Inheritance`**
+
+Inheritance allows a child class to provide its own implementation of a method inherited from the parent class.
+
+**Example**
+
+```java
+class Animal {
+
+    void sound() {
+        System.out.println("Animal makes a sound.");
+    }
+}
+
+class Dog extends Animal {
+
+    @Override
+    void sound() {
+        System.out.println("Dog barks.");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Dog dog = new Dog();
+
+        dog.sound();
+    }
+}
+```
+
+**Output**
+
+```text
+Dog barks.
+```
+
+Here, the `Dog` class **overrides** the `sound()` method of the `Animal` class.
+
+---
+
+**`super Keyword with Inheritance`**
+
+The `super` keyword is used to access members of the immediate parent class.
+
+**Example**
+
+```java
+class Animal {
+
+    void sound() {
+        System.out.println("Animal makes a sound.");
+    }
+}
+
+class Dog extends Animal {
+
+    @Override
+    void sound() {
+
+        super.sound();
+
+        System.out.println("Dog barks.");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Dog dog = new Dog();
+
+        dog.sound();
+    }
+}
+```
+
+**Output**
+
+```text
+Animal makes a sound.
+Dog barks.
+```
+
+---
+
+**`Constructor and Inheritance`**
+
+When a child class object is created, the **parent class constructor executes before the child class constructor**.
+
+**Example**
+
+```java
+class Animal {
+
+    Animal() {
+        System.out.println("Animal Constructor");
+    }
+}
+
+class Dog extends Animal {
+
+    Dog() {
+        System.out.println("Dog Constructor");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Dog dog = new Dog();
+    }
+}
+```
+
+**Output**
+
+```text
+Animal Constructor
+Dog Constructor
+```
+
+Java implicitly calls the parent no-argument constructor using `super()` if no explicit constructor call is written.
+
+---
+
+**`Access Modifiers and Inheritance`**
+
+| Modifier | Accessible in Child Class? |
+|----------|----------------------------|
+| `public` | Yes |
+| `protected` | Yes |
+| Default | Yes, if in the same package |
+| `private` | No, directly |
+
+> A `private` member belongs to the parent class but cannot be accessed directly by the child class.
+
+---
+
+**`Advantages of Inheritance`**
+```java
+1. Code Reusability : A child class can reuse the properties and methods of its parent class.
+
+2. Reduces Code Duplication : Common functionality can be written once in the parent class.
+
+3. Method Overriding : Inheritance allows a child class to provide its own implementation of a parent method.
+
+4. Supports Polymorphism : Inheritance is an important foundation for **runtime polymorphism**.
+
+5. Easy Maintenance : Common functionality can be maintained in the parent class.
+
+6. Extensibility : A child class can extend the functionality of an existing class without modifying the parent class.
+```
+---
+
+**`Disadvantages of Inheritance`**
+```java
+1. Tight Coupling : The child class becomes dependent on the implementation of its parent class.
+
+2. Increased Complexity : Deep inheritance hierarchies can make programs difficult to understand and maintain.
+
+3. Reduced Flexibility : A child class is strongly connected to its parent class.
+
+4. Changes in Parent Class : Changes to the parent class can affect all of its child classes.
+
+5. Misuse Can Lead to Poor Design : Inheritance should only be used when a genuine **"is-a" relationship** exists.
+
+---
+
+**`Inheritance vs Composition`**
+
+Inheritance represents an **"is-a" relationship**, while composition represents a **"has-a" relationship**.
+
+`Inheritance`
+
+```text
+Dog is an Animal
+```
+
+```java
+class Dog extends Animal {
+}
+```
+
+`Composition`
+
+```text
+Car has an Engine
+```
+
+```java
+class Car {
+
+    Engine engine;
+}
+```
+
+Composition is often preferred when there is no true "is-a" relationship.
+
+---
+
+**`Important Rules of Inheritance`**
+
+- Use `extends` to inherit from a class.
+- A Java class can directly extend only **one class**.
+- Constructors are not inherited.
+- Private members cannot be accessed directly by child classes.
+- Static members can be inherited, but they are not overridden in the same way as instance methods.
+- A child class can override inherited methods.
+- `final` classes cannot be extended.
+- `final` methods cannot be overridden.
+- Every Java class ultimately inherits from `Object`, directly or indirectly.
+
+---
+
+**`Real-World Example`**
+
+Consider a company system:
+
+```text
+             Employee
+            /        \
+           /          \
+     Developer       Manager
+```
+
+`Employee` can contain common properties:
+
+```java
+class Employee {
+
+    String name;
+    double salary;
+
+    void work() {
+        System.out.println("Employee is working.");
+    }
+}
+```
+
+The child classes can add their specialized behavior:
+
+```java
+class Developer extends Employee {
+
+    void writeCode() {
+        System.out.println("Developer writes code.");
+    }
+}
+```
+
+```java
+class Manager extends Employee {
+
+    void manageTeam() {
+        System.out.println("Manager manages the team.");
+    }
+}
+```
+
+This avoids repeating common employee information and behavior.
+
+---
