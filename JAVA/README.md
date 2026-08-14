@@ -7913,3 +7913,683 @@ class Manager extends Employee {
 This avoids repeating common employee information and behavior.
 
 ---
+
+## **`29. Polymorphism in Java`**
+
+**Polymorphism** is one of the four fundamental principles of **Object-Oriented Programming (OOP)** in Java.
+
+The word **Polymorphism** comes from two Greek words:
+
+* **Poly** → Many
+* **Morph** → Forms
+
+Therefore, polymorphism means **"many forms."**
+
+In Java, polymorphism allows a **single method, object, or reference to behave differently in different situations**.
+
+For example, the same `sound()` method can produce different results depending on whether the object is a `Dog`, `Cat`, or `Cow`.
+
+```java
+class Animal {
+
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+
+    @Override
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Cat extends Animal {
+
+    @Override
+    void sound() {
+        System.out.println("Cat meows");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Animal animal;
+
+        animal = new Dog();
+        animal.sound();
+
+        animal = new Cat();
+        animal.sound();
+    }
+}
+```
+
+**utput**
+
+```text
+Dog barks
+Cat meows
+```
+
+Here, the same method call:
+
+```java
+animal.sound();
+```
+
+produces different behavior depending on the actual object.
+
+---
+
+**`Real-Life Illustration of Polymorphism`**
+
+A simple real-life example of polymorphism is a **person using a remote control**.
+
+The same **Power button** can perform different actions depending on the device:
+
+```text
+                 Power Button
+                      |
+          -------------------------
+          |           |           |
+         TV          AC       Speaker
+          |           |           |
+        ON/OFF      ON/OFF      ON/OFF
+```
+
+The button is the same, but its behavior depends on the device.
+
+Similarly, in Java:
+
+```java
+Animal animal;
+
+animal = new Dog();
+animal.sound();      // Dog barks
+
+animal = new Cat();
+animal.sound();      // Cat meows
+```
+
+The method call is the same:
+
+```java
+animal.sound();
+```
+
+but the behavior changes according to the object.
+
+---
+
+**`Types of Polymorphism in Java`**
+
+Java mainly supports two types of polymorphism:
+
+1. **Compile-Time Polymorphism**
+2. **Runtime Polymorphism**
+
+```text
+                    Polymorphism
+                         |
+              -----------------------
+              |                     |
+       Compile-Time             Runtime
+       Polymorphism           Polymorphism
+              |                     |
+      Method Overloading     Method Overriding
+              |                     |
+       Early Binding          Late Binding
+```
+
+---
+
+**`1. Compile-Time Polymorphism`**
+
+Compile-time polymorphism is also known as:
+
+* **Static Polymorphism**
+* **Early Binding**
+* **Method Overloading**
+
+It occurs when a class contains multiple methods with the **same name but different parameter lists**.
+
+**Example**
+
+```java
+class Calculator {
+
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    double add(double a, double b) {
+        return a + b;
+    }
+}
+```
+
+Now we can call different versions of `add()`:
+
+```java
+Calculator calc = new Calculator();
+
+System.out.println(calc.add(10, 20));
+System.out.println(calc.add(10, 20, 30));
+System.out.println(calc.add(10.5, 20.5));
+```
+
+**Output**
+
+```text
+30
+60
+31.0
+```
+
+The compiler determines which method should be called based on the **number and type of arguments**.
+
+---
+
+**`Method Overloading`**
+
+Methods can be overloaded by changing:
+
+`1. Number of Parameters`
+
+```java
+void display(int a) {
+}
+
+void display(int a, int b) {
+}
+```
+
+`2. Type of Parameters`
+
+```java
+void display(int a) {
+}
+
+void display(double a) {
+}
+```
+
+`3. Order of Parameters`
+
+```java
+void display(int a, double b) {
+}
+
+void display(double a, int b) {
+}
+```
+
+`Invalid Overloading`
+
+Changing only the return type does **not** create method overloading.
+
+```java
+// Invalid
+
+int add(int a, int b) {
+    return a + b;
+}
+
+double add(int a, int b) {
+    return a + b;
+}
+```
+
+---
+
+**`2. Runtime Polymorphism`**
+
+Runtime polymorphism is also known as:
+
+* **Dynamic Polymorphism**
+* **Late Binding**
+* **Method Overriding**
+
+It occurs when a **child class provides its own implementation of a method that is already defined in the parent class**.
+
+The method that will execute is determined at **runtime** based on the actual object.
+
+**Example**
+
+```java
+class Animal {
+
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+
+    @Override
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Cat extends Animal {
+
+    @Override
+    void sound() {
+        System.out.println("Cat meows");
+    }
+}
+```
+
+Using a parent-class reference:
+
+```java
+Animal animal;
+
+animal = new Dog();
+animal.sound();
+
+animal = new Cat();
+animal.sound();
+```
+
+**Output**
+
+```text
+Dog barks
+Cat meows
+```
+
+The reference remains:
+
+```java
+Animal animal;
+```
+
+but the actual object changes:
+
+```java
+animal = new Dog();
+```
+
+and:
+
+```java
+animal = new Cat();
+```
+
+Therefore, Java decides which `sound()` implementation to execute at runtime.
+
+---
+
+**`Method Overloading vs Method Overriding`**
+
+| Feature      | Method Overloading                    | Method Overriding                               |
+| ------------ | ------------------------------------- | ----------------------------------------------- |
+| Polymorphism | Compile-Time                          | Runtime                                         |
+| Also called  | Static Polymorphism                   | Dynamic Polymorphism                            |
+| Parameters   | Must be different                     | Must be the same                                |
+| Inheritance  | Not required                          | Required                                        |
+| Binding      | Early Binding                         | Late Binding                                    |
+| Decision     | Compiler                              | JVM at runtime                                  |
+| Purpose      | Multiple ways to perform an operation | Different implementations of the same operation |
+
+---
+
+**`Runtime Polymorphism with Parent Reference`**
+
+One of the most important concepts in runtime polymorphism is:
+
+> **A parent-class reference can refer to a child-class object.**
+
+Example:
+
+```java
+Animal animal = new Dog();
+```
+
+Here:
+
+* `Animal` → Reference type
+* `animal` → Reference variable
+* `Dog` → Actual object type
+
+This is called **upcasting**.
+
+```java
+Animal animal = new Dog();
+
+animal.sound();
+```
+
+Although the reference type is `Animal`, the actual object is `Dog`.
+
+Therefore, the overridden `Dog` implementation of `sound()` is executed.
+
+---
+
+**`Polymorphism with Interfaces`**
+
+Polymorphism can also be achieved using **interfaces**.
+
+```java
+interface Payment {
+
+    void pay();
+}
+
+class UPI implements Payment {
+
+    @Override
+    public void pay() {
+        System.out.println("Payment using UPI");
+    }
+}
+
+class CreditCard implements Payment {
+
+    @Override
+    public void pay() {
+        System.out.println("Payment using Credit Card");
+    }
+}
+```
+
+Now:
+
+```java
+Payment payment;
+
+payment = new UPI();
+payment.pay();
+
+payment = new CreditCard();
+payment.pay();
+```
+
+**Output**
+
+```text
+Payment using UPI
+Payment using Credit Card
+```
+
+The `Payment` interface provides a common abstraction, while each class provides its own implementation.
+
+---
+
+**`Polymorphism with Abstract Classes`**
+
+Polymorphism can also be implemented using abstract classes.
+
+```java
+abstract class Shape {
+
+    abstract void draw();
+}
+
+class Circle extends Shape {
+
+    @Override
+    void draw() {
+        System.out.println("Drawing Circle");
+    }
+}
+
+class Rectangle extends Shape {
+
+    @Override
+    void draw() {
+        System.out.println("Drawing Rectangle");
+    }
+}
+```
+
+Using polymorphism:
+
+```java
+Shape shape;
+
+shape = new Circle();
+shape.draw();
+
+shape = new Rectangle();
+shape.draw();
+```
+
+**Output**
+
+```text
+Drawing Circle
+Drawing Rectangle
+```
+
+---
+
+**`Advantages of Polymorphism`**
+
+`1. Code Reusability`
+
+The same code can work with different types of objects.
+
+```java
+Animal animal = new Dog();
+animal.sound();
+
+animal = new Cat();
+animal.sound();
+```
+
+---
+
+`2. Flexibility`
+
+New classes can be added without changing the existing polymorphic structure.
+
+```java
+class Cow extends Animal {
+
+    @Override
+    void sound() {
+        System.out.println("Cow moos");
+    }
+}
+```
+
+The same code can now work with `Cow`.
+
+---
+
+`3. Loose Coupling`
+
+Polymorphism allows code to depend on **interfaces or abstract classes** instead of concrete implementations.
+
+```java
+Payment payment = new UPI();
+```
+
+The code depends on `Payment`, rather than directly depending on `UPI`.
+
+---
+
+`4. Easy Maintenance`
+
+Different implementations can be modified independently while keeping the common interface unchanged.
+
+---
+
+`5. Extensibility`
+
+New subclasses can be introduced without requiring major changes to existing code.
+
+---
+
+`6. Supports Abstraction`
+
+Polymorphism works closely with **abstraction**, allowing developers to focus on what an object does rather than how it does it.
+
+---
+
+**`Disadvantages of Polymorphism`**
+```java
+1. Increased Complexity : Large inheritance hierarchies can make a program harder to understand.
+
+2. Difficult Debugging : In runtime polymorphism, it can sometimes be difficult to determine which overridden method will execute.
+
+3. Runtime Overhead : Runtime polymorphism requires method resolution during execution, which can introduce a small performance overhead.
+
+4. Poor Inheritance Design : An incorrectly designed inheritance hierarchy can make code difficult to maintain and extend.
+```
+---
+
+**`Important Rules of Method Overriding`**
+
+When overriding a method:
+
+* The method name must be the same.
+* The parameter list must be the same.
+* The return type must be the same or covariant.
+* The child class cannot reduce the visibility of the overridden method.
+* `final` methods cannot be overridden.
+* `static` methods are hidden, not overridden.
+* `private` methods cannot be overridden.
+* Constructors cannot be overridden.
+* The `@Override` annotation is recommended because it helps the compiler detect mistakes.
+
+**`Example`**
+
+```java
+class Parent {
+
+    void display() {
+        System.out.println("Parent");
+    }
+}
+
+class Child extends Parent {
+
+    @Override
+    void display() {
+        System.out.println("Child");
+    }
+}
+```
+
+---
+
+**Polymorphism and `super`**
+
+The `super` keyword can be used to call the parent-class version of an overridden method.
+
+```java
+class Parent {
+
+    void display() {
+        System.out.println("Parent method");
+    }
+}
+
+class Child extends Parent {
+
+    @Override
+    void display() {
+
+        super.display();
+
+        System.out.println("Child method");
+    }
+}
+```
+
+**Output**
+
+```text
+Parent method
+Child method
+```
+
+---
+
+**`Real-World Example`**
+
+Consider an online payment system.
+
+Different payment methods can have different implementations:
+
+```text
+                    Payment
+                       |
+          -------------------------
+          |           |           |
+         UPI       Credit Card   PayPal
+          |           |           |
+        pay()        pay()        pay()
+```
+
+All payment methods provide:
+
+```java
+pay();
+```
+
+But each implementation performs the payment differently.
+
+```java
+Payment payment;
+
+payment = new UPI();
+payment.pay();
+
+payment = new CreditCard();
+payment.pay();
+
+payment = new PayPal();
+payment.pay();
+```
+
+This makes the system easier to extend because a new payment method can be added without changing the general payment-handling code.
+
+---
+
+**`Key Points to Remember`**
+
+* **Polymorphism means "many forms."**
+* It is one of the four major principles of OOP.
+* Java supports **compile-time** and **runtime polymorphism**.
+* **Method overloading** provides compile-time polymorphism.
+* **Method overriding** provides runtime polymorphism.
+* Compile-time polymorphism is resolved by the **compiler**.
+* Runtime polymorphism is resolved during **execution**.
+* Runtime polymorphism commonly uses **inheritance, interfaces, or abstract classes**.
+* A parent reference can point to a child object.
+* The `@Override` annotation is recommended when overriding methods.
+* Polymorphism improves **flexibility, reusability, maintainability, and extensibility**.
+
+---
+
+**`Polymorphism Summary`**
+
+```text
+                         POLYMORPHISM
+                              |
+                "One Interface, Many Forms"
+                              |
+             --------------------------------
+             |                              |
+      Compile-Time                    Runtime
+      Polymorphism                   Polymorphism
+             |                              |
+     Method Overloading             Method Overriding
+             |                              |
+       Early Binding                  Late Binding
+             |                              |
+         Compiler                        JVM
+```
