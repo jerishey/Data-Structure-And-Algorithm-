@@ -8593,3 +8593,384 @@ This makes the system easier to extend because a new payment method can be added
              |                              |
          Compiler                        JVM
 ```
+
+## **`30. Abstraction in Java`**
+
+**Abstraction** is one of the four fundamental principles of **Object-Oriented Programming (OOP)** in Java.
+
+Abstraction means **hiding unnecessary implementation details and showing only the essential features of an object**.
+
+In simple words:
+
+> **Abstraction focuses on what an object does rather than how it does it.**
+
+For example, when we use an ATM, we simply select an option such as **Withdraw Money**. We don't need to know how the ATM internally communicates with the bank server, verifies the account, or processes the transaction.
+
+```text
+User
+  |
+  ↓
+ATM Interface
+  |
+  ├── Withdraw Money
+  ├── Deposit Money
+  └── Check Balance
+          |
+          ↓
+   Hidden Implementation
+```
+
+---
+
+**`Real-Life Illustration of Abstraction`**
+
+Consider a **car**.
+
+When driving a car, we use simple controls:
+
+* Steering wheel → Controls direction
+* Accelerator → Increases speed
+* Brake → Decreases speed
+* Gear → Controls transmission
+
+We don't need to understand the complete internal working of the engine to drive the car.
+
+```text
+          Car
+           |
+    ----------------
+    |              |
+  Controls     Hidden Details
+    |              |
+ Steering       Engine
+ Accelerator    Transmission
+ Brake          Fuel System
+```
+
+The user interacts with the **essential features** while the complex implementation remains hidden.
+
+This is **abstraction**.
+
+---
+
+**`Abstraction in Java`**
+
+Java provides two main ways to achieve abstraction:
+
+1. **Abstract Classes**
+2. **Interfaces**
+
+```text
+                 Abstraction
+                      |
+             ------------------
+             |                |
+      Abstract Class       Interface
+```
+
+---
+
+**`1. Abstract Class`**
+
+An **abstract class** is a class declared using the `abstract` keyword.
+
+It can contain:
+
+* Abstract methods
+* Concrete methods
+* Variables
+* Constructors
+
+An **abstract method** is a method that has a declaration but does not have an implementation.
+
+**`Example`**
+
+```java
+abstract class Animal {
+
+    abstract void sound();
+
+    void eat() {
+        System.out.println("Animal is eating");
+    }
+}
+```
+
+Here:
+
+```java
+abstract void sound();
+```
+
+is an abstract method.
+
+The child class must provide its implementation.
+
+```java
+class Dog extends Animal {
+
+    @Override
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+```
+
+Using the class:
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        Dog dog = new Dog();
+
+        dog.sound();
+        dog.eat();
+    }
+}
+```
+
+**Output**
+
+```text
+Dog barks
+Animal is eating
+```
+
+The `Animal` class defines **what** the animal should do, while `Dog` defines **how** it should do it.
+
+---
+
+**`2. Interface`**
+
+An **interface** is another way to achieve abstraction in Java.
+
+An interface defines a contract that implementing classes must follow.
+
+**Example**
+
+```java
+interface Payment {
+
+    void pay();
+}
+```
+
+Different classes can implement the interface differently:
+
+```java
+class UPI implements Payment {
+
+    @Override
+    public void pay() {
+        System.out.println("Payment using UPI");
+    }
+}
+
+class CreditCard implements Payment {
+
+    @Override
+    public void pay() {
+        System.out.println("Payment using Credit Card");
+    }
+}
+```
+
+Now:
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        Payment payment = new UPI();
+
+        payment.pay();
+    }
+}
+```
+
+**Output**
+
+```text
+Payment using UPI
+```
+
+The interface tells us **what operation is available**:
+
+```java
+void pay();
+```
+
+but the implementation details are provided by the implementing class.
+
+---
+
+**`One Simple Example of Abstraction`**
+
+A good example is a **vehicle**.
+
+```java
+abstract class Vehicle {
+
+    abstract void start();
+
+    void stop() {
+        System.out.println("Vehicle stopped");
+    }
+}
+
+class Car extends Vehicle {
+
+    @Override
+    void start() {
+        System.out.println("Car starts using a key");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Vehicle vehicle = new Car();
+
+        vehicle.start();
+        vehicle.stop();
+    }
+}
+```
+
+**Output**
+
+```text
+Car starts using a key
+Vehicle stopped
+```
+
+Here, `Vehicle` defines the common behavior, while `Car` provides the specific implementation.
+
+---
+
+**`Abstract Method`**
+
+An abstract method is declared without a body.
+
+```java
+abstract void start();
+```
+
+A concrete subclass must implement it:
+
+```java
+@Override
+void start() {
+    System.out.println("Car starts");
+}
+```
+
+Abstract methods can only be declared inside:
+
+* Abstract classes
+* Interfaces
+
+---
+
+**`Abstract Class vs Concrete Class`**
+
+| Feature                      | Abstract Class | Concrete Class |
+| ---------------------------- | -------------- | -------------- |
+| Can be instantiated          |  No           |  Yes          |
+| Can contain abstract methods |  Yes          |  No           |
+| Can contain concrete methods |  Yes          |  Yes          |
+| Can have constructors        |  Yes          |  Yes          |
+| Can have variables           |  Yes          |  Yes          |
+| Uses `abstract` keyword      |  Yes          |  No           |
+
+---
+<br>
+
+**`Abstract Class vs Interface`**
+
+| Feature              | Abstract Class        | Interface             |
+| -------------------- | --------------------- | --------------------- |
+| Keyword              | `abstract class`      | `interface`           |
+| Multiple inheritance |  Not through classes |  Multiple interfaces |
+| Constructors         |  Yes                 |  No                  |
+| Instance variables   |  Yes                 |  No                  |
+| Abstract methods     |  Yes                 |  Yes                 |
+| Concrete methods     |  Yes                 |  Yes                 |
+| Inheritance keyword  | `extends`             | `implements`          |
+
+---
+
+**`Advantages of Abstraction`**
+```java
+1. Hides Implementation Details : Complex implementation details can be hidden from the user.
+
+2. Reduces Complexity : Users only need to understand the important features instead of the complete internal implementation.
+
+3. Improves Security : Important implementation details can be kept hidden from outside code.
+
+4. Increases Maintainability : Internal implementations can be changed without affecting the code that uses the abstraction.
+
+5. Promotes Loose Coupling : Code can depend on abstract classes or interfaces rather than specific implementations.
+
+6. Improves Code Reusability : Common functionality can be placed in abstract classes and reused by subclasses.
+```
+---
+
+**`Disadvantages of Abstraction`**
+```java
+1. Increased Complexity : Using too many abstract classes and interfaces can make a program harder to understand.
+
+2. Requires More Design : Abstraction requires careful planning of interfaces and class relationships.
+
+3. Can Be Overused : Not every class needs abstraction. Unnecessary abstraction can make simple code unnecessarily complicated.
+```
+---
+
+**`Abstraction vs Encapsulation`**
+
+Abstraction and encapsulation are related but different concepts.
+
+| Abstraction                                    | Encapsulation                                                 |
+| ---------------------------------------------- | ------------------------------------------------------------- |
+| Hides implementation details                   | Hides internal data                                           |
+| Focuses on **what** an object does             | Focuses on **how data is accessed/protected**                 |
+| Achieved using abstract classes and interfaces | Achieved using classes, access modifiers, getters and setters |
+| Reduces complexity                             | Protects data                                                 |
+
+---
+
+**`Key Points to Remember`**
+
+* **Abstraction means hiding implementation details and exposing essential functionality.**
+* It is one of the four pillars of OOP.
+* Java provides abstraction through **abstract classes and interfaces**.
+* An abstract class can contain both abstract and concrete methods.
+* An abstract class cannot be instantiated directly.
+* An abstract method does not contain a method body.
+* Interfaces are commonly used to define contracts between classes.
+* Abstraction helps reduce complexity and improve maintainability.
+
+---
+
+**`Abstraction Summary`**
+
+```text
+                     ABSTRACTION
+                          |
+             Hide Implementation Details
+                          |
+             Show Essential Functionality
+                          |
+              -----------------------
+              |                     |
+        Abstract Class          Interface
+              |                     |
+      Abstract Methods       Abstract Methods
+      Concrete Methods       Default Methods
+      Variables              Static Methods
+      Constructors
+```
