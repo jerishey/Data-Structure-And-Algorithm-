@@ -8977,7 +8977,7 @@ Abstraction and encapsulation are related but different concepts.
 
 ---
 
-## **`Java Packages`**
+## **`31. Java Packages`**
 
 A **package in Java** is a mechanism used to group related classes, interfaces, enumerations, and sub-packages together.
 
@@ -9837,3 +9837,503 @@ The `-d` option tells the Java compiler where to place generated `.class` files 
 
 ---
 
+## **`32. Object Class in Java`**
+
+The **`Object` class** is the root class of the Java class hierarchy.
+
+Every class in Java directly or indirectly inherits from the `Object` class. This means that every Java object has access to the methods defined in `Object`.
+
+The `Object` class belongs to the `java.lang` package, which is automatically imported by Java.
+
+```java
+java.lang.Object
+```
+
+---
+
+**`Why is the Object Class Important?`**
+
+The `Object` class provides common methods that can be used by every Java object.
+
+For example:
+
+* `toString()`
+* `equals()`
+* `hashCode()`
+* `getClass()`
+* `clone()`
+* `wait()`
+* `notify()`
+* `notifyAll()`
+
+---
+
+**`Object Class Hierarchy`**
+
+Consider this class:
+
+```java
+class Student {
+}
+```
+
+Although we don't explicitly write:
+
+```java
+class Student extends Object {
+}
+```
+
+Java internally treats it as:
+
+```java
+class Student extends Object {
+}
+```
+
+So the inheritance hierarchy is:
+
+```text
+Object
+  │
+  ├── Student
+  ├── Employee
+  ├── String
+  ├── ArrayList
+  └── ...
+```
+
+Every class eventually inherits from `Object`.
+
+---
+
+**`Important Methods of Object Class`**
+
+| Method        | Purpose                                                |
+| ------------- | ------------------------------------------------------ |
+| `toString()`  | Returns a string representation of an object           |
+| `equals()`    | Compares objects for equality                          |
+| `hashCode()`  | Returns a hash code for an object                      |
+| `getClass()`  | Returns the runtime class of an object                 |
+| `clone()`     | Creates a copy of an object under supported conditions |
+| `wait()`      | Causes the current thread to wait                      |
+| `notify()`    | Wakes one waiting thread                               |
+| `notifyAll()` | Wakes all waiting threads                              |
+
+---
+
+*1. `toString()`*
+
+The `toString()` method returns a string representation of an object.
+
+**Example**
+
+```java
+class Student {
+
+    String name = "Rakesh";
+
+    public static void main(String[] args) {
+
+        Student student = new Student();
+
+        System.out.println(student.toString());
+    }
+}
+```
+
+A default `toString()` output may look similar to:
+
+```text
+Student@5acf9800
+```
+
+The exact hash portion can vary.
+
+---
+
+**Overriding `toString()`**
+
+We can override `toString()` to provide meaningful information.
+
+```java
+class Student {
+
+    String name;
+    int age;
+
+    Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + ", Age: " + age;
+    }
+
+    public static void main(String[] args) {
+
+        Student student = new Student("Rakesh", 21);
+
+        System.out.println(student);
+    }
+}
+```
+
+**Output**
+
+```text
+Name: Rakesh, Age: 21
+```
+
+When we write:
+
+```java
+System.out.println(student);
+```
+
+Java automatically calls:
+
+```java
+student.toString();
+```
+
+---
+
+*2. `equals()`*
+
+The `equals()` method is used to compare objects.
+
+By default, `Object.equals()` compares object references.
+
+**Example**
+
+```java
+class Student {
+
+    String name;
+
+    Student(String name) {
+        this.name = name;
+    }
+
+    public static void main(String[] args) {
+
+        Student s1 = new Student("Rakesh");
+        Student s2 = new Student("Rakesh");
+
+        System.out.println(s1.equals(s2));
+    }
+}
+```
+
+Output:
+
+```text
+false
+```
+
+Although both objects contain the same name, they are two different objects.
+
+We can override `equals()` when we want to compare objects based on their data.
+
+---
+
+*3. `hashCode()`*
+
+The `hashCode()` method returns an integer hash value representing an object.
+
+Example:
+
+```java
+class Student {
+
+    public static void main(String[] args) {
+
+        Student student = new Student();
+
+        System.out.println(student.hashCode());
+    }
+}
+```
+
+Example output:
+
+```text
+1523554304
+```
+
+The exact value can vary.
+
+`hashCode()` is especially important when using objects in hash-based collections such as:
+
+```text
+HashMap
+HashSet
+Hashtable
+```
+
+**`Important Rule`**
+
+If two objects are considered equal according to `equals()`, they must return the same `hashCode()`.
+
+```text
+If a.equals(b) == true
+        ↓
+a.hashCode() == b.hashCode()
+```
+
+---
+
+*4. `getClass()`*
+
+The `getClass()` method returns the runtime class of an object.
+
+**Example**
+
+```java
+class Student {
+
+    public static void main(String[] args) {
+
+        Student student = new Student();
+
+        System.out.println(student.getClass());
+    }
+}
+```
+
+Output:
+
+```text
+class Student
+```
+
+We can also get the class name:
+
+```java
+System.out.println(student.getClass().getName());
+```
+
+Output:
+
+```text
+Student
+```
+
+---
+
+*5. `clone()`*
+
+The `clone()` method is used to create a copy of an object when the class supports cloning.
+
+A class generally needs to implement `Cloneable` to use the standard cloning mechanism.
+
+**Example**
+
+```java
+class Student implements Cloneable {
+
+    String name;
+
+    Student(String name) {
+        this.name = name;
+    }
+
+    public static void main(String[] args) throws CloneNotSupportedException {
+
+        Student s1 = new Student("Rakesh");
+
+        Student s2 = (Student) s1.clone();
+
+        System.out.println(s2.name);
+    }
+}
+```
+
+**Output**
+
+```text
+Rakesh
+```
+
+---
+
+*6. `wait()`*
+
+The `wait()` method is used in **thread synchronization**.
+
+It causes the current thread to wait until another thread performs an appropriate notification.
+
+Example:
+
+```java
+synchronized (obj) {
+    obj.wait();
+}
+```
+
+`wait()` must be called while the current thread owns the object's monitor.
+
+---
+
+*7. `notify()`*
+
+The `notify()` method wakes up **one** thread that is waiting on the object's monitor.
+
+Example:
+
+```java
+synchronized (obj) {
+    obj.notify();
+}
+```
+
+---
+
+*8. `notifyAll()`*
+
+The `notifyAll()` method wakes up **all threads** waiting on the object's monitor.
+
+Example:
+
+```java
+synchronized (obj) {
+    obj.notifyAll();
+}
+```
+
+---
+
+**`Object Class Example`**
+
+Here is a simple example demonstrating some important methods:
+
+```java
+class Student {
+
+    String name;
+    int age;
+
+    Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{name='" + name + "', age=" + age + "}";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Student)) {
+            return false;
+        }
+
+        Student other = (Student) obj;
+
+        return this.name.equals(other.name)
+                && this.age == other.age;
+    }
+
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(name, age);
+    }
+
+    public static void main(String[] args) {
+
+        Student s1 = new Student("Rakesh", 21);
+        Student s2 = new Student("Rakesh", 21);
+
+        System.out.println(s1);
+        System.out.println(s1.equals(s2));
+        System.out.println(s1.hashCode());
+        System.out.println(s1.getClass());
+    }
+}
+```
+
+**Output**
+
+```text
+Student{name='Rakesh', age=21}
+true
+...
+class Student
+```
+
+The exact hash code value may vary.
+
+---
+
+**`Object Class and Inheritance`**
+
+The `Object` class is the **topmost class in Java's class hierarchy**.
+
+For example:
+
+```java
+class Animal {
+}
+
+class Dog extends Animal {
+}
+```
+
+The inheritance chain is:
+
+```text
+Object
+   ↓
+Animal
+   ↓
+Dog
+```
+
+Therefore, a `Dog` object can use methods inherited from `Object`.
+
+```java
+Dog dog = new Dog();
+
+System.out.println(dog.toString());
+System.out.println(dog.getClass());
+System.out.println(dog.hashCode());
+```
+
+---
+
+**`Object Class vs Object`**
+
+Don't confuse the **`Object` class** with an **object**.
+
+*`Object` Class*
+
+`Object` is a predefined Java class:
+
+```java
+java.lang.Object
+```
+
+*`Object`*
+
+An object is an instance of a class:
+
+```java
+Student student = new Student();
+```
+
+Here:
+
+* `Student` → class
+* `student` → reference variable
+* `new Student()` → object
+
+---
