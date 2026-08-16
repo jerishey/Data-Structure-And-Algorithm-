@@ -8974,3 +8974,866 @@ Abstraction and encapsulation are related but different concepts.
       Variables              Static Methods
       Constructors
 ```
+
+---
+
+## **`Java Packages`**
+
+A **package in Java** is a mechanism used to group related classes, interfaces, enumerations, and sub-packages together.
+
+Packages help organize Java programs, avoid naming conflicts, provide access control, and make code easier to maintain and reuse.
+
+---
+
+**`What is a Package in Java?`**
+
+A package is like a **folder** that contains related Java classes and interfaces.
+
+For example:
+
+```text
+com.example
+│
+├── Student.java
+├── Teacher.java
+└── Course.java
+```
+
+Here, `com.example` is the package containing the related classes.
+
+**Syntax**
+
+```java
+package packageName;
+```
+
+Example:
+
+```java
+package com.example;
+
+public class Student {
+    void display() {
+        System.out.println("Student class");
+    }
+}
+```
+
+---
+
+**`Why Do We Use Packages?`**
+
+Packages provide several benefits:
+
+* Organize related classes and interfaces.
+* Avoid naming conflicts.
+* Provide access protection.
+* Improve code maintainability.
+* Make code reusable.
+* Help manage large Java projects.
+* Provide a proper structure to applications.
+
+---
+
+**`Types of Packages in Java`**
+
+Java packages can mainly be divided into two types:
+
+1. **Built-in Packages**
+2. **User-defined Packages**
+
+---
+
+*`1. Built-in Packages`*
+
+Built-in packages are packages provided by Java.
+
+They contain classes and interfaces that are commonly used by developers.
+
+Some commonly used packages are:
+
+| Package     | Description                         |
+| ----------- | ----------------------------------- |
+| `java.lang` | Fundamental Java classes            |
+| `java.util` | Utility classes and data structures |
+| `java.io`   | Input and output operations         |
+| `java.net`  | Networking                          |
+| `java.sql`  | Database connectivity               |
+| `java.time` | Date and time API                   |
+| `java.math` | Mathematical operations             |
+
+**Example**
+
+```java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter your name: ");
+        String name = sc.nextLine();
+
+        System.out.println("Hello " + name);
+    }
+}
+```
+
+Here:
+
+```java
+import java.util.Scanner;
+```
+
+imports the `Scanner` class from the `java.util` package.
+
+---
+
+*`2. User-Defined Packages`*
+
+A **user-defined package** is a package created by the programmer to organize their own classes and interfaces.
+
+**Example**
+
+Suppose we have a package called:
+
+```text
+com.example.student
+```
+
+We can create a class inside it:
+
+```java
+package com.example.student;
+
+public class Student {
+
+    public void display() {
+        System.out.println("Student class");
+    }
+}
+```
+
+We can then import and use this class from another Java file:
+
+```java
+import com.example.student.Student;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student student = new Student();
+
+        student.display();
+    }
+}
+```
+
+**Output**
+
+```text
+Student class
+```
+
+---
+
+`Creating a Package`
+
+A package is created using the `package` keyword.
+
+**Syntax**
+
+```java
+package packageName;
+```
+
+**Example**
+
+```java
+package mypackage;
+
+public class Student {
+
+    public void display() {
+        System.out.println("Hello from Student class");
+    }
+}
+```
+
+The `package` statement should normally be the **first statement** in a Java source file, before imports and class declarations.
+
+---
+
+**`Package Naming Convention`**
+
+Java package names are generally written in **lowercase**.
+
+For example:
+
+```text
+com.example.project
+org.company.application
+in.example.student
+```
+
+A common convention is to use a reversed domain name.
+
+For example, if a company owns:
+
+```text
+example.com
+```
+
+its package might be:
+
+```text
+com.example
+```
+
+---
+
+**`Importing a Package`**
+
+The `import` keyword is used to access classes or interfaces from another package.
+
+**Syntax**
+
+```java
+import packageName.ClassName;
+```
+
+Example:
+
+```java
+import java.util.Scanner;
+```
+
+Now we can use:
+
+```java
+Scanner sc = new Scanner(System.in);
+```
+
+---
+
+**`Importing Multiple Classes`**
+
+We can import multiple classes from the same package.
+
+```java
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.HashMap;
+```
+
+Example:
+
+```java
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        ArrayList<String> names = new ArrayList<>();
+
+        names.add("Ravi");
+        names.add("Aman");
+
+        System.out.println(names);
+    }
+}
+```
+
+---
+
+**`Importing All Classes from a Package`**
+
+The `*` wildcard can be used to import all accessible types from a package.
+
+**Syntax**
+
+```java
+import packageName.*;
+```
+
+Example:
+
+```java
+import java.util.*;
+```
+
+Now classes such as `Scanner`, `ArrayList`, `HashMap`, etc. can be referred to without individual import statements.
+
+> **Note:** `import java.util.*` does not import sub-packages.
+
+For example:
+
+```java
+import java.util.*;
+```
+
+does not automatically import classes from:
+
+```text
+java.util.concurrent
+```
+
+---
+
+**`Fully Qualified Class Name`**
+
+Instead of using an `import` statement, we can use the complete package name with the class name.
+
+Example:
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        java.util.Scanner sc = new java.util.Scanner(System.in);
+
+        System.out.println("Enter a number:");
+        int number = sc.nextInt();
+
+        System.out.println("Number: " + number);
+    }
+}
+```
+
+Here:
+
+```java
+java.util.Scanner
+```
+
+is the **fully qualified name** of the `Scanner` class.
+
+---
+
+**`java.lang` Package**
+
+The `java.lang` package is automatically imported into every Java program.
+
+For example:
+
+```java
+String name = "Rakesh";
+System.out.println(name);
+```
+
+We don't need to write:
+
+```java
+import java.lang.String;
+import java.lang.System;
+```
+
+because `java.lang` is automatically available.
+
+Some important classes in `java.lang` include:
+
+* `String`
+* `System`
+* `Object`
+* `Math`
+* `Integer`
+* `Double`
+* `Boolean`
+* `Thread`
+* `Exception`
+
+---
+
+**`Package and Directory Structure`**
+
+The package structure generally corresponds to the directory structure.
+
+For example:
+
+```java
+package com.example.student;
+```
+
+can be represented as:
+
+```text
+project/
+│
+├── src/
+│   └── com/
+│       └── example/
+│           └── student/
+│               └── Student.java
+│
+└── Main.java
+```
+
+The file `Student.java` contains:
+
+```java
+package com.example.student;
+
+public class Student {
+
+    public void display() {
+        System.out.println("Student Information");
+    }
+}
+```
+
+---
+
+**`Example of User-Defined Package`**
+
+**Step 1: Create the Package Class**
+
+```java
+package school;
+
+public class Student {
+
+    public void display() {
+        System.out.println("Student belongs to School package");
+    }
+}
+```
+
+**Step 2: Import the Class**
+
+```java
+import school.Student;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student student = new Student();
+
+        student.display();
+    }
+}
+```
+
+**Output**
+
+```text
+Student belongs to School package
+```
+
+---
+
+**`Packages and Access Modifiers`**
+
+Packages work closely with Java's access modifiers.
+
+Java provides four levels of access:
+
+| Modifier    | Same Class | Same Package | Subclass in Different Package | Different Package |
+| ----------- | ---------: | -----------: | ----------------------------: | ----------------: |
+| `private`   |          ✅ |            ❌ |                             ❌ |                 ❌ |
+| Default     |          ✅ |            ✅ |                             ❌ |                 ❌ |
+| `protected` |          ✅ |            ✅ |                            ✅* |                 ❌ |
+| `public`    |          ✅ |            ✅ |                             ✅ |                 ✅ |
+
+> `protected` access across packages is available to subclasses through inheritance, subject to Java's access rules.
+
+---
+
+**`Default Access Modifier and Packages`**
+
+If no access modifier is specified, Java uses **default (package-private) access**.
+
+Example:
+
+```java
+package school;
+
+class Student {
+
+    void display() {
+        System.out.println("Student");
+    }
+}
+```
+
+This class can only be accessed from the same package.
+
+A class in another package cannot directly access it.
+
+---
+
+**`Public Classes in Packages`**
+
+A `public` class can be accessed from other packages.
+
+Example:
+
+```java
+package school;
+
+public class Student {
+
+    public void display() {
+        System.out.println("Student");
+    }
+}
+```
+
+Another package can use it:
+
+```java
+import school.Student;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student student = new Student();
+
+        student.display();
+    }
+}
+```
+
+---
+
+**`Static Import`**
+
+Java also provides **static imports**.
+
+A static import allows us to access static members without writing the class name.
+
+`Without Static Import`
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        System.out.println(Math.sqrt(25));
+        System.out.println(Math.PI);
+    }
+}
+```
+
+`With Static Import`
+
+```java
+import static java.lang.Math.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        System.out.println(sqrt(25));
+        System.out.println(PI);
+    }
+}
+```
+
+Here:
+
+```java
+import static java.lang.Math.*;
+```
+
+allows static members of `Math` to be used directly.
+
+---
+
+**`Sub-Packages`**
+
+A package can contain sub-packages.
+
+For example:
+
+```text
+com.example
+│
+├── model
+│   ├── Student.java
+│   └── Teacher.java
+│
+├── service
+│   └── StudentService.java
+│
+└── controller
+    └── StudentController.java
+```
+
+The corresponding packages are:
+
+```java
+package com.example.model;
+```
+
+```java
+package com.example.service;
+```
+
+```java
+package com.example.controller;
+```
+
+> A sub-package is treated as a separate package. Importing `com.example.*` does not automatically import classes from `com.example.model`.
+
+---
+
+**`Package Naming Example in a Real Project`**
+
+A large Java application might have a structure like:
+
+```text
+com.myapp
+│
+├── model
+│   ├── User.java
+│   └── Product.java
+│
+├── service
+│   ├── UserService.java
+│   └── ProductService.java
+│
+├── repository
+│   ├── UserRepository.java
+│   └── ProductRepository.java
+│
+├── controller
+│   ├── UserController.java
+│   └── ProductController.java
+│
+└── Main.java
+```
+
+This makes the application easier to understand and maintain.
+
+---
+
+**`Advantages of Packages`**
+
+`1. Code Organization`
+
+Packages group related classes together.
+
+```text
+model
+service
+controller
+repository
+```
+
+This makes large projects easier to manage.
+
+`2. Avoid Naming Conflicts`
+
+Two packages can contain classes with the same name.
+
+For example:
+
+```text
+school.Student
+college.Student
+```
+
+Both classes can exist because they belong to different packages.
+
+`3. Access Control`
+
+Packages help control access to classes and members using access modifiers.
+
+`4. Code Reusability`
+
+Classes inside packages can be reused across different parts of an application.
+
+`5. Maintainability`
+
+A well-organized package structure makes it easier to modify and maintain large applications.
+
+`6. Better Project Structure`
+
+Packages provide a logical structure for large Java applications.
+
+---
+
+**`Disadvantages of Packages`**
+
+Although packages provide many benefits, they also have some limitations:
+
+* Large projects can have complicated package structures.
+* Poor package organization can make code difficult to understand.
+* Incorrect package declarations can cause compilation errors.
+* Naming conflicts can still occur when importing classes with the same name.
+* Managing many nested packages can become difficult.
+
+---
+
+**`Naming Conflict Example`**
+
+Suppose two packages contain a class named `Student`:
+
+```text
+school.Student
+college.Student
+```
+
+If we import both:
+
+```java
+import school.Student;
+import college.Student;
+```
+
+Java cannot determine which `Student` class should be used.
+
+Instead, we can use the fully qualified class name:
+
+```java
+school.Student student1 = new school.Student();
+college.Student student2 = new college.Student();
+```
+
+---
+
+**`Package vs Import`**
+
+| Package                                  | Import                                                 |
+| ---------------------------------------- | ------------------------------------------------------ |
+| Groups related classes                   | Makes classes available by simple name                 |
+| Uses `package` keyword                   | Uses `import` keyword                                  |
+| Defines where a class belongs            | Specifies what external type can be referred to simply |
+| Usually appears first in the source file | Appears after the package declaration                  |
+| Example: `package com.example;`          | Example: `import java.util.Scanner;`                   |
+
+---
+
+**`Package vs Folder`**
+
+Packages and folders are closely related, but they are not exactly the same thing.
+
+`Folder`
+
+A folder is a directory used by the operating system to organize files.
+
+`Package`
+
+A package is a Java language construct used to organize types and control access.
+
+For example:
+
+```text
+src/
+└── com/
+    └── example/
+        └── Student.java
+```
+
+The Java file may contain:
+
+```java
+package com.example;
+```
+
+The directory structure normally matches the package structure.
+
+---
+
+**`Important Rules of Packages`**
+
+1. The `package` statement should appear before `import` statements.
+2. A Java source file can have only one package declaration.
+3. The package name should normally be written in lowercase.
+4. `java.lang` is automatically imported.
+5. Importing a package does not import its sub-packages.
+6. A `public` class can be accessed from other packages.
+7. Default-access classes and members are accessible only within the same package.
+8. The package declaration should normally correspond to the source directory structure.
+9. A class can be referenced using its fully qualified name without an import.
+10. Packages help provide both organization and access control.
+
+---
+
+**`Complete Example`**
+
+`Student.java`
+
+```java
+package school;
+
+public class Student {
+
+    private String name;
+
+    public Student(String name) {
+        this.name = name;
+    }
+
+    public void display() {
+        System.out.println("Student Name: " + name);
+    }
+}
+```
+
+**Main.java**
+
+```java
+import school.Student;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student student = new Student("Rakesh");
+
+        student.display();
+    }
+}
+```
+
+**Output**
+
+```text
+Student Name: Rakesh
+```
+
+---
+
+*`Package Compilation`*
+
+Suppose the structure is:
+
+```text
+project/
+│
+├── school/
+│   └── Student.java
+│
+└── Main.java
+```
+
+Compile the package class:
+
+```bash
+javac -d . school/Student.java
+```
+
+Then compile the main class:
+
+```bash
+javac Main.java
+```
+
+Run the program:
+
+```bash
+java Main
+```
+
+The `-d` option tells the Java compiler where to place generated `.class` files according to their package structure.
+
+---
+
