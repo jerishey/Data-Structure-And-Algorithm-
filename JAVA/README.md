@@ -10337,3 +10337,733 @@ Here:
 * `new Student()` → object
 
 ---
+
+## **`33. Interface in Java`**
+
+An **interface in Java** is a blueprint that defines a set of methods and constants that a class can implement.
+
+Interfaces are mainly used to achieve **abstraction**, **multiple inheritance**, and **loose coupling** in Java.
+
+An interface is declared using the `interface` keyword.
+
+```java
+interface Animal {
+
+    void sound();
+}
+```
+
+A class implements an interface using the `implements` keyword.
+
+```java
+class Dog implements Animal {
+
+    public void sound() {
+        System.out.println("Dog barks");
+    }
+}
+```
+
+---
+
+**`Why Do We Use Interfaces?`**
+
+Interfaces are used to:
+
+* Achieve abstraction.
+* Support multiple inheritance.
+* Define a common contract for different classes.
+* Achieve loose coupling.
+* Improve code flexibility and maintainability.
+* Allow different classes to provide different implementations of the same behavior.
+
+---
+
+**`Syntax of an Interface`**
+
+```java
+interface InterfaceName {
+
+    // Constants
+
+    // Abstract methods
+
+    // Default methods
+
+    // Static methods
+}
+```
+
+Example:
+
+```java
+interface Vehicle {
+
+    void start();
+    void stop();
+}
+```
+
+---
+
+**`Implementing an Interface`**
+
+A class uses the `implements` keyword to implement an interface.
+
+```java
+interface Animal {
+
+    void sound();
+}
+
+class Dog implements Animal {
+
+    public void sound() {
+        System.out.println("Dog barks");
+    }
+}
+```
+
+Here:
+
+* `Animal` is an interface.
+* `sound()` is an abstract method.
+* `Dog` implements `Animal`.
+* `Dog` provides the implementation of `sound()`.
+
+---
+
+**`Example of Interface`**
+
+```java
+interface Animal {
+
+    void sound();
+}
+
+class Dog implements Animal {
+
+    @Override
+    public void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Dog dog = new Dog();
+
+        dog.sound();
+    }
+}
+```
+
+**Output**
+
+```text
+Dog barks
+```
+
+---
+
+**`Interface Reference`**
+
+An interface can be used as a reference type.
+
+```java
+interface Animal {
+
+    void sound();
+}
+
+class Dog implements Animal {
+
+    @Override
+    public void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Animal animal = new Dog();
+
+        animal.sound();
+    }
+}
+```
+
+**Output**
+
+```text
+Dog barks
+```
+
+This is also an example of **polymorphism**.
+
+The reference type is:
+
+```java
+Animal
+```
+
+while the actual object is:
+
+```java
+new Dog()
+```
+
+---
+
+**`Multiple Interfaces`**
+
+A Java class can implement **multiple interfaces**.
+
+This is one of the main ways Java supports multiple inheritance.
+
+**Example**
+
+```java
+interface Flyable {
+
+    void fly();
+}
+
+interface Swimmable {
+
+    void swim();
+}
+
+class Duck implements Flyable, Swimmable {
+
+    @Override
+    public void fly() {
+        System.out.println("Duck can fly");
+    }
+
+    @Override
+    public void swim() {
+        System.out.println("Duck can swim");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Duck duck = new Duck();
+
+        duck.fly();
+        duck.swim();
+    }
+}
+```
+
+**Output**
+
+```text
+Duck can fly
+Duck can swim
+```
+
+Here:
+
+```java
+class Duck implements Flyable, Swimmable
+```
+
+means that `Duck` implements two interfaces.
+
+---
+
+**`Interface Variables`**
+
+Variables declared inside an interface are automatically:
+
+```text
+public static final
+```
+
+Example:
+
+```java
+interface Constants {
+
+    int MAX_VALUE = 100;
+}
+```
+
+The compiler treats it as:
+
+```java
+public static final int MAX_VALUE = 100;
+```
+
+Therefore, we cannot change its value.
+
+```java
+interface Constants {
+
+    int MAX_VALUE = 100;
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        System.out.println(Constants.MAX_VALUE);
+    }
+}
+```
+
+**Output**
+
+```text
+100
+```
+
+---
+
+**`Interface Methods`**
+
+Modern Java interfaces can contain different types of methods.
+
+`1. Abstract Methods`
+
+An abstract method does not have a body.
+
+```java
+interface Animal {
+
+    void sound();
+}
+```
+
+A class implementing the interface must provide its implementation unless the class itself is abstract.
+
+---
+
+`2. Default Methods`
+
+A `default` method can have a method body.
+
+```java
+interface Animal {
+
+    void sound();
+
+    default void sleep() {
+        System.out.println("Animal is sleeping");
+    }
+}
+```
+
+A class implementing the interface automatically inherits the default method.
+
+```java
+class Dog implements Animal {
+
+    @Override
+    public void sound() {
+        System.out.println("Dog barks");
+    }
+}
+```
+
+Now:
+
+```java
+Dog dog = new Dog();
+
+dog.sound();
+dog.sleep();
+```
+
+Output:
+
+```text
+Dog barks
+Animal is sleeping
+```
+
+---
+
+**`3. Static Methods`**
+
+An interface can contain static methods.
+
+```java
+interface Calculator {
+
+    static int square(int number) {
+        return number * number;
+    }
+}
+```
+
+The static method is called using the interface name:
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        System.out.println(Calculator.square(5));
+    }
+}
+```
+
+**Output**
+
+```text
+25
+```
+
+Static interface methods are not inherited by implementing classes.
+
+---
+
+**`Interface Inheritance`**
+
+An interface can extend another interface using the `extends` keyword.
+
+```java
+interface Animal {
+
+    void eat();
+}
+
+interface Dog extends Animal {
+
+    void bark();
+}
+```
+
+A class implementing `Dog` must implement both methods:
+
+```java
+class Labrador implements Dog {
+
+    @Override
+    public void eat() {
+        System.out.println("Dog eats");
+    }
+
+    @Override
+    public void bark() {
+        System.out.println("Dog barks");
+    }
+}
+```
+
+The relationship is:
+
+```text
+Animal
+   │
+   ↓
+  Dog
+   │
+   ↓
+Labrador
+```
+
+---
+
+**`Multiple Interface Inheritance`**
+
+An interface can extend multiple interfaces.
+
+```java
+interface A {
+
+    void methodA();
+}
+
+interface B {
+
+    void methodB();
+}
+
+interface C extends A, B {
+
+    void methodC();
+}
+```
+
+A class implementing `C` must implement all three methods:
+
+```java
+class Demo implements C {
+
+    public void methodA() {
+        System.out.println("Method A");
+    }
+
+    public void methodB() {
+        System.out.println("Method B");
+    }
+
+    public void methodC() {
+        System.out.println("Method C");
+    }
+}
+```
+
+---
+
+**`Functional Interface`**
+
+A **functional interface** is an interface that contains exactly **one abstract method**.
+
+It can be used with **lambda expressions**.
+
+Example:
+
+```java
+@FunctionalInterface
+interface Calculator {
+
+    int add(int a, int b);
+}
+```
+
+Using a lambda expression:
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        Calculator calculator = (a, b) -> a + b;
+
+        System.out.println(calculator.add(10, 20));
+    }
+}
+```
+
+**Output**
+
+```text
+30
+```
+
+Common functional interfaces include:
+
+* `Runnable`
+* `Predicate`
+* `Consumer`
+* `Function`
+* `Supplier`
+
+---
+
+**`Interface vs Abstract Class`**
+
+| Feature              | Interface                                        | Abstract Class                  |
+| -------------------- | ------------------------------------------------ | ------------------------------- |
+| Keyword              | `interface`                                      | `abstract class`                |
+| Implementation       | `implements`                                     | `extends`                       |
+| Multiple inheritance | Supported                                        | Not supported for classes       |
+| Constructors         | No                                               | Yes                             |
+| Instance variables   | No ordinary instance fields                      | Yes                             |
+| Abstract methods     | Supported                                        | Supported                       |
+| Concrete methods     | `default`/`static` and private methods supported | Fully supported                 |
+| Constants            | Fields are `public static final`                 | Can have normal fields          |
+| Main purpose         | Define a contract                                | Share common state and behavior |
+
+---
+
+**`Interface and Abstraction`**
+
+Interfaces are commonly used to achieve abstraction.
+
+For example:
+
+```java
+interface Payment {
+
+    void pay();
+}
+```
+
+Different classes can implement the interface differently:
+
+```java
+class CreditCard implements Payment {
+
+    @Override
+    public void pay() {
+        System.out.println("Payment using Credit Card");
+    }
+}
+```
+
+```java
+class UPI implements Payment {
+
+    @Override
+    public void pay() {
+        System.out.println("Payment using UPI");
+    }
+}
+```
+
+The user only needs to know:
+
+```java
+payment.pay();
+```
+
+The implementation details are hidden.
+
+---
+
+**`Real-Life Example`**
+
+Consider a **remote control**.
+
+A remote control may provide buttons such as:
+
+```text
+Power
+Volume Up
+Volume Down
+Channel Up
+Channel Down
+```
+
+The remote defines what actions can be performed, while different devices implement those actions differently.
+
+Similarly, an interface defines a **contract**, while implementing classes provide the actual implementation.
+
+```text
+            Interface
+               │
+          Payment
+          /      \
+         /        \
+   CreditCard      UPI
+       │            │
+   pay()          pay()
+```
+
+---
+
+**`Advantages of Interfaces`**
+```java
+1. Abstraction : Interfaces hide implementation details and expose only required behavior.
+
+2. Multiple Inheritance : A class can implement multiple interfaces.
+class Duck implements Flyable, Swimmable
+
+3. Loose Coupling : Interfaces allow code to depend on abstractions instead of concrete implementations.
+
+4. Flexibility : Different classes can provide different implementations of the same interface.
+
+5. Polymorphism : An interface reference can refer to objects of different implementing classes.
+Animal animal = new Dog();
+```
+---
+
+**`Disadvantages of Interfaces`**
+
+* Interfaces can become difficult to manage if they contain too many methods.
+* Implementing classes may need to provide many method implementations.
+* Choosing between an interface and an abstract class can sometimes require careful design.
+* Changes to an interface can affect many implementing classes.
+
+---
+
+**`Important Rules of Interfaces`**
+```java
+1. An interface is declared using the `interface` keyword.
+2. A class implements an interface using `implements`.
+3. A class can implement multiple interfaces.
+4. An interface can extend multiple interfaces.
+5. Interface fields are implicitly `public`, `static`, and `final`.
+6. Abstract interface methods are implicitly `public`.
+7. Interfaces cannot be instantiated directly.
+8. Interfaces can contain `default` and `static` methods.
+9. A functional interface has exactly one abstract method.
+10. Interfaces are commonly used for abstraction and polymorphism.
+```
+---
+
+**`Complete Example`**
+
+```java
+interface Vehicle {
+
+    void start();
+
+    void stop();
+}
+
+class Car implements Vehicle {
+
+    @Override
+    public void start() {
+        System.out.println("Car starts");
+    }
+
+    @Override
+    public void stop() {
+        System.out.println("Car stops");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Vehicle vehicle = new Car();
+
+        vehicle.start();
+        vehicle.stop();
+    }
+}
+```
+
+**Output**
+
+```text
+Car starts
+Car stops
+```
+
+**`What Happens Here?`**
+
+```text
+Vehicle
+   │
+   │ implements
+   ↓
+  Car
+   │
+   ├── start()
+   └── stop()
+```
+
+`Vehicle` defines the contract:
+
+```java
+void start();
+void stop();
+```
+
+`Car` provides the implementation.
+
+The reference:
+
+```java
+Vehicle vehicle = new Car();
+```
+
+also demonstrates **polymorphism**.
+
+---
