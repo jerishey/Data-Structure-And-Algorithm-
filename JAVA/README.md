@@ -11067,3 +11067,704 @@ Vehicle vehicle = new Car();
 also demonstrates **polymorphism**.
 
 ---
+
+## **`34. Java Class vs Interface`**
+
+In Java, **classes** and **interfaces** are both important building blocks used to design applications. However, they have different purposes and capabilities.
+
+A **class** is used to define objects, their state, and their behavior, while an **interface** is mainly used to define a contract that implementing classes must follow.
+
+---
+
+**`Class`**
+
+A **class** is a blueprint for creating objects.
+
+A class can contain:
+
+* Variables
+* Constructors
+* Methods
+* Blocks
+* Static members
+* Instance members
+* Abstract methods
+* Concrete methods
+
+**Example**
+
+```java
+class Student {
+
+    String name;
+
+    Student(String name) {
+        this.name = name;
+    }
+
+    void study() {
+        System.out.println(name + " is studying.");
+    }
+}
+```
+
+Creating an object:
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student student = new Student("Rakesh");
+
+        student.study();
+    }
+}
+```
+
+**Output**
+
+```text
+Rakesh is studying.
+```
+
+---
+
+**`Interface`**
+
+An **interface** defines a contract that a class can implement.
+
+It is declared using the `interface` keyword.
+
+**Example**
+
+```java
+interface Animal {
+
+    void sound();
+}
+```
+
+A class implements the interface:
+
+```java
+class Dog implements Animal {
+
+    @Override
+    public void sound() {
+        System.out.println("Dog barks.");
+    }
+}
+```
+
+Using the interface:
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        Animal animal = new Dog();
+
+        animal.sound();
+    }
+}
+```
+
+**Output**
+
+```text
+Dog barks.
+```
+
+---
+
+**`Class vs Interface`**
+
+| Feature                | Class                                | Interface                                                |
+| ---------------------- | ------------------------------------ | -------------------------------------------------------- |
+| Keyword                | `class`                              | `interface`                                              |
+| Purpose                | Defines objects, state, and behavior | Defines a contract                                       |
+| Object creation        | Can be instantiated if not abstract  | Cannot be instantiated directly                          |
+| Constructor            | ✅ Yes                                | ❌ No                                                     |
+| Instance variables     | ✅ Yes                                | ❌ No ordinary instance variables                         |
+| Static variables       | ✅ Yes                                | ✅ Yes, fields are implicitly `public static final`       |
+| Abstract methods       | ✅ Yes, if class is abstract          | ✅ Yes                                                    |
+| Concrete methods       | ✅ Yes                                | ✅ Yes through `default`, `static`, and `private` methods |
+| Multiple inheritance   | ❌ A class can extend only one class  | ✅ A class can implement multiple interfaces              |
+| Inheritance keyword    | `extends`                            | `extends` for interfaces                                 |
+| Implementation keyword | —                                    | `implements`                                             |
+| Access to methods      | Can use different access modifiers   | Abstract interface methods are implicitly `public`       |
+| Constructor            | Can initialize object state          | No constructor                                           |
+| Fields                 | Can have instance and static fields  | Fields are `public static final`                         |
+| Main purpose           | State + behavior                     | Contract/abstraction                                     |
+
+---
+
+**Class Example**
+
+```java
+class Car {
+
+    String color;
+
+    void drive() {
+        System.out.println("Car is driving.");
+    }
+}
+```
+
+Here, the class contains both:
+
+```text
+State
+ ↓
+color
+
+Behavior
+ ↓
+drive()
+```
+
+An object can be created:
+
+```java
+Car car = new Car();
+```
+
+---
+
+**Interface Example**
+
+```java
+interface Vehicle {
+
+    void start();
+
+    void stop();
+}
+```
+
+The interface specifies **what a vehicle should do**, but does not require one specific implementation.
+
+A class can implement it:
+
+```java
+class Car implements Vehicle {
+
+    @Override
+    public void start() {
+        System.out.println("Car starts.");
+    }
+
+    @Override
+    public void stop() {
+        System.out.println("Car stops.");
+    }
+}
+```
+
+---
+
+**`Multiple Inheritance`**
+
+Java does not allow a class to extend multiple classes.
+
+```java
+class A {
+}
+
+class B {
+}
+
+// Not allowed
+class C extends A, B {
+}
+```
+
+This would cause a compilation error.
+
+However, a class can implement multiple interfaces:
+
+```java
+interface Flyable {
+
+    void fly();
+}
+
+interface Swimmable {
+
+    void swim();
+}
+
+class Duck implements Flyable, Swimmable {
+
+    @Override
+    public void fly() {
+        System.out.println("Duck can fly.");
+    }
+
+    @Override
+    public void swim() {
+        System.out.println("Duck can swim.");
+    }
+}
+```
+
+This is one of the major advantages of interfaces in Java.
+
+---
+
+**`Class Extending Another Class`**
+
+A class can inherit from another class using `extends`.
+
+```java
+class Animal {
+
+    void eat() {
+        System.out.println("Animal eats.");
+    }
+}
+
+class Dog extends Animal {
+
+    void bark() {
+        System.out.println("Dog barks.");
+    }
+}
+```
+
+The inheritance hierarchy is:
+
+```text
+Animal
+   ↓
+  Dog
+```
+
+`Dog` inherits the `eat()` method from `Animal`.
+
+---
+
+**`Interface Extending Another Interface`**
+
+An interface can extend another interface using `extends`.
+
+```java
+interface Animal {
+
+    void eat();
+}
+
+interface Dog extends Animal {
+
+    void bark();
+}
+```
+
+A class implementing `Dog` must implement both methods:
+
+```java
+class Labrador implements Dog {
+
+    @Override
+    public void eat() {
+        System.out.println("Labrador eats.");
+    }
+
+    @Override
+    public void bark() {
+        System.out.println("Labrador barks.");
+    }
+}
+```
+
+---
+
+**`Constructors`**
+
+`Class`
+
+A class can have constructors.
+
+```java
+class Student {
+
+    String name;
+
+    Student(String name) {
+        this.name = name;
+    }
+}
+```
+
+The constructor initializes the object's state.
+
+```java
+Student student = new Student("Rakesh");
+```
+
+`Interface`
+
+An interface cannot have a constructor.
+
+```java
+interface Student {
+
+    // No constructor
+}
+```
+
+This is because an interface cannot be directly instantiated.
+
+---
+
+**`Variables`**
+
+`Class`
+
+A class can have instance variables:
+
+```java
+class Student {
+
+    String name;
+    int age;
+}
+```
+
+Each object can have its own values:
+
+```java
+Student s1 = new Student();
+Student s2 = new Student();
+
+s1.name = "Rakesh";
+s2.name = "Aman";
+```
+
+`Interface`
+
+Fields declared in an interface are automatically:
+
+```text
+public static final
+```
+
+Example:
+
+```java
+interface Constants {
+
+    int MAX_VALUE = 100;
+}
+```
+
+The compiler treats it as:
+
+```java
+public static final int MAX_VALUE = 100;
+```
+
+Therefore:
+
+```java
+Constants.MAX_VALUE = 200;
+```
+
+is not allowed.
+
+---
+
+**`Methods`**
+
+`Class`
+
+A class can contain normal methods:
+
+```java
+class Calculator {
+
+    int add(int a, int b) {
+        return a + b;
+    }
+}
+```
+
+`Interface`
+
+An interface can contain abstract methods:
+
+```java
+interface Calculator {
+
+    int add(int a, int b);
+}
+```
+
+The implementing class provides the implementation:
+
+```java
+class MyCalculator implements Calculator {
+
+    @Override
+    public int add(int a, int b) {
+        return a + b;
+    }
+}
+```
+
+---
+
+**`Default Methods in Interfaces`**
+
+Modern Java interfaces can contain `default` methods with implementations.
+
+```java
+interface Vehicle {
+
+    void start();
+
+    default void fuel() {
+        System.out.println("Vehicle needs fuel.");
+    }
+}
+```
+
+A class implementing the interface automatically gets the default method.
+
+```java
+class Car implements Vehicle {
+
+    @Override
+    public void start() {
+        System.out.println("Car starts.");
+    }
+}
+```
+
+---
+
+**`Static Methods in Interfaces`**
+
+Interfaces can also contain static methods.
+
+```java
+interface Calculator {
+
+    static int square(int number) {
+        return number * number;
+    }
+}
+```
+
+The method is called using the interface name:
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        System.out.println(Calculator.square(5));
+    }
+}
+```
+
+**`Output`**
+
+```text
+25
+```
+
+---
+
+**`When Should You Use a Class?`**
+
+Use a **class** when you need:
+
+* Object creation.
+* Object state.
+* Constructors.
+* Instance variables.
+* Shared implementation.
+* Inheritance through a parent class.
+* Concrete behavior.
+
+Example:
+
+```java
+class Employee {
+
+    String name;
+    double salary;
+
+    void work() {
+        System.out.println(name + " is working.");
+    }
+}
+```
+
+---
+
+**`When Should You Use an Interface?`**
+
+Use an **interface** when you need:
+
+* A common contract.
+* Abstraction.
+* Multiple implementations.
+* Multiple inheritance of type.
+* Loose coupling.
+* Polymorphism.
+
+Example:
+
+```java
+interface Payment {
+
+    void pay();
+}
+```
+
+Different classes can implement it:
+
+```java
+class UPI implements Payment {
+
+    @Override
+    public void pay() {
+        System.out.println("Payment through UPI.");
+    }
+}
+```
+
+```java
+class CreditCard implements Payment {
+
+    @Override
+    public void pay() {
+        System.out.println("Payment through Credit Card.");
+    }
+}
+```
+
+Now:
+
+```java
+Payment payment = new UPI();
+
+payment.pay();
+```
+
+The same interface can work with different implementations.
+
+---
+
+**`Real-Life Analogy`**
+
+Think about a **vehicle**.
+
+An interface can define:
+
+```text
+Vehicle
+ ├── start()
+ └── stop()
+```
+
+Different vehicles can implement these behaviors differently:
+
+```text
+             Vehicle
+            /       \
+           /         \
+        Car          Bike
+         │             │
+      start()        start()
+      stop()         stop()
+```
+
+The interface says:
+
+> "Every vehicle must be able to start and stop."
+
+The classes decide **how** those actions are performed.
+
+---
+
+**`Class + Interface Together`**
+
+In real Java applications, classes and interfaces are often used together.
+
+```java
+interface Payment {
+
+    void pay();
+}
+
+class UPI implements Payment {
+
+    @Override
+    public void pay() {
+        System.out.println("Payment using UPI.");
+    }
+}
+
+class CreditCard implements Payment {
+
+    @Override
+    public void pay() {
+        System.out.println("Payment using Credit Card.");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Payment payment1 = new UPI();
+        Payment payment2 = new CreditCard();
+
+        payment1.pay();
+        payment2.pay();
+    }
+}
+```
+
+**Output**
+
+```text
+Payment using UPI.
+Payment using Credit Card.
+```
+
+Here, `Payment` defines the **contract**, while `UPI` and `CreditCard` provide different **implementations**.
+
+This is also an example of **polymorphism**.
+
+---
+
+**`Key Differences`**
+
+```text
+Class
+  │
+  ├── Can create objects
+  ├── Can have constructors
+  ├── Can have instance variables
+  ├── Can have concrete methods
+  └── Can extend one class
+
+Interface
+  │
+  ├── Cannot be instantiated directly
+  ├── Has no constructors
+  ├── Fields are public static final
+  ├── Defines a contract
+  ├── Supports default/static/private methods
+  └── A class can implement multiple interfaces
+```
+
+---
+
