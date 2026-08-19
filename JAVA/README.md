@@ -11768,3 +11768,1069 @@ Interface
 
 ---
 
+## **`35. Exception Handling in Java`**
+
+**Exception Handling** in Java is a mechanism used to handle **runtime errors** so that the normal flow of a program can continue instead of terminating unexpectedly.
+
+An **exception** is an unwanted or unexpected event that occurs during program execution.
+
+For example:
+
+```java
+int result = 10 / 0;
+```
+
+This causes an `ArithmeticException` because division by zero is not allowed.
+
+---
+
+**`Why Do We Need Exception Handling?`**
+
+Without exception handling, an unexpected error can terminate the program.
+
+Example:
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        int a = 10;
+        int b = 0;
+
+        int result = a / b;
+
+        System.out.println(result);
+    }
+}
+```
+
+Output:
+
+```text
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+```
+
+The program terminates before reaching any statements after the exception.
+
+Exception handling allows us to handle the error properly:
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        try {
+
+            int result = 10 / 0;
+
+        } catch (ArithmeticException e) {
+
+            System.out.println("Cannot divide by zero.");
+        }
+
+        System.out.println("Program continues...");
+    }
+}
+```
+
+Output:
+
+```text
+Cannot divide by zero.
+Program continues...
+```
+
+---
+
+**`Exception Handling Keywords`**
+
+Java provides five important keywords for exception handling:
+
+```text
+try
+catch
+finally
+throw
+throws
+```
+
+They are used for different purposes.
+
+| Keyword   | Purpose                                     |
+| --------- | ------------------------------------------- |
+| `try`     | Contains code that may cause an exception   |
+| `catch`   | Handles an exception                        |
+| `finally` | Executes cleanup code                       |
+| `throw`   | Explicitly throws an exception              |
+| `throws`  | Declares exceptions that a method may throw |
+
+---
+
+**`1. try Block`**
+
+The `try` block contains code that may produce an exception.
+
+**Syntax**
+
+```java
+try {
+
+    // Code that may cause an exception
+
+}
+```
+
+Example:
+
+```java
+try {
+
+    int result = 10 / 0;
+
+}
+```
+
+However, a `try` block must be followed by a `catch` or `finally` block.
+
+---
+
+**`2. catch Block`**
+
+The `catch` block handles an exception thrown by the `try` block.
+
+**Syntax**
+
+```java
+try {
+
+    // Risky code
+
+} catch (ExceptionType e) {
+
+    // Exception handling code
+
+}
+```
+
+Example:
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        try {
+
+            int result = 10 / 0;
+
+        } catch (ArithmeticException e) {
+
+            System.out.println("Cannot divide by zero.");
+        }
+    }
+}
+```
+
+Output:
+
+```text
+Cannot divide by zero.
+```
+
+---
+
+**`3. finally Block`**
+
+The `finally` block is used for code that should execute after the `try`/`catch` processing, typically for cleanup operations.
+
+**Syntax**
+
+```java
+try {
+
+    // Code
+
+} catch (Exception e) {
+
+    // Handle exception
+
+} finally {
+
+    // Cleanup code
+
+}
+```
+
+Example:
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        try {
+
+            int result = 10 / 2;
+            System.out.println(result);
+
+        } catch (ArithmeticException e) {
+
+            System.out.println("Arithmetic error.");
+
+        } finally {
+
+            System.out.println("Finally block executed.");
+        }
+    }
+}
+```
+
+Output:
+
+```text
+5
+Finally block executed.
+```
+
+The `finally` block is commonly used for cleanup, such as closing resources when not using automatic resource management.
+
+---
+
+**`4. throw Keyword`**
+
+The `throw` keyword is used to explicitly throw an exception.
+
+**Syntax**
+
+```java
+throw new ExceptionType("message");
+```
+
+Example:
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        int age = 15;
+
+        if (age < 18) {
+
+            throw new ArithmeticException("Age must be 18 or above.");
+        }
+
+        System.out.println("Eligible.");
+    }
+}
+```
+
+Output:
+
+```text
+Exception in thread "main" java.lang.ArithmeticException: Age must be 18 or above.
+```
+
+We can also throw a more appropriate exception such as `IllegalArgumentException`:
+
+```java
+if (age < 18) {
+    throw new IllegalArgumentException("Age must be 18 or above.");
+}
+```
+
+---
+
+**`5. throws Keyword`**
+
+The `throws` keyword is used in a method declaration to indicate that the method may throw one or more exceptions.
+
+**Syntax**
+
+```java
+returnType methodName() throws ExceptionType {
+
+}
+```
+
+Example:
+
+```java
+import java.io.IOException;
+
+public class Main {
+
+    static void readFile() throws IOException {
+
+        throw new IOException("Unable to read file.");
+    }
+
+    public static void main(String[] args) {
+
+        try {
+
+            readFile();
+
+        } catch (IOException e) {
+
+            System.out.println(e.getMessage());
+        }
+    }
+}
+```
+
+Output:
+
+```text
+Unable to read file.
+```
+
+---
+
+**Difference Between `throw` and `throws`**
+
+| `throw`                               | `throws`                                  |
+| ------------------------------------- | ----------------------------------------- |
+| Used to explicitly throw an exception | Used to declare possible exceptions       |
+| Used inside a method/block            | Used in a method declaration              |
+| Throws one exception object at a time | Can declare multiple exception types      |
+| Example: `throw new IOException();`   | Example: `void read() throws IOException` |
+
+Example:
+
+```java
+throw new IOException();
+```
+
+vs.
+
+```java
+void read() throws IOException {
+}
+```
+
+---
+
+**`Types of Exceptions`**
+
+Java exceptions are commonly discussed as:
+
+1. **Checked Exceptions**
+2. **Unchecked Exceptions**
+
+There are also **Errors**, which are different from exceptions.
+
+The overall hierarchy begins with `Throwable`:
+
+```text
+                 Object
+                    │
+                Throwable
+                /       \
+               /         \
+        Exception        Error
+           │
+      ┌────┴─────┐
+      │          │
+   Checked    RuntimeException
+ Exceptions        │
+                   │
+             Unchecked Exceptions
+```
+
+---
+
+**`Checked Exceptions`**
+
+Checked exceptions are exceptions that the compiler requires you to handle or declare.
+
+They generally inherit from `Exception` but not from `RuntimeException`.
+
+Examples include:
+
+```text
+IOException
+SQLException
+FileNotFoundException
+ClassNotFoundException
+```
+
+Example:
+
+```java
+import java.io.FileReader;
+import java.io.FileNotFoundException;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        try {
+
+            FileReader file = new FileReader("data.txt");
+
+        } catch (FileNotFoundException e) {
+
+            System.out.println("File not found.");
+        }
+    }
+}
+```
+
+---
+
+**``Unchecked Exceptions``**
+
+Unchecked exceptions occur at runtime and are subclasses of `RuntimeException`.
+
+Examples include:
+
+```text
+ArithmeticException
+NullPointerException
+ArrayIndexOutOfBoundsException
+NumberFormatException
+IllegalArgumentException
+```
+
+Example:
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        int[] numbers = {10, 20, 30};
+
+        System.out.println(numbers[5]);
+    }
+}
+```
+
+This produces:
+
+```text
+ArrayIndexOutOfBoundsException
+```
+
+---
+
+**`Common Java Exceptions`**
+
+`ArithmeticException`
+
+Occurs when an invalid arithmetic operation is performed.
+
+```java
+int result = 10 / 0;
+```
+
+---
+
+`NullPointerException`
+
+Occurs when code attempts to use a `null` reference where an object is required.
+
+```java
+String name = null;
+
+System.out.println(name.length());
+```
+
+---
+
+`ArrayIndexOutOfBoundsException`
+
+Occurs when an invalid array index is accessed.
+
+```java
+int[] numbers = {10, 20, 30};
+
+System.out.println(numbers[5]);
+```
+
+---
+
+NumberFormatException
+
+Occurs when a string cannot be converted into the requested numeric type.
+
+```java
+int number = Integer.parseInt("abc");
+```
+
+---
+
+`IllegalArgumentException`
+
+Occurs when a method receives an inappropriate argument.
+
+```java
+int age = -5;
+
+if (age < 0) {
+    throw new IllegalArgumentException("Age cannot be negative.");
+}
+```
+
+---
+
+**Multiple `catch` Blocks**
+
+A single `try` block can have multiple `catch` blocks.
+
+Example:
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        try {
+
+            int[] numbers = {10, 20, 30};
+
+            System.out.println(numbers[5]);
+
+        } catch (ArithmeticException e) {
+
+            System.out.println("Arithmetic error.");
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+
+            System.out.println("Invalid array index.");
+        }
+    }
+}
+```
+
+Output:
+
+```text
+Invalid array index.
+```
+
+**`Important Rule`**
+
+When using multiple `catch` blocks, more specific exception types should appear before broader exception types.
+
+Correct:
+
+```java
+try {
+
+} catch (ArithmeticException e) {
+
+} catch (Exception e) {
+
+}
+```
+
+Incorrect:
+
+```java
+try {
+
+} catch (Exception e) {
+
+} catch (ArithmeticException e) {
+
+}
+```
+
+The second `catch` becomes unreachable because `Exception` already catches `ArithmeticException`.
+
+---
+
+**`Multi-Catch`**
+
+Java allows multiple exception types to be handled by a single `catch` block using `|`.
+
+Example:
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        try {
+
+            int[] numbers = {10, 20, 30};
+
+            System.out.println(numbers[5]);
+
+        } catch (ArithmeticException | ArrayIndexOutOfBoundsException e) {
+
+            System.out.println("An error occurred.");
+        }
+    }
+}
+```
+
+This avoids writing separate `catch` blocks when the handling logic is the same.
+
+---
+
+**`Nested Try-Catch`**
+
+A `try` block can be placed inside another `try` block.
+
+Example:
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        try {
+
+            try {
+
+                int result = 10 / 0;
+
+            } catch (ArithmeticException e) {
+
+                System.out.println("Division by zero.");
+            }
+
+        } catch (Exception e) {
+
+            System.out.println("Outer exception.");
+        }
+    }
+}
+```
+
+Output:
+
+```text
+Division by zero.
+```
+
+---
+
+**`Exception Object`**
+
+When an exception occurs, Java creates an exception object.
+
+Example:
+
+```java
+catch (ArithmeticException e) {
+
+    System.out.println(e);
+}
+```
+
+Here:
+
+```text
+e
+↓
+Exception object
+```
+
+The exception object contains information about the error.
+
+---
+
+**`Important Exception Methods`**
+
+Exception objects provide useful methods.
+
+`getMessage()`
+
+Returns the detail message.
+
+```java
+catch (Exception e) {
+
+    System.out.println(e.getMessage());
+}
+```
+
+`toString()`
+
+Returns the exception class name and message.
+
+```java
+catch (Exception e) {
+
+    System.out.println(e.toString());
+}
+```
+
+`printStackTrace()`
+
+Prints the stack trace of the exception.
+
+```java
+catch (Exception e) {
+
+    e.printStackTrace();
+}
+```
+
+Example:
+
+```java
+try {
+
+    int result = 10 / 0;
+
+} catch (ArithmeticException e) {
+
+    System.out.println(e.getMessage());
+    e.printStackTrace();
+}
+```
+
+---
+
+**`Exception Propagation`**
+
+If an exception is not handled where it occurs, it can propagate up the call stack to the calling method.
+
+Example:
+
+```java
+public class Main {
+
+    static void method1() {
+
+        int result = 10 / 0;
+    }
+
+    static void method2() {
+
+        method1();
+    }
+
+    public static void main(String[] args) {
+
+        try {
+
+            method2();
+
+        } catch (ArithmeticException e) {
+
+            System.out.println("Exception handled in main.");
+        }
+    }
+}
+```
+
+The flow is:
+
+```text
+main()
+  ↓
+method2()
+  ↓
+method1()
+  ↓
+Exception
+  ↓
+method2() doesn't handle it
+  ↓
+main() handles it
+```
+
+---
+
+**`Custom Exceptions`**
+
+Java allows us to create our own exception classes.
+
+Example:
+
+```java
+class InvalidAgeException extends Exception {
+
+    InvalidAgeException(String message) {
+        super(message);
+    }
+}
+```
+
+We can use it like this:
+
+```java
+public class Main {
+
+    static void checkAge(int age) throws InvalidAgeException {
+
+        if (age < 18) {
+
+            throw new InvalidAgeException(
+                "Age must be 18 or above."
+            );
+        }
+
+        System.out.println("Eligible.");
+    }
+
+    public static void main(String[] args) {
+
+        try {
+
+            checkAge(15);
+
+        } catch (InvalidAgeException e) {
+
+            System.out.println(e.getMessage());
+        }
+    }
+}
+```
+
+Output:
+
+```text
+Age must be 18 or above.
+```
+
+---
+
+**`Try-With-Resources`**
+
+Java provides **try-with-resources** for automatically closing resources that implement `AutoCloseable`.
+
+Example:
+
+```java
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        try (BufferedReader reader =
+                 new BufferedReader(new FileReader("data.txt"))) {
+
+            System.out.println(reader.readLine());
+
+        } catch (IOException e) {
+
+            System.out.println("Unable to read file.");
+        }
+    }
+}
+```
+
+The resource is automatically closed after the `try` block finishes.
+
+This is generally preferred over manually closing resources in a `finally` block.
+
+---
+
+**`final`, `finally`, and `finalize()`**
+
+These three terms are different.
+
+| Keyword/Method | Purpose                                                                                    |
+| -------------- | ------------------------------------------------------------------------------------------ |
+| `final`        | Prevents modification, overriding, or inheritance depending on usage                       |
+| `finally`      | Used for cleanup code after exception handling                                             |
+| `finalize()`   | Legacy object-cleanup mechanism; deprecated and should not be used for resource management |
+
+Example of `final`:
+
+```java
+final int MAX = 100;
+```
+
+Example of `finally`:
+
+```java
+try {
+
+} catch (Exception e) {
+
+} finally {
+
+    System.out.println("Cleanup");
+}
+```
+
+`finalize()` should not be used in modern Java code.
+
+---
+
+**`Exception Handling Flow`**
+
+The basic flow is:
+
+```text
+             try
+              │
+              ↓
+       Exception occurs?
+          /         \
+        No           Yes
+        │             │
+        ↓             ↓
+   Continue       catch block
+                      │
+                      ↓
+                  finally
+                      │
+                      ↓
+                  Continue
+```
+
+---
+
+**`Complete Example`**
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        try {
+
+            int a = 10;
+            int b = 0;
+
+            int result = a / b;
+
+            System.out.println(result);
+
+        } catch (ArithmeticException e) {
+
+            System.out.println("Cannot divide by zero.");
+
+        } finally {
+
+            System.out.println("Program execution completed.");
+        }
+    }
+}
+```
+
+**Output**
+
+```text
+Cannot divide by zero.
+Program execution completed.
+```
+
+---
+
+**`Best Practices`**
+
+`1. Catch Specific Exceptions`
+
+Prefer:
+
+```java
+catch (ArithmeticException e) {
+}
+```
+
+instead of unnecessarily catching:
+
+```java
+catch (Exception e) {
+}
+```
+
+`2. Don't Ignore Exceptions`
+
+Avoid empty catch blocks:
+
+```java
+catch (Exception e) {
+}
+```
+
+Handle the exception appropriately or propagate it.
+
+`3. Use Meaningful Messages`
+
+```java
+throw new IllegalArgumentException(
+    "Age cannot be negative."
+);
+```
+
+is better than an unclear message.
+
+`4. Use Try-With-Resources`
+
+For files, streams, and other `AutoCloseable` resources, prefer:
+
+```java
+try (Resource resource = ...) {
+
+}
+```
+
+`5. Don't Use Exceptions for Normal Control Flow`
+
+Exceptions should represent exceptional situations, not ordinary program decisions.
+
+---
+
+**`Advantages of Exception Handling`**
+
+* Prevents unexpected program termination.
+* Separates error-handling code from normal logic.
+* Makes programs more robust.
+* Makes debugging easier.
+* Allows errors to propagate to appropriate handlers.
+* Helps safely manage resources.
+* Supports custom application-specific errors.
+
+---
+
+**`Disadvantages of Exception Handling`**
+
+* Excessive exception handling can make code harder to read.
+* Poorly designed exception handling can hide bugs.
+* Creating and processing exceptions has overhead.
+* Catching overly broad exceptions can make debugging difficult.
+* Exceptions should not be used as a replacement for normal control flow.
+
+---
+
+**`Exception vs Error`**
+
+Both `Exception` and `Error` inherit from `Throwable`, but they represent different situations.
+
+| Exception                                               | Error                                                          |
+| ------------------------------------------------------- | -------------------------------------------------------------- |
+| Usually represents conditions an application may handle | Usually represents serious JVM/system-level problems           |
+| Often caused by application conditions                  | Often caused by environment/JVM limitations                    |
+| Can often be handled                                    | Generally should not be handled as ordinary application errors |
+| Examples: `IOException`, `SQLException`                 | Examples: `OutOfMemoryError`, `StackOverflowError`             |
+
+---
+
+**`Exception Hierarchy`**
+
+```text
+Object
+   │
+   ↓
+Throwable
+   ├── Exception
+   │      ├── IOException
+   │      ├── SQLException
+   │      └── RuntimeException
+   │             ├── ArithmeticException
+   │             ├── NullPointerException
+   │             ├── NumberFormatException
+   │             └── ArrayIndexOutOfBoundsException
+   │
+   └── Error
+          ├── OutOfMemoryError
+          └── StackOverflowError
+```
+
+---
+
