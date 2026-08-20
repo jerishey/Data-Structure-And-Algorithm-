@@ -12834,3 +12834,837 @@ Throwable
 
 ---
 
+## **`36. Java Memory Management`**
+
+Java Memory Management is the process by which the **Java Virtual Machine (JVM)** manages, allocates, and releases memory during program execution.
+
+One of Java's major advantages is **automatic memory management**. Developers generally do not need to manually allocate and deallocate memory like in C or C++.
+
+---
+
+**`What is Memory Management?`**
+
+Memory management refers to the process of:
+
+* Allocating memory for variables and objects.
+* Managing memory while a program is running.
+* Releasing memory that is no longer required.
+* Preventing unnecessary memory consumption.
+
+In Java, the **JVM** handles most memory-management tasks automatically.
+
+```java
+public class Main {
+    public static void main(String[] args) {
+
+        int number = 10;
+
+        Student student = new Student();
+
+    }
+}
+```
+
+When this program runs:
+
+* `number` is stored in the stack frame of `main()`.
+* The `Student` object is created in the heap.
+* The reference `student` exists in the stack frame and points to the heap object.
+
+---
+
+**`JVM Memory Structure`**
+
+The JVM divides memory into several important areas:
+
+```text
+                    JVM Memory
+                        |
+        ---------------------------------
+        |               |               |
+   Runtime Data     Native Memory    Other Areas
+      Areas
+        |
+   --------------------------------
+   |       |       |       |       |
+ Heap   Stack   Method    PC     Native
+                Area    Register  Stack
+```
+
+The major runtime memory areas are:
+
+1. Heap
+2. Stack
+3. Method Area
+4. PC Register
+5. Native Method Stack
+
+---
+
+**`Heap Memory`**
+
+The **heap** is the memory area where Java objects and arrays are generally created.
+
+Whenever we use the `new` keyword, an object is normally allocated in the heap.
+
+```java
+Student student = new Student();
+```
+
+Here:
+
+```text
+Stack                         Heap
+
+student  ----------------->  Student Object
+                             name
+                             age
+```
+
+**Characteristics of Heap**
+
+* Shared among JVM threads.
+* Stores objects and arrays.
+* Managed by the Garbage Collector.
+* Usually much larger than stack memory.
+* Objects can remain in memory as long as they are reachable.
+
+**Example**
+
+```java
+class Student {
+    String name;
+    int age;
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Student s = new Student();
+
+        s.name = "Rahul";
+        s.age = 20;
+    }
+}
+```
+
+The `Student` object is stored in the heap.
+
+---
+
+**`Stack Memory`**
+
+The **stack** stores information associated with method execution.
+
+Every thread has its own stack.
+
+Whenever a method is called, a **stack frame** is created.
+
+```java
+public static void main(String[] args) {
+
+    int x = 10;
+
+    calculate();
+}
+```
+
+Conceptually:
+
+```text
+Stack
+
++------------------+
+| calculate()      |
++------------------+
+| main()           |
++------------------+
+```
+
+Each stack frame can contain:
+
+* Local variables
+* Method parameters
+* References
+* Intermediate values
+* Return information
+
+**Example**
+
+```java
+public static void main(String[] args) {
+
+    int x = 10;
+    int y = 20;
+
+    add(x, y);
+}
+
+static void add(int a, int b) {
+
+    int result = a + b;
+}
+```
+
+During execution:
+
+```text
+Stack
+
+add()
+----------------
+a = 10
+b = 20
+result = 30
+----------------
+main()
+----------------
+x = 10
+y = 20
+```
+
+When `add()` finishes, its stack frame is removed.
+
+---
+
+**`Method Area`**
+
+The **Method Area** stores class-level information required by the JVM.
+
+It can contain information such as:
+
+* Class metadata
+* Method information
+* Field information
+* Runtime constant pool
+* Static-related information
+
+In modern JVM implementations such as HotSpot, the class metadata is stored in **Metaspace**, which is native memory rather than the traditional fixed-size PermGen area.
+
+---
+
+**`PC Register`**
+
+The **Program Counter (PC) Register** is associated with each JVM thread.
+
+It keeps track of the instruction that the current thread is executing.
+
+Conceptually:
+
+```text
+Thread
+  |
+  +---- PC Register
+          |
+          +---- Current JVM instruction
+```
+
+Each thread has its own PC register.
+
+---
+
+**`Native Method Stack`**
+
+The **Native Method Stack** is used when Java interacts with native code.
+
+Native methods are methods implemented in languages such as:
+
+* C
+* C++
+
+Java can interact with native code using **JNI (Java Native Interface)**.
+
+---
+
+**`Heap vs Stack`**
+
+| Feature      | Heap                    | Stack                               |
+| ------------ | ----------------------- | ----------------------------------- |
+| Stores       | Objects and arrays      | Local variables, frames, references |
+| Shared       | Yes                     | No, each thread has its own         |
+| Managed by   | Garbage Collector       | Automatically when methods return   |
+| Size         | Usually larger          | Usually smaller                     |
+| Lifetime     | Objects may live longer | Usually tied to method execution    |
+| Speed        | Relatively slower       | Generally faster                    |
+| Common error | `OutOfMemoryError`      | `StackOverflowError`                |
+
+---
+
+**`Object Creation in Memory`**
+
+Consider:
+
+```java
+class Student {
+    String name;
+    int age;
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student s = new Student();
+
+        s.name = "Aman";
+        s.age = 21;
+    }
+}
+```
+
+A simplified memory representation is:
+
+```text
+Stack                         Heap
+
+s ------------------------> Student Object
+                              |
+                              +-- name ---> "Aman"
+                              |
+                              +-- age ----> 21
+```
+
+The variable `s` is a **reference** to the object.
+
+The object itself is stored in the heap.
+
+---
+
+**`Garbage Collection`**
+
+**Garbage Collection (GC)** is the automatic process of identifying and removing objects that are no longer reachable by the application.
+
+Java does not require programmers to explicitly free objects.
+
+For example:
+
+```java
+Student s = new Student();
+
+s = null;
+```
+
+After:
+
+```java
+s = null;
+```
+
+the previously created `Student` object may become **eligible for garbage collection** if there are no other references to it.
+
+```text
+Before:
+
+s -------------> Student Object
+
+
+After:
+
+s = null
+
+s               Student Object
+                  |
+                  X
+              Unreachable
+```
+
+The object is eligible for GC, but this does **not** mean it is immediately deleted.
+
+---
+
+**`How Garbage Collection Works`**
+
+A simplified garbage-collection process can be represented as:
+
+```text
+Create Objects
+      |
+      v
+Objects Become Unreachable
+      |
+      v
+Garbage Collector Identifies Them
+      |
+      v
+Memory Is Reclaimed
+```
+
+Modern garbage collectors use different algorithms and strategies, but the basic idea is to reclaim memory occupied by objects that are no longer needed.
+
+---
+
+**`Reachability`**
+
+Garbage collection is primarily concerned with whether objects are **reachable** from GC roots.
+
+Examples of GC roots can include:
+
+* Active local variables
+* Active thread references
+* Static references
+* JNI references
+
+Example:
+
+```java
+Student s = new Student();
+
+s = null;
+```
+
+If no other reference points to the object, it may become unreachable.
+
+---
+
+**`Generational Heap`**
+
+Many Java garbage collectors organize the heap around the idea that most objects die young.
+
+A simplified generational model is:
+
+```text
+                Heap
+                 |
+        ---------------------
+        |                   |
+     Young               Old
+    Generation         Generation
+        |
+   -------------
+   |           |
+ Eden       Survivor
+            Spaces
+```
+
+**Young Generation**
+
+New objects are initially allocated in the young generation in collectors that use a generational design.
+
+It commonly contains:
+
+* Eden
+* Survivor spaces
+
+Objects that survive multiple collections may eventually be promoted to the old generation.
+
+**Old Generation**
+
+The old generation contains objects that have survived for longer periods.
+
+---
+
+**`Types of Garbage Collectors`**
+
+The JVM provides multiple garbage collectors, each designed for different workloads.
+
+Common collectors include:
+
+`Serial GC`
+
+Uses a single thread for garbage collection.
+
+Suitable for:
+
+* Small applications
+* Simple environments
+* Systems with limited resources
+
+---
+
+`Parallel GC`
+
+Uses multiple threads for garbage collection.
+
+It focuses on high application throughput.
+
+---
+
+`G1 Garbage Collector`
+
+**G1 (Garbage-First) GC** divides the heap into regions and attempts to collect regions containing the most reclaimable memory first.
+
+It is designed to provide a balance between:
+
+* Throughput
+* Predictable pause times
+* Large-heap performance
+
+---
+
+`Z Garbage Collector`
+
+**ZGC** is designed for very low pause times and can handle large heaps.
+
+It is useful for applications where long GC pauses are undesirable.
+
+---
+
+`Shenandoah GC`
+
+Shenandoah is another low-pause garbage collector designed to perform much of its work concurrently with application execution.
+
+---
+
+**`System.gc()`**
+
+Java provides:
+
+```java
+System.gc();
+```
+
+It requests that the JVM perform garbage collection.
+
+However, it is only a **request**.
+
+The JVM is not required to perform GC immediately.
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        System.gc();
+
+    }
+}
+```
+
+It is generally not recommended to rely on `System.gc()` for normal memory management.
+
+---
+
+**`Memory Leaks`**
+
+Java has automatic garbage collection, but memory leaks can still occur.
+
+A memory leak happens when an application unintentionally keeps references to objects that it no longer needs.
+
+Example:
+
+```java
+import java.util.ArrayList;
+
+public class Main {
+
+    static ArrayList<Object> list = new ArrayList<>();
+
+    public static void main(String[] args) {
+
+        while (true) {
+            list.add(new Object());
+        }
+    }
+}
+```
+
+The objects remain reachable through `list`, so the garbage collector cannot reclaim them.
+
+Eventually, the program may run out of memory.
+
+**Common causes**
+
+* Static collections holding unnecessary objects.
+* Unremoved event listeners.
+* Caches without proper eviction.
+* Long-lived references to temporary objects.
+* Incorrect collection management.
+
+---
+
+**`OutOfMemoryError`**
+
+`OutOfMemoryError` occurs when the JVM cannot allocate enough memory for an operation.
+
+Example:
+
+```java
+import java.util.ArrayList;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        ArrayList<int[]> list = new ArrayList<>();
+
+        while (true) {
+            list.add(new int[1_000_000]);
+        }
+    }
+}
+```
+
+Eventually, the JVM may throw:
+
+```text
+java.lang.OutOfMemoryError: Java heap space
+```
+
+Possible causes include:
+
+* Too many objects.
+* Memory leaks.
+* Very large objects.
+* Insufficient heap size.
+
+---
+
+**`StackOverflowError`**
+
+`StackOverflowError` usually occurs when the call stack becomes exhausted.
+
+A common cause is infinite recursion.
+
+```java
+public class Main {
+
+    static void call() {
+        call();
+    }
+
+    public static void main(String[] args) {
+        call();
+    }
+}
+```
+
+The method continuously calls itself:
+
+```text
+call()
+  |
+  v
+call()
+  |
+  v
+call()
+  |
+  v
+...
+```
+
+Eventually:
+
+```text
+java.lang.StackOverflowError
+```
+
+---
+
+**`OutOfMemoryError` vs `StackOverflowError`**
+
+| Error                | Common Cause                                       |
+| -------------------- | -------------------------------------------------- |
+| `OutOfMemoryError`   | Heap or other JVM memory cannot satisfy allocation |
+| `StackOverflowError` | Stack space is exhausted                           |
+| Typical example      | Too many objects                                   |
+| Typical example      | Infinite recursion                                 |
+
+---
+
+**`Example: Complete Memory Flow`**
+
+Consider:
+
+```java
+class Student {
+
+    String name;
+
+    Student(String name) {
+        this.name = name;
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student student = new Student("Ravi");
+
+        display(student);
+    }
+
+    static void display(Student s) {
+
+        System.out.println(s.name);
+    }
+}
+```
+
+A simplified representation:
+
+```text
+Stack
+--------------------------------
+display()
+s ----------------------+
+                         |
+main()                   |
+student -----------------+
+--------------------------------
+                            |
+                            v
+Heap
+--------------------------------
+Student Object
+name -----------------> "Ravi"
+--------------------------------
+```
+
+When `display()` finishes:
+
+```text
+display() stack frame
+       |
+       v
+   removed
+```
+
+When `main()` finishes, its stack frame is also removed.
+
+If the `Student` object is no longer reachable, it becomes eligible for garbage collection.
+
+---
+
+**`Java Memory Management Lifecycle`**
+
+The overall process can be summarized as:
+
+```text
+          Java Program
+                |
+                v
+        JVM Starts Execution
+                |
+                v
+       Memory Is Allocated
+                |
+       -------------------
+       |        |        |
+      Heap    Stack   Method Area
+       |
+       v
+    Objects
+       |
+       v
+ Objects Become Unreachable
+       |
+       v
+ Garbage Collector
+       |
+       v
+ Memory Reclaimed
+```
+
+---
+
+**`Important JVM Memory Terms`**
+
+| Term                | Meaning                                              |
+| ------------------- | ---------------------------------------------------- |
+| JVM                 | Executes Java bytecode                               |
+| Heap                | Stores objects and arrays                            |
+| Stack               | Stores method execution data                         |
+| Stack Frame         | Memory structure created for a method invocation     |
+| Method Area         | Stores class-related runtime information             |
+| Metaspace           | HotSpot's native-memory area for class metadata      |
+| PC Register         | Tracks the current instruction for a thread          |
+| Native Method Stack | Supports native method execution                     |
+| Garbage Collector   | Reclaims unreachable objects                         |
+| GC Root             | Starting point used to determine object reachability |
+| Memory Leak         | Unnecessary objects remain reachable                 |
+| OutOfMemoryError    | JVM cannot satisfy a memory allocation               |
+| StackOverflowError  | Thread stack becomes exhausted                       |
+
+---
+
+**`Best Practices`**
+
+`1. Avoid Unnecessary Object Creation`
+
+Instead of repeatedly creating unnecessary objects:
+
+```java
+String name = new String("Java");
+```
+
+Prefer:
+
+```java
+String name = "Java";
+```
+
+when appropriate.
+
+---
+
+`2. Release Unnecessary References`
+
+For long-lived objects, avoid retaining references to objects that are no longer required.
+
+---
+
+`3. Manage Collections Carefully`
+
+Be careful with:
+
+```java
+static List<Object> list;
+```
+
+Large static collections can keep objects reachable for the lifetime of the application.
+
+---
+
+`4. Use Appropriate Data Structures`
+
+Choosing an appropriate collection can reduce unnecessary memory usage.
+
+---
+
+`5. Avoid Uncontrolled Caching`
+
+Caches should generally have a suitable size or eviction policy.
+
+---
+
+`6. Avoid Unnecessary System.gc()`
+
+Do not depend on:
+
+```java
+System.gc();
+```
+
+for normal application memory management.
+
+---
+
+`7. Monitor Memory Usage`
+
+For larger applications, JVM monitoring and profiling tools can help identify:
+
+* Memory leaks
+* Excessive allocations
+* GC pressure
+* Heap usage
+* Thread stack problems
+
+---
+
+**`Key Points to Remember`**
+
+* Java uses **automatic memory management**.
+* The **JVM** manages runtime memory.
+* Objects and arrays are generally allocated in the **heap**.
+* Method execution uses **stack frames**.
+* Each thread has its own JVM stack.
+* The **Method Area** stores class-related information.
+* **Metaspace** is used by HotSpot for class metadata.
+* Garbage Collection reclaims memory from unreachable objects.
+* Java can still have memory leaks when unnecessary references are retained.
+* `OutOfMemoryError` and `StackOverflowError` represent different memory problems.
+* `System.gc()` only requests garbage collection; it does not guarantee immediate collection.
+
+---
