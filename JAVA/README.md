@@ -13669,7 +13669,1956 @@ For larger applications, JVM monitoring and profiling tools can help identify:
 
 ---
 
-## **`37. Collections Class in Java`**
+## **`37. Java Collections Framework`**
+
+The **Java Collections Framework (JCF)** is a unified architecture provided by Java to store, manage, and manipulate groups of objects efficiently.
+
+It provides:
+
+* Interfaces that define common collection operations
+* Classes that implement those interfaces
+* Algorithms for searching, sorting, and manipulating collections
+* Utility methods for working with collections
+* Different data structures for different use cases
+
+The Collections Framework is primarily available in the `java.util` package.
+
+---
+
+**`What is the Java Collections Framework?`**
+
+A **collection** is an object that represents a group of objects.
+
+For example:
+
+```text
+Students
+ ├── Rahul
+ ├── Priya
+ ├── Aman
+ └── Neha
+```
+
+Instead of creating separate variables:
+
+```java
+String student1 = "Rahul";
+String student2 = "Priya";
+String student3 = "Aman";
+String student4 = "Neha";
+```
+
+we can use a collection:
+
+```java
+List<String> students = new ArrayList<>();
+
+students.add("Rahul");
+students.add("Priya");
+students.add("Aman");
+students.add("Neha");
+```
+
+Collections make it easier to:
+
+* Store multiple objects
+* Add and remove objects
+* Search for objects
+* Sort objects
+* Iterate through objects
+* Organize data
+* Process large amounts of data
+
+---
+
+**`Why Do We Need Collections?`**
+
+Before the Collections Framework, arrays were commonly used to store multiple values.
+
+```java
+String[] names = new String[5];
+```
+
+Arrays have several limitations.
+
+`1. Fixed Size`
+
+The size of an array cannot be changed after creation.
+
+```java
+String[] names = new String[5];
+```
+
+If you need more than five elements, you must create another array.
+
+Collections such as `ArrayList` can dynamically grow.
+
+```java
+ArrayList<String> names = new ArrayList<>();
+
+names.add("Rahul");
+names.add("Aman");
+names.add("Priya");
+```
+
+---
+
+`2. Limited Operations`
+
+Arrays do not directly provide convenient methods for:
+
+* Searching
+* Sorting
+* Adding
+* Removing
+* Reversing
+* Shuffling
+
+The Collections Framework provides these operations through classes and utility methods.
+
+---
+
+`3. Different Data Structures`
+
+Different problems require different data structures.
+
+For example:
+
+```text
+Need duplicates?
+        |
+        +---- Yes ----> List
+
+Need unique elements?
+        |
+        +---- Yes ----> Set
+
+Need key-value pairs?
+        |
+        +---- Yes ----> Map
+
+Need FIFO processing?
+        |
+        +---- Yes ----> Queue
+```
+
+The Collections Framework provides implementations for these requirements.
+
+---
+
+**`Features`**
+
+The Java Collections Framework provides:
+```java
+1. Dynamic Data Structures : Collections can grow and shrink dynamically.
+
+2. Reusable Data Structures : You can use existing implementations instead of creating your own.
+
+3. Generic Support
+
+Collections work with Java Generics.
+
+List<String> names = new ArrayList<>();
+List<Integer> numbers = new ArrayList<>();
+
+4. Standard Algorithms
+
+The `Collections` class provides algorithms for:
+
+* Sorting
+* Searching
+* Reversing
+* Shuffling
+* Finding minimum
+* Finding maximum
+* Rotating
+* Replacing values
+
+5. Type Safety
+
+Generics provide compile-time type checking.
+
+
+List<String> names = new ArrayList<>();
+
+names.add("Rahul");
+// names.add(100); // Compile-time error
+```
+---
+
+**`Collection vs Collections`**
+
+These two terms are frequently confused.
+
+**`Collection`**
+
+`Collection` is an **interface**.
+
+```java
+Collection<String> names = new ArrayList<>();
+```
+
+It represents a group of objects.
+
+---
+
+**`Collections`**
+
+`Collections` is a **utility class**.
+
+```java
+Collections.sort(names);
+```
+
+It provides static utility methods for operating on collections.
+
+**`Difference`**
+
+| Collection                    | Collections              |
+| ----------------------------- | ------------------------ |
+| Interface                     | Utility class            |
+| Represents a group of objects | Provides utility methods |
+| Part of collection hierarchy  | Contains static methods  |
+| `java.util.Collection`        | `java.util.Collections`  |
+
+---
+
+**`Collections Framework Hierarchy`**
+
+The simplified hierarchy looks like this:
+
+```text
+                         Iterable
+                            |
+                       Collection
+                            |
+          +-----------------+----------------+
+          |                 |                |
+         List              Set             Queue
+          |                 |                |
+   +------+------+     +----+----+      +----+----+
+   |      |      |     |         |      |         |
+ArrayList LinkedList Vector  HashSet  TreeSet PriorityQueue
+   |                        |
+ Stack                 LinkedHashSet
+
+
+                         Map
+                          |
+             +------------+------------+
+             |            |            |
+          HashMap    LinkedHashMap   SortedMap
+                                      |
+                                   NavigableMap
+                                      |
+                                   TreeMap
+```
+
+> `Map` is part of the Java Collections Framework, but it does **not** extend the `Collection` interface.
+
+---
+
+**`Main Interfaces`**
+
+The most important interfaces are:
+
+| Interface      | Purpose                                   |
+| -------------- | ----------------------------------------- |
+| `Collection`   | Root interface for most collections       |
+| `List`         | Ordered collection that allows duplicates |
+| `Set`          | Collection that does not allow duplicates |
+| `Queue`        | Designed for processing elements          |
+| `Deque`        | Double-ended queue                        |
+| `Map`          | Stores key-value pairs                    |
+| `SortedSet`    | Sorted set                                |
+| `NavigableSet` | Sorted set with navigation operations     |
+| `SortedMap`    | Sorted map                                |
+| `NavigableMap` | Sorted map with navigation operations     |
+
+---
+
+**`List Interface`**
+
+The `List` interface represents an **ordered collection**.
+
+A List:
+
+* Maintains insertion order
+* Allows duplicate elements
+* Allows `null` values in most implementations
+* Provides index-based access
+
+Example:
+
+```java
+List<String> names = new ArrayList<>();
+
+names.add("Rahul");
+names.add("Aman");
+names.add("Rahul");
+
+System.out.println(names);
+```
+
+Output:
+
+```text
+[Rahul, Aman, Rahul]
+```
+
+Duplicates are allowed.
+
+---
+
+`Important List Implementations`
+
+Common implementations include:
+
+```text
+List
+ |
+ +-- ArrayList
+ |
+ +-- LinkedList
+ |
+ +-- Vector
+      |
+      +-- Stack
+```
+
+---
+
+**`ArrayList`**
+
+`ArrayList` is a resizable-array implementation of the `List` interface.
+
+```java
+ArrayList<String> names = new ArrayList<>();
+```
+
+Example:
+
+```java
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<String> names = new ArrayList<>();
+
+        names.add("Rahul");
+        names.add("Priya");
+        names.add("Aman");
+
+        System.out.println(names);
+    }
+}
+```
+
+Output:
+
+```text
+[Rahul, Priya, Aman]
+```
+
+`Accessing Elements`
+
+```java
+System.out.println(names.get(0));
+```
+
+`Updating Elements`
+
+```java
+names.set(1, "Neha");
+```
+
+`Removing Elements`
+
+```java
+names.remove(0);
+```
+
+`Checking an Element`
+
+```java
+names.contains("Aman");
+```
+
+`Size`
+
+```java
+names.size();
+```
+
+---
+
+**`Advantages of ArrayList`**
+
+* Fast random access
+* Dynamic size
+* Easy to use
+* Good for frequent reading
+* Allows duplicates
+
+**`Disadvantages`**
+
+* Insertion/removal in the middle can be expensive
+* Not synchronized by default
+
+---
+
+**`LinkedList`**
+
+`LinkedList` implements both `List` and `Deque`.
+
+It is based on a doubly linked list.
+
+```java
+LinkedList<String> names = new LinkedList<>();
+
+names.add("Aman");
+names.add("Rahul");
+names.add("Priya");
+```
+
+It can be used as:
+
+```text
+List
+```
+
+or:
+
+```text
+Queue
+```
+
+or:
+
+```text
+Deque
+```
+
+Example:
+
+```java
+LinkedList<String> queue = new LinkedList<>();
+
+queue.add("Person 1");
+queue.add("Person 2");
+queue.add("Person 3");
+
+System.out.println(queue);
+```
+
+---
+
+**`Vector`**
+
+`Vector` is a legacy dynamic-array implementation.
+
+```java
+Vector<Integer> numbers = new Vector<>();
+
+numbers.add(10);
+numbers.add(20);
+numbers.add(30);
+```
+
+Unlike `ArrayList`, many of its methods are synchronized.
+
+For new code, `ArrayList` is generally preferred when synchronization is not required.
+
+---
+
+**`Stack`**
+
+`Stack` is a legacy class that represents a **LIFO** data structure.
+
+LIFO means:
+
+```text
+Last In
+First Out
+```
+
+Example:
+
+```text
+Push 10
+Push 20
+Push 30
+
+Stack:
+
+30  <- Top
+20
+10
+```
+
+Example:
+
+```java
+Stack<Integer> stack = new Stack<>();
+
+stack.push(10);
+stack.push(20);
+stack.push(30);
+
+System.out.println(stack.pop());
+```
+
+Output:
+
+```text
+30
+```
+
+For modern stack/deque use cases, `ArrayDeque` is generally preferred.
+
+---
+
+**`Set Interface`**
+
+A `Set` is a collection that **does not allow duplicate elements**.
+
+Example:
+
+```java
+Set<Integer> numbers = new HashSet<>();
+
+numbers.add(10);
+numbers.add(20);
+numbers.add(10);
+
+System.out.println(numbers);
+```
+
+The duplicate `10` is not stored twice.
+
+```text
+[20, 10]
+```
+
+The exact order depends on the implementation.
+
+---
+
+**`Types of Set`**
+
+```text
+Set
+ |
+ +-- HashSet
+ |
+ +-- LinkedHashSet
+ |
+ +-- SortedSet
+       |
+       +-- NavigableSet
+              |
+              +-- TreeSet
+```
+
+---
+
+**`HashSet`**
+
+`HashSet` stores unique elements using hashing.
+
+```java
+HashSet<String> names = new HashSet<>();
+
+names.add("Rahul");
+names.add("Aman");
+names.add("Priya");
+names.add("Rahul");
+
+System.out.println(names);
+```
+
+The second `"Rahul"` is ignored.
+
+`Characteristics`
+
+* No duplicate elements
+* Does not guarantee insertion order
+* Allows one `null` element
+* Generally provides fast basic operations
+
+---
+
+**`LinkedHashSet`**
+
+`LinkedHashSet` maintains insertion order while ensuring uniqueness.
+
+```java
+LinkedHashSet<String> names = new LinkedHashSet<>();
+
+names.add("Rahul");
+names.add("Aman");
+names.add("Priya");
+
+System.out.println(names);
+```
+
+Output:
+
+```text
+[Rahul, Aman, Priya]
+```
+
+Use it when you need:
+
+> **Unique elements + insertion order**
+
+---
+
+**`TreeSet`**
+
+`TreeSet` stores unique elements in sorted order.
+
+```java
+TreeSet<Integer> numbers = new TreeSet<>();
+
+numbers.add(50);
+numbers.add(10);
+numbers.add(30);
+numbers.add(20);
+
+System.out.println(numbers);
+```
+
+Output:
+
+```text
+[10, 20, 30, 50]
+```
+
+Use `TreeSet` when you need:
+
+> **Unique elements + sorted order**
+
+---
+
+**`Queue Interface`**
+
+A `Queue` is generally used for processing elements in a particular order.
+
+The common queue principle is:
+
+```text
+FIFO
+
+First In
+First Out
+```
+
+Example:
+
+```text
+10 → 20 → 30
+
+Remove → 10
+```
+
+Example:
+
+```java
+Queue<String> queue = new LinkedList<>();
+
+queue.offer("Rahul");
+queue.offer("Aman");
+queue.offer("Priya");
+
+System.out.println(queue.poll());
+```
+
+Output:
+
+```text
+Rahul
+```
+
+---
+
+**`Important Queue Methods`**
+
+| Method      | Description                  |
+| ----------- | ---------------------------- |
+| `add()`     | Inserts an element           |
+| `offer()`   | Inserts an element           |
+| `remove()`  | Removes the head             |
+| `poll()`    | Removes and returns the head |
+| `element()` | Returns the head             |
+| `peek()`    | Returns the head             |
+
+A useful distinction is:
+
+```text
+offer() → safer insertion method
+poll()  → returns null if empty
+peek()  → returns null if empty
+```
+
+---
+
+**`Deque Interface`**
+
+`Deque` means:
+
+> **Double Ended Queue**
+
+Elements can be inserted and removed from both ends.
+
+```text
+        Front
+          ↓
+      10 20 30
+             ↑
+            Rear
+```
+
+Example:
+
+```java
+Deque<Integer> deque = new ArrayDeque<>();
+
+deque.addFirst(10);
+deque.addLast(20);
+
+System.out.println(deque);
+```
+
+Output:
+
+```text
+[10, 20]
+```
+
+---
+
+**`ArrayDeque`**
+
+`ArrayDeque` is an efficient implementation of `Deque`.
+
+Example:
+
+```java
+Deque<String> deque = new ArrayDeque<>();
+
+deque.addFirst("A");
+deque.addLast("B");
+
+System.out.println(deque.removeFirst());
+System.out.println(deque.removeLast());
+```
+
+It can be used as both:
+
+**`Queue`**
+
+```java
+Queue<Integer> queue = new ArrayDeque<>();
+```
+
+`Stack`
+
+```java
+Deque<Integer> stack = new ArrayDeque<>();
+
+stack.push(10);
+stack.push(20);
+
+System.out.println(stack.pop());
+```
+
+For many stack and queue use cases, `ArrayDeque` is preferred over legacy `Stack`.
+
+---
+
+**`Map Interface`**
+
+A `Map` stores data as:
+
+```text
+Key → Value
+```
+
+Example:
+
+```text
+101 → Rahul
+102 → Aman
+103 → Priya
+```
+
+Example:
+
+```java
+Map<Integer, String> students = new HashMap<>();
+
+students.put(101, "Rahul");
+students.put(102, "Aman");
+students.put(103, "Priya");
+```
+
+A key must be unique.
+
+```java
+students.put(101, "Neha");
+```
+
+The value associated with key `101` is replaced.
+
+---
+
+**`Important Map Implementations`**
+
+```text
+Map
+ |
+ +-- HashMap
+ |
+ +-- LinkedHashMap
+ |
+ +-- Hashtable
+ |
+ +-- SortedMap
+       |
+       +-- NavigableMap
+              |
+              +-- TreeMap
+```
+
+---
+
+**`HashMap`**
+
+`HashMap` stores key-value pairs using hashing.
+
+```java
+HashMap<Integer, String> students = new HashMap<>();
+
+students.put(101, "Rahul");
+students.put(102, "Aman");
+students.put(103, "Priya");
+
+System.out.println(students);
+```
+
+`Characteristics`
+
+* Stores key-value pairs
+* Keys must be unique
+* Does not guarantee iteration order
+* Allows one `null` key
+* Allows multiple `null` values
+* Generally provides fast basic operations
+
+---
+
+`Accessing Values`
+
+```java
+System.out.println(students.get(101));
+```
+
+Output:
+
+```text
+Rahul
+```
+
+---
+
+`Checking a Key`
+
+```java
+students.containsKey(101);
+```
+
+---
+
+`Checking a Value`
+
+```java
+students.containsValue("Rahul");
+```
+
+---
+
+`Removing an Entry`
+
+```java
+students.remove(101);
+```
+
+---
+
+**`LinkedHashMap`**
+
+`LinkedHashMap` maintains insertion order of entries.
+
+```java
+LinkedHashMap<Integer, String> students = new LinkedHashMap<>();
+
+students.put(101, "Rahul");
+students.put(102, "Aman");
+students.put(103, "Priya");
+
+System.out.println(students);
+```
+
+Output:
+
+```text
+{101=Rahul, 102=Aman, 103=Priya}
+```
+
+Use it when you need:
+
+> **Key-value pairs + predictable insertion order**
+
+---
+
+**`TreeMap`**
+
+`TreeMap` stores key-value pairs sorted according to the keys.
+
+```java
+TreeMap<Integer, String> students = new TreeMap<>();
+
+students.put(103, "Priya");
+students.put(101, "Rahul");
+students.put(102, "Aman");
+
+System.out.println(students);
+```
+
+Output:
+
+```text
+{101=Rahul, 102=Aman, 103=Priya}
+```
+
+Use it when you need:
+
+> **Key-value pairs + sorted keys**
+
+---
+
+**`Hashtable`**
+
+`Hashtable` is a legacy synchronized implementation of `Map`.
+
+```java
+Hashtable<Integer, String> table = new Hashtable<>();
+
+table.put(1, "Java");
+table.put(2, "Python");
+```
+
+Unlike `HashMap`, `Hashtable` does not permit `null` keys or values.
+
+For modern applications, `HashMap` or concurrent map implementations are generally preferred depending on the requirements.
+
+---
+
+**`Iterator`**
+
+An `Iterator` is used to traverse elements of a collection.
+
+Example:
+
+```java
+ArrayList<String> names = new ArrayList<>();
+
+names.add("Rahul");
+names.add("Aman");
+names.add("Priya");
+
+Iterator<String> iterator = names.iterator();
+
+while (iterator.hasNext()) {
+    System.out.println(iterator.next());
+}
+```
+
+Output:
+
+```text
+Rahul
+Aman
+Priya
+```
+
+---
+
+**`Important Iterator Methods`**
+
+| Method      | Purpose                               |
+| ----------- | ------------------------------------- |
+| `hasNext()` | Checks whether another element exists |
+| `next()`    | Returns the next element              |
+| `remove()`  | Removes the last returned element     |
+
+---
+
+**`ListIterator`**
+
+`ListIterator` is specifically designed for Lists.
+
+It can move in both directions.
+
+```text
+Forward  →
+← Backward
+```
+
+Example:
+
+```java
+List<String> names = new ArrayList<>();
+
+names.add("A");
+names.add("B");
+names.add("C");
+
+ListIterator<String> iterator = names.listIterator();
+
+while (iterator.hasNext()) {
+    System.out.println(iterator.next());
+}
+```
+
+It can also move backward:
+
+```java
+while (iterator.hasPrevious()) {
+    System.out.println(iterator.previous());
+}
+```
+
+---
+
+`Comparable`
+
+`Comparable` is used to define the **natural ordering** of objects.
+
+A class implements:
+
+```java
+Comparable<T>
+```
+
+and overrides:
+
+```java
+compareTo()
+```
+
+Example:
+
+```java
+class Student implements Comparable<Student> {
+
+    int marks;
+
+    Student(int marks) {
+        this.marks = marks;
+    }
+
+    @Override
+    public int compareTo(Student other) {
+        return this.marks - other.marks;
+    }
+}
+```
+
+Now students can be sorted according to their marks.
+
+---
+
+`Comparator`
+
+`Comparator` is used when you want to define **custom sorting logic**.
+
+Example:
+
+```java
+Comparator<Integer> descending =
+        (a, b) -> b - a;
+```
+
+Then:
+
+```java
+List<Integer> numbers = new ArrayList<>();
+
+numbers.add(10);
+numbers.add(30);
+numbers.add(20);
+
+numbers.sort(descending);
+
+System.out.println(numbers);
+```
+
+Output:
+
+```text
+[30, 20, 10]
+```
+
+---
+
+**`Comparable vs Comparator`**
+
+| Comparable                   | Comparator                      |
+| ---------------------------- | ------------------------------- |
+| Defines natural ordering     | Defines custom ordering         |
+| Implemented by the class     | Usually separate from the class |
+| Uses `compareTo()`           | Uses `compare()`                |
+| Usually one natural ordering | Can define multiple orderings   |
+
+---
+
+**`Sorting Collections`**
+
+The `Collections` utility class provides sorting methods.
+
+Example:
+
+```java
+List<Integer> numbers = new ArrayList<>();
+
+numbers.add(50);
+numbers.add(10);
+numbers.add(30);
+numbers.add(20);
+
+Collections.sort(numbers);
+
+System.out.println(numbers);
+```
+
+Output:
+
+```text
+[10, 20, 30, 50]
+```
+
+---
+
+**`Reverse Sorting`**
+
+```java
+Collections.sort(numbers, Collections.reverseOrder());
+```
+
+Or:
+
+```java
+numbers.sort(Comparator.reverseOrder());
+```
+
+---
+
+**`Collections Utility Class`**
+
+The `Collections` class provides useful static methods.
+
+Import:
+
+```java
+import java.util.Collections;
+```
+
+---
+
+`sort()`
+
+```java
+Collections.sort(list);
+```
+
+Sorts the list in natural order.
+
+---
+
+`reverse()`
+
+```java
+Collections.reverse(list);
+```
+
+Reverses the list.
+
+---
+
+`shuffle()`
+
+```java
+Collections.shuffle(list);
+```
+
+Randomly rearranges the elements.
+
+---
+
+`max()`
+
+```java
+int maximum = Collections.max(numbers);
+```
+
+---
+
+`min()`
+
+```java
+int minimum = Collections.min(numbers);
+```
+
+---
+
+`frequency()`
+
+```java
+int count = Collections.frequency(numbers, 10);
+```
+
+Returns the number of occurrences of an element.
+
+---
+
+**`binarySearch()`**
+
+```java
+int index = Collections.binarySearch(numbers, 20);
+```
+
+The list must be sorted appropriately for binary search.
+
+---
+
+**`Generics and Collections`**
+
+Generics allow collections to store a specific type.
+
+Without generics:
+
+```java
+ArrayList list = new ArrayList();
+
+list.add("Java");
+list.add(100);
+```
+
+This can cause type-safety problems.
+
+With generics:
+
+```java
+ArrayList<String> list = new ArrayList<>();
+
+list.add("Java");
+list.add("Python");
+```
+
+Now:
+
+```java
+// list.add(100);
+```
+
+produces a compile-time error.
+
+---
+
+**`Common Generic Collections`**
+
+```java
+List<String> names = new ArrayList<>();
+
+Set<Integer> numbers = new HashSet<>();
+
+Queue<String> queue = new ArrayDeque<>();
+
+Map<Integer, String> students = new HashMap<>();
+```
+
+It is generally preferable to program against interfaces rather than concrete implementations:
+
+```java
+List<String> names = new ArrayList<>();
+```
+
+instead of:
+
+```java
+ArrayList<String> names = new ArrayList<>();
+```
+
+when the variable only needs `List` behavior.
+
+---
+
+**`Immutable and Unmodifiable Collections`**
+
+Java provides ways to create collections that cannot be structurally modified.
+
+`List.of()`
+
+```java
+List<String> names = List.of(
+    "Rahul",
+    "Aman",
+    "Priya"
+);
+```
+
+The returned list cannot be modified.
+
+```java
+names.add("Neha"); // UnsupportedOperationException
+```
+
+---
+
+`Set.of()`
+
+```java
+Set<Integer> numbers = Set.of(10, 20, 30);
+```
+
+---
+
+`Map.of()`
+
+```java
+Map<Integer, String> students = Map.of(
+    101, "Rahul",
+    102, "Aman"
+);
+```
+
+These factory methods are useful when you need fixed collection contents.
+
+---
+
+**`Choosing the Right Collection`**
+
+Choosing the correct collection depends on your requirements.
+
+`Need an ordered collection with duplicates?`
+
+Use:
+
+```java
+ArrayList
+```
+
+---
+
+`Need frequent insertions/removals at both ends?`
+
+Use:
+
+```java
+ArrayDeque
+```
+
+---
+
+`Need unique elements?`
+
+Use:
+
+```java
+HashSet
+```
+
+---
+
+`Need unique elements in insertion order?`
+
+Use:
+
+```java
+LinkedHashSet
+```
+
+---
+
+`Need unique elements in sorted order?`
+
+Use:
+
+```java
+TreeSet
+```
+
+---
+
+`Need key-value storage?`
+
+Use:
+
+```java
+HashMap
+```
+
+---
+
+`Need key-value storage with insertion order?`
+
+Use:
+
+```java
+LinkedHashMap
+```
+
+---
+
+`Need key-value storage sorted by keys?`
+
+Use:
+
+```java
+TreeMap
+```
+
+---
+
+`Need a priority-based queue?`
+
+Use:
+
+```java
+PriorityQueue
+```
+
+---
+
+**`Time Complexity`**
+
+Approximate average-case complexities for common implementations:
+
+| Operation        | ArrayList | LinkedList | HashSet |  TreeSet | HashMap |  TreeMap |
+| ---------------- | --------: | ---------: | ------: | -------: | ------: | -------: |
+| Add              |     O(1)* |     O(1)** |    O(1) | O(log n) |    O(1) | O(log n) |
+| Search           |      O(n) |       O(n) |   O(1)* | O(log n) |   O(1)* | O(log n) |
+| Remove           |      O(n) |    O(n)*** |   O(1)* | O(log n) |   O(1)* | O(log n) |
+| Get by index/key |      O(1) |       O(n) |       — |        — |   O(1)* | O(log n) |
+
+**`Notes`**
+
+`*` Average/amortized complexity where applicable.
+
+`**` Linked-list insertion is O(1) when the insertion position/node is already known.
+
+`***` Finding an arbitrary element can still require O(n).
+
+Actual performance can depend on implementation details, hashing quality, and workload.
+
+---
+
+**`Advantages`**
+
+`1. Dynamic Size`
+
+Collections can grow and shrink automatically.
+
+`2. Ready-to-Use Data Structures`
+
+Java provides implementations such as:
+
+* `ArrayList`
+* `LinkedList`
+* `HashSet`
+* `TreeSet`
+* `HashMap`
+* `TreeMap`
+* `ArrayDeque`
+* `PriorityQueue`
+
+`3. Type Safety`
+
+Generics reduce runtime type errors.
+
+`4. Reusable Algorithms`
+
+The framework provides standard algorithms for:
+
+* Sorting
+* Searching
+* Reversing
+* Shuffling
+* Finding minimum and maximum
+
+`5. Better Code Reusability`
+
+You do not need to implement common data structures from scratch.
+
+---
+
+**`Disadvantages`**
+
+`1. Memory Overhead`
+
+Collections can use more memory than primitive arrays because they store objects and may maintain additional data structures.
+
+`2. Boxing Overhead`
+
+Collections store objects rather than primitive types.
+
+For example:
+
+```java
+List<Integer> numbers = new ArrayList<>();
+```
+
+uses `Integer` rather than `int`.
+
+Java handles conversion through autoboxing and unboxing.
+
+`3. Choosing the Wrong Collection`
+
+Using the wrong data structure can significantly reduce performance.
+
+For example, repeatedly inserting/removing elements from the middle of an `ArrayList` may be inefficient.
+
+`4. Thread Safety Is Not Automatic`
+
+Most commonly used collection implementations are not synchronized by default.
+
+For concurrent applications, appropriate concurrent collections or synchronization strategies may be required.
+
+---
+
+**`Real-World Examples`**
+
+`Student Management`
+
+```java
+List<Student> students = new ArrayList<>();
+```
+
+Useful when students need to be stored in a particular order.
+
+---
+
+`Unique Usernames`
+
+```java
+Set<String> usernames = new HashSet<>();
+```
+
+Useful because usernames should be unique.
+
+---
+
+`Product Catalog`
+
+```java
+Map<Integer, Product> products = new HashMap<>();
+```
+
+The product ID can be used as the key.
+
+---
+
+`Task Processing`
+
+```java
+Queue<Task> tasks = new ArrayDeque<>();
+```
+
+Tasks can be processed in queue order.
+
+---
+
+`Leaderboard`
+
+```java
+Map<String, Integer> scores = new HashMap<>();
+```
+
+Stores player names and scores.
+
+For automatically sorted scores, a different structure or sorting strategy may be more appropriate.
+
+---
+
+**`Best Practices`**
+
+`1. Program to Interfaces`
+
+Prefer:
+
+```java
+List<String> names = new ArrayList<>();
+```
+
+over unnecessarily exposing the implementation type:
+
+```java
+ArrayList<String> names = new ArrayList<>();
+```
+
+---
+
+`2. Use Generics`
+
+Prefer:
+
+```java
+List<String> names = new ArrayList<>();
+```
+
+instead of:
+
+```java
+List names = new ArrayList();
+```
+
+---
+
+`3. Choose the Collection Based on the Requirement`
+
+Do not automatically use `ArrayList` for every problem.
+
+Consider:
+
+```text
+List       → ordered data + duplicates
+Set        → unique data
+Queue      → processing order
+Deque      → both ends
+Map        → key-value data
+TreeSet    → sorted unique data
+TreeMap    → sorted key-value data
+```
+
+---
+
+`4. Prefer ArrayDeque for Stack-Like Operations`
+
+Instead of:
+
+```java
+Stack<Integer> stack = new Stack<>();
+```
+
+consider:
+
+```java
+Deque<Integer> stack = new ArrayDeque<>();
+```
+
+---
+
+`5. Specify Initial Capacity When Appropriate`
+
+If you know approximately how many elements an `ArrayList` will contain:
+
+```java
+List<String> names = new ArrayList<>(1000);
+```
+
+This can reduce repeated internal resizing.
+
+---
+
+`6. Use Enhanced for Loops When Appropriate`
+
+Instead of:
+
+```java
+Iterator<String> iterator = names.iterator();
+
+while (iterator.hasNext()) {
+    System.out.println(iterator.next());
+}
+```
+
+you can often use:
+
+```java
+for (String name : names) {
+    System.out.println(name);
+}
+```
+
+---
+
+**`Complete Example`**
+
+The following example demonstrates `List`, `Set`, `Queue`, `Deque`, and `Map`.
+
+```java
+import java.util.*;
+
+public class CollectionsExample {
+
+    public static void main(String[] args) {
+
+        // List
+        List<String> names = new ArrayList<>();
+
+        names.add("Rahul");
+        names.add("Aman");
+        names.add("Priya");
+        names.add("Rahul");
+
+        System.out.println("List: " + names);
+
+
+        // Set
+        Set<String> uniqueNames = new HashSet<>();
+
+        uniqueNames.add("Rahul");
+        uniqueNames.add("Aman");
+        uniqueNames.add("Priya");
+        uniqueNames.add("Rahul");
+
+        System.out.println("Set: " + uniqueNames);
+
+
+        // Queue
+        Queue<String> queue = new ArrayDeque<>();
+
+        queue.offer("Task 1");
+        queue.offer("Task 2");
+        queue.offer("Task 3");
+
+        System.out.println("Queue: " + queue);
+        System.out.println("Removed: " + queue.poll());
+
+
+        // Deque
+        Deque<Integer> deque = new ArrayDeque<>();
+
+        deque.addFirst(10);
+        deque.addLast(20);
+        deque.addFirst(5);
+
+        System.out.println("Deque: " + deque);
+
+
+        // Map
+        Map<Integer, String> students = new HashMap<>();
+
+        students.put(101, "Rahul");
+        students.put(102, "Aman");
+        students.put(103, "Priya");
+
+        System.out.println("Map: " + students);
+
+
+        // Sorting
+        List<Integer> numbers = new ArrayList<>();
+
+        numbers.add(50);
+        numbers.add(10);
+        numbers.add(30);
+        numbers.add(20);
+
+        Collections.sort(numbers);
+
+        System.out.println("Sorted: " + numbers);
+    }
+}
+```
+
+Possible output:
+
+```text
+List: [Rahul, Aman, Priya, Rahul]
+Set: [Rahul, Priya, Aman]
+Queue: [Task 1, Task 2, Task 3]
+Removed: Task 1
+Deque: [5, 10, 20]
+Map: {101=Rahul, 102=Aman, 103=Priya}
+Sorted: [10, 20, 30, 50]
+```
+
+The exact order shown for hash-based collections such as `HashSet` and `HashMap` should not be relied upon.
+
+---
+
+**`Comparison`**
+
+| Collection      | Duplicates | Order               | Sorted     | Key-Value |
+| --------------- | ---------- | ------------------- | ---------- | --------- |
+| `ArrayList`     | Yes        | Insertion           | No         | No        |
+| `LinkedList`    | Yes        | Insertion           | No         | No        |
+| `HashSet`       | No         | No guaranteed order | No         | No        |
+| `LinkedHashSet` | No         | Insertion           | No         | No        |
+| `TreeSet`       | No         | Sorted              | Yes        | No        |
+| `ArrayDeque`    | Yes        | Queue/deque order   | No         | No        |
+| `PriorityQueue` | Yes        | Priority-based      | Heap-based | No        |
+| `HashMap`       | Keys: No   | No guaranteed order | No         | Yes       |
+| `LinkedHashMap` | Keys: No   | Insertion           | No         | Yes       |
+| `TreeMap`       | Keys: No   | Sorted by key       | Yes        | Yes       |
+
+---
+
+**`Java Collections Framework — Mental Model`**
+
+A simple way to remember the framework is:
+
+```text
+                    Java Collections Framework
+                              |
+          +-------------------+-------------------+
+          |                   |                   |
+         List                Set                Queue
+          |                   |                   |
+     Duplicates           Unique data        Processing
+          |                   |                   |
+     ArrayList          +----+----+        ArrayDeque
+     LinkedList         |         |        PriorityQueue
+     Vector          HashSet    TreeSet
+                         |
+                  LinkedHashSet
+
+
+                              Map
+                               |
+              +----------------+----------------+
+              |                |                |
+           HashMap       LinkedHashMap       TreeMap
+```
+
+---
+
+**`Collection Selection Guide`**
+
+```text
+Do you need key-value pairs?
+        |
+       Yes
+        |
+       Map
+        |
+   +----+------------------+
+   |                       |
+Fast lookup             Sorted keys
+   |                       |
+HashMap                 TreeMap
+   |
+Need insertion order?
+   |
+LinkedHashMap
+
+
+No
+ |
+Do you need unique elements?
+ |
+ +---- Yes ----------------------+
+ |                               |
+Need sorted?                 No sorting
+ |                               |
+TreeSet                       HashSet
+ |
+Need insertion order?
+ |
+LinkedHashSet
+
+
+No
+ |
+Do you need queue/stack behavior?
+ |
+Yes
+ |
+Deque / Queue
+ |
+ArrayDeque / PriorityQueue
+
+
+No
+ |
+List
+ |
+ArrayList
+```
+
+---
+
+**`Collection Framework vs Data Structures`**
+
+The Java Collections Framework gives you ready-made implementations of many common data structures.
+
+| Concept        | Java Implementation         |
+| -------------- | --------------------------- |
+| Dynamic Array  | `ArrayList`                 |
+| Linked List    | `LinkedList`                |
+| Hash Table     | `HashMap`                   |
+| Hash Set       | `HashSet`                   |
+| Sorted Set     | `TreeSet`                   |
+| Sorted Map     | `TreeMap`                   |
+| Queue          | `ArrayDeque` / `LinkedList` |
+| Priority Queue | `PriorityQueue`             |
+| Stack          | `ArrayDeque`                |
+
+Learning the Collections Framework is especially important for **Java DSA**, because many algorithmic problems require efficient use of these structures.
+
+---
+
+**`Conclusion`**
+
+The **Java Collections Framework** is one of the most important parts of Java.
+
+It provides a standard way to store and manipulate groups of objects through interfaces and implementations such as:
+
+```text
+List
+Set
+Queue
+Deque
+Map
+```
+
+The most important implementations include:
+
+```text
+ArrayList
+LinkedList
+HashSet
+LinkedHashSet
+TreeSet
+ArrayDeque
+PriorityQueue
+HashMap
+LinkedHashMap
+TreeMap
+```
+
+Understanding when and why to use each collection is more important than simply memorizing their methods.
+
+A good rule of thumb is:
+
+```text
+List  → Ordered data with duplicates
+Set   → Unique data
+Queue → Processing elements
+Deque  → Operations at both ends
+Map   → Key-value relationships
+Tree* → Sorted data
+Hash* → Fast general-purpose lookup
+LinkedHash* → Predictable insertion order
+```
+
+Once you understand these structures, you will have a strong foundation for **Java programming, DSA, competitive programming, and real-world application development**.
+
+
+## **`38. Collections Class in Java`**
 
 The **`Collections` class** in Java is a utility class provided by the `java.util` package. It contains several **static methods** that can be used to perform common operations on collection objects such as sorting, searching, reversing, shuffling, finding minimum and maximum values, and more.
 
