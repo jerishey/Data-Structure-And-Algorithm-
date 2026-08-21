@@ -13668,3 +13668,1063 @@ For larger applications, JVM monitoring and profiling tools can help identify:
 * `System.gc()` only requests garbage collection; it does not guarantee immediate collection.
 
 ---
+
+## **`37. Collections Class in Java`**
+
+The **`Collections` class** in Java is a utility class provided by the `java.util` package. It contains several **static methods** that can be used to perform common operations on collection objects such as sorting, searching, reversing, shuffling, finding minimum and maximum values, and more.
+
+The `Collections` class makes it easier to manipulate data stored in collections such as `ArrayList`, `LinkedList`, and other `List` implementations.
+
+> **Important:** `Collection` and `Collections` are different.
+>
+> * `Collection` → An interface
+> * `Collections` → A utility class
+
+---
+
+**`Introduction`**
+
+Java provides the **Java Collections Framework (JCF)** to store and manipulate groups of objects.
+
+For example:
+
+```java
+ArrayList<Integer> numbers = new ArrayList<>();
+
+numbers.add(30);
+numbers.add(10);
+numbers.add(20);
+```
+
+To sort this list, instead of implementing a sorting algorithm manually, we can use the `Collections` class:
+
+```java
+Collections.sort(numbers);
+```
+
+The `Collections` class provides ready-made methods for many common collection operations.
+
+---
+
+**`What is the Collections Class?`**
+
+`Collections` is a **final utility class** in the `java.util` package.
+
+It provides static methods for operating on collections.
+
+For example:
+
+```java
+Collections.sort(list);
+Collections.reverse(list);
+Collections.shuffle(list);
+```
+
+Because its methods are static, we do not need to create an object of the `Collections` class.
+
+`We don't do this:`
+
+```java
+Collections obj = new Collections();
+```
+
+Instead, we directly call its methods:
+
+```java
+Collections.sort(numbers);
+```
+
+---
+
+**`Package`**
+
+The `Collections` class is available in:
+
+```java
+java.util
+```
+
+Import it using:
+
+```java
+import java.util.Collections;
+```
+
+Or use:
+
+```java
+import java.util.*;
+```
+
+---
+
+`Syntax`
+
+The general syntax is:
+
+```java
+Collections.methodName(collection);
+```
+
+For example:
+
+```java
+Collections.sort(numbers);
+```
+
+Some methods accept additional arguments:
+
+```java
+Collections.swap(list, index1, index2);
+```
+
+or:
+
+```java
+Collections.sort(list, Collections.reverseOrder());
+```
+
+---
+
+**`Collection vs Collections`**
+
+One of the most common points of confusion is the difference between `Collection` and `Collections`.
+
+| Feature         | `Collection`                  | `Collections`                  |
+| --------------- | ----------------------------- | ------------------------------ |
+| Type            | Interface                     | Utility class                  |
+| Package         | `java.util`                   | `java.util`                    |
+| Purpose         | Represents a group of objects | Provides utility methods       |
+| Methods         | Defines collection operations | Provides static helper methods |
+| Example         | `Collection<Integer>`         | `Collections.sort(list)`       |
+| Object creation | Cannot directly instantiate   | Not instantiated               |
+
+`Collection`
+
+```java
+Collection<Integer> numbers;
+```
+
+`Collection` is an interface.
+
+`Collections`
+
+```java
+Collections.sort(numbers);
+```
+
+`Collections` is a utility class.
+
+---
+
+**`Important Methods`**
+
+The `Collections` class provides many useful methods.
+
+| Method           | Purpose                                                |
+| ---------------- | ------------------------------------------------------ |
+| `sort()`         | Sorts a list                                           |
+| `reverse()`      | Reverses a list                                        |
+| `shuffle()`      | Randomly rearranges elements                           |
+| `max()`          | Finds the maximum element                              |
+| `min()`          | Finds the minimum element                              |
+| `frequency()`    | Counts occurrences                                     |
+| `swap()`         | Swaps two elements                                     |
+| `fill()`         | Replaces all elements                                  |
+| `binarySearch()` | Searches a sorted list                                 |
+| `copy()`         | Copies one list into another                           |
+| `reverseOrder()` | Creates a reverse-order comparator                     |
+| `rotate()`       | Rotates elements                                       |
+| `replaceAll()`   | Replaces matching elements                             |
+| `disjoint()`     | Checks whether two collections have no common elements |
+
+---
+
+*1. `sort()`*
+
+The `sort()` method sorts the elements of a list in **ascending order**.
+
+**Syntax**
+
+```java
+Collections.sort(list);
+```
+
+**Example**
+
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<Integer> numbers = new ArrayList<>();
+
+        numbers.add(50);
+        numbers.add(10);
+        numbers.add(40);
+        numbers.add(20);
+        numbers.add(30);
+
+        Collections.sort(numbers);
+
+        System.out.println(numbers);
+    }
+}
+```
+
+**Output**
+
+```text
+[10, 20, 30, 40, 50]
+```
+
+**`Sorting Strings`**
+
+```java
+ArrayList<String> names = new ArrayList<>();
+
+names.add("Charlie");
+names.add("Alice");
+names.add("Bob");
+
+Collections.sort(names);
+
+System.out.println(names);
+```
+
+**Output**
+
+```text
+[Alice, Bob, Charlie]
+```
+
+---
+
+*2. `reverse()`*
+
+The `reverse()` method reverses the order of elements in a list.
+
+**Syntax**
+
+```java
+Collections.reverse(list);
+```
+
+**Example**
+
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<Integer> numbers =
+                new ArrayList<>(Arrays.asList(10, 20, 30, 40, 50));
+
+        Collections.reverse(numbers);
+
+        System.out.println(numbers);
+    }
+}
+```
+
+**Output**
+
+```text
+[50, 40, 30, 20, 10]
+```
+
+---
+
+*3. `shuffle()`*
+
+The `shuffle()` method randomly rearranges the elements of a list.
+
+*Syntax*
+
+```java
+Collections.shuffle(list);
+```
+
+**Example**
+
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<Integer> numbers =
+                new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+
+        Collections.shuffle(numbers);
+
+        System.out.println(numbers);
+    }
+}
+```
+
+**Possible Output**
+
+```text
+[3, 5, 1, 4, 2]
+```
+
+The result may be different each time because the elements are randomly rearranged.
+
+---
+
+*4. `max()`*
+
+The `max()` method returns the **largest element** in a collection.
+
+**Syntax**
+
+```java
+Collections.max(collection);
+```
+
+**Example**
+
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<Integer> numbers =
+                new ArrayList<>(Arrays.asList(10, 50, 20, 40, 30));
+
+        int maximum = Collections.max(numbers);
+
+        System.out.println("Maximum: " + maximum);
+    }
+}
+```
+
+**Output**
+
+```text
+Maximum: 50
+```
+
+---
+
+*5. `min()`*
+
+The `min()` method returns the **smallest element**.
+
+**Syntax**
+
+```java
+Collections.min(collection);
+```
+
+**Example**
+
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<Integer> numbers =
+                new ArrayList<>(Arrays.asList(10, 50, 20, 40, 30));
+
+        int minimum = Collections.min(numbers);
+
+        System.out.println("Minimum: " + minimum);
+    }
+}
+```
+
+**Output**
+
+```text
+Minimum: 10
+```
+
+---
+
+*6. `frequency()`*
+
+The `frequency()` method returns the number of times a particular element appears in a collection.
+
+**Syntax**
+
+```java
+Collections.frequency(collection, element);
+```
+
+**Example**
+
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<Integer> numbers =
+                new ArrayList<>(Arrays.asList(
+                        10, 20, 10, 30, 10, 40
+                ));
+
+        int count = Collections.frequency(numbers, 10);
+
+        System.out.println("Frequency: " + count);
+    }
+}
+```
+
+**Output**
+
+```text
+Frequency: 3
+```
+
+The value `10` occurs three times.
+
+---
+
+*7. `swap()`*
+
+The `swap()` method exchanges two elements in a list.
+
+**Syntax**
+
+```java
+Collections.swap(list, index1, index2);
+```
+
+**Example**
+
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<String> names =
+                new ArrayList<>(Arrays.asList(
+                        "Alice", "Bob", "Charlie"
+                ));
+
+        Collections.swap(names, 0, 2);
+
+        System.out.println(names);
+    }
+}
+```
+
+**Output**
+
+```text
+[Charlie, Bob, Alice]
+```
+
+The elements at index `0` and index `2` were exchanged.
+
+---
+
+*8. `fill()`*
+
+The `fill()` method replaces every element in a list with a specified value.
+
+**Syntax**
+
+```java
+Collections.fill(list, value);
+```
+
+**Example**
+
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<Integer> numbers =
+                new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+
+        Collections.fill(numbers, 0);
+
+        System.out.println(numbers);
+    }
+}
+```
+
+**Output**
+
+```text
+[0, 0, 0, 0, 0]
+```
+
+---
+
+*9. `binarySearch()`*
+
+The `binarySearch()` method searches for an element in a list.
+
+**Syntax**
+
+```java
+Collections.binarySearch(list, key);
+```
+
+The list should be **sorted** before performing a natural-order binary search.
+
+**Example**
+
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<Integer> numbers =
+                new ArrayList<>(Arrays.asList(
+                        10, 20, 30, 40, 50
+                ));
+
+        int index = Collections.binarySearch(numbers, 30);
+
+        System.out.println("Index: " + index);
+    }
+}
+```
+
+**Output**
+
+```text
+Index: 2
+```
+
+Since `30` is located at index `2`.
+
+`If the element is not found`
+
+The method returns a negative value.
+
+For example:
+
+```java
+int index = Collections.binarySearch(numbers, 35);
+```
+
+The exact negative value encodes the insertion-point information; it is not simply `-1`.
+
+---
+
+*10. `copy()`*
+
+The `copy()` method copies elements from one list into another.
+
+**Syntax**
+
+```java
+Collections.copy(destination, source);
+```
+
+The destination list must already contain enough elements to hold all elements of the source list.
+
+**Example**
+
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<Integer> source =
+                new ArrayList<>(Arrays.asList(10, 20, 30));
+
+        ArrayList<Integer> destination =
+                new ArrayList<>(Arrays.asList(0, 0, 0));
+
+        Collections.copy(destination, source);
+
+        System.out.println(destination);
+    }
+}
+```
+
+**Output**
+
+```text
+[10, 20, 30]
+```
+
+**`Important`**
+
+This will cause an exception:
+
+```java
+ArrayList<Integer> destination = new ArrayList<>();
+
+Collections.copy(destination, source);
+```
+
+because the destination list has no elements.
+
+---
+
+*11. `reverseOrder()`*
+
+The `reverseOrder()` method returns a comparator that imposes **reverse natural ordering**.
+
+It is commonly used to sort a list in descending order.
+
+**Example**
+
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<Integer> numbers =
+                new ArrayList<>(Arrays.asList(
+                        10, 50, 20, 40, 30
+                ));
+
+        Collections.sort(numbers, Collections.reverseOrder());
+
+        System.out.println(numbers);
+    }
+}
+```
+
+**Output**
+
+```text
+[50, 40, 30, 20, 10]
+```
+
+---
+
+*12. `rotate()`*
+
+The `rotate()` method rotates the elements of a list by a specified distance.
+
+**Syntax**
+
+```java
+Collections.rotate(list, distance);
+```
+
+**Example**
+
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<Integer> numbers =
+                new ArrayList<>(Arrays.asList(
+                        1, 2, 3, 4, 5
+                ));
+
+        Collections.rotate(numbers, 2);
+
+        System.out.println(numbers);
+    }
+}
+```
+
+**Output**
+
+```text
+[4, 5, 1, 2, 3]
+```
+
+The last two elements are moved to the beginning.
+
+---
+
+*13. `replaceAll()`*
+
+The `replaceAll()` method replaces every occurrence of one specified value with another.
+
+**Syntax**
+
+```java
+Collections.replaceAll(list, oldValue, newValue);
+```
+
+**Example**
+
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<Integer> numbers =
+                new ArrayList<>(Arrays.asList(
+                        10, 20, 10, 30, 10
+                ));
+
+        Collections.replaceAll(numbers, 10, 100);
+
+        System.out.println(numbers);
+    }
+}
+```
+
+**Output**
+
+```text
+[100, 20, 100, 30, 100]
+```
+
+---
+
+*14. `disjoint()`*
+
+The `disjoint()` method checks whether two collections have **no elements in common**.
+
+It returns:
+
+* `true` → No common elements
+* `false` → At least one common element
+
+**Example**
+
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<Integer> list1 =
+                new ArrayList<>(Arrays.asList(1, 2, 3));
+
+        ArrayList<Integer> list2 =
+                new ArrayList<>(Arrays.asList(4, 5, 6));
+
+        boolean result = Collections.disjoint(list1, list2);
+
+        System.out.println(result);
+    }
+}
+```
+
+**Output**
+
+```text
+true
+```
+
+There are no common elements.
+
+---
+
+**`Sorting Collections`**
+
+Sorting is one of the most common uses of the `Collections` class.
+
+`Ascending Order`
+
+```java
+Collections.sort(numbers);
+```
+
+Example:
+
+```text
+[10, 20, 30, 40, 50]
+```
+
+`Descending Order`
+
+```java
+Collections.sort(numbers, Collections.reverseOrder());
+```
+
+Example:
+
+```text
+[50, 40, 30, 20, 10]
+```
+
+---
+
+**`Collections with Strings`**
+
+The `Collections` class can also work with `String` objects.
+
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<String> languages =
+                new ArrayList<>(Arrays.asList(
+                        "Java",
+                        "Python",
+                        "C++",
+                        "JavaScript"
+                ));
+
+        Collections.sort(languages);
+
+        System.out.println(languages);
+    }
+}
+```
+
+**Output**
+
+```text
+[C++, Java, JavaScript, Python]
+```
+
+The strings are sorted according to their natural ordering.
+
+---
+
+**`Complete Example`**
+
+The following program demonstrates several methods of the `Collections` class.
+
+```java
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        ArrayList<Integer> numbers =
+                new ArrayList<>(Arrays.asList(
+                        50, 10, 30, 20, 40, 10
+                ));
+
+        // Original list
+        System.out.println("Original: " + numbers);
+
+        // Sort
+        Collections.sort(numbers);
+        System.out.println("Sorted: " + numbers);
+
+        // Reverse
+        Collections.reverse(numbers);
+        System.out.println("Reversed: " + numbers);
+
+        // Maximum
+        System.out.println(
+                "Maximum: " + Collections.max(numbers)
+        );
+
+        // Minimum
+        System.out.println(
+                "Minimum: " + Collections.min(numbers)
+        );
+
+        // Frequency
+        System.out.println(
+                "Frequency of 10: " +
+                Collections.frequency(numbers, 10)
+        );
+
+        // Shuffle
+        Collections.shuffle(numbers);
+        System.out.println("Shuffled: " + numbers);
+
+        // Swap
+        Collections.swap(numbers, 0, 1);
+        System.out.println("After Swap: " + numbers);
+    }
+}
+```
+
+**Possible Output**
+
+```text
+Original: [50, 10, 30, 20, 40, 10]
+Sorted: [10, 10, 20, 30, 40, 50]
+Reversed: [50, 40, 30, 20, 10, 10]
+Maximum: 50
+Minimum: 10
+Frequency of 10: 2
+Shuffled: [30, 10, 50, 10, 40, 20]
+After Swap: [10, 30, 50, 10, 40, 20]
+```
+
+> The output of `shuffle()` can be different on every execution.
+
+---
+
+**`Collections and ArrayList`**
+
+The `Collections` class is especially useful with `ArrayList`.
+
+```java
+ArrayList<Integer> list =
+        new ArrayList<>(Arrays.asList(5, 2, 8, 1, 3));
+
+Collections.sort(list);
+```
+
+After sorting:
+
+```text
+[1, 2, 3, 5, 8]
+```
+
+We can then perform other operations:
+
+```java
+Collections.reverse(list);
+Collections.shuffle(list);
+Collections.swap(list, 0, 2);
+```
+
+---
+
+**`Collections and LinkedList`**
+
+The methods can also work with other `List` implementations.
+
+```java
+LinkedList<Integer> numbers =
+        new LinkedList<>(Arrays.asList(30, 10, 20));
+
+Collections.sort(numbers);
+
+System.out.println(numbers);
+```
+
+Output:
+
+```text
+[10, 20, 30]
+```
+
+---
+
+**`Methods and Their Purpose`**
+
+| Method           | Description                      |
+| ---------------- | -------------------------------- |
+| `sort()`         | Sorts a list                     |
+| `reverse()`      | Reverses the list                |
+| `shuffle()`      | Randomly rearranges elements     |
+| `max()`          | Returns the maximum element      |
+| `min()`          | Returns the minimum element      |
+| `frequency()`    | Counts occurrences of an element |
+| `swap()`         | Exchanges two elements           |
+| `fill()`         | Replaces every element           |
+| `binarySearch()` | Searches a sorted list           |
+| `copy()`         | Copies one list to another       |
+| `reverseOrder()` | Provides reverse ordering        |
+| `rotate()`       | Rotates elements                 |
+| `replaceAll()`   | Replaces matching elements       |
+| `disjoint()`     | Checks for common elements       |
+
+---
+
+**`Advantages`**
+
+`1. Reduces Code`
+
+Instead of implementing sorting manually:
+
+```java
+Collections.sort(list);
+```
+
+can be used.
+
+`2. Provides Ready-Made Algorithms`
+
+The class provides common operations such as:
+
+* Sorting
+* Searching
+* Reversing
+* Shuffling
+* Finding minimum and maximum
+* Replacing elements
+
+`3. Easy to Use`
+
+Most operations can be performed with a single method call.
+
+`4. Works with Different List Implementations`
+
+The methods can generally be used with different `List` implementations such as:
+
+```java
+ArrayList
+LinkedList
+Vector
+```
+
+---
+
+**`Important Points`**
+
+1. `Collections` belongs to the `java.util` package.
+
+2. It is a **utility class**.
+
+3. Its commonly used methods are `static`.
+
+4. We don't create an object of `Collections`.
+
+5. `Collections.sort()` sorts a list.
+
+6. `Collections.reverse()` reverses a list.
+
+7. `Collections.shuffle()` randomly rearranges a list.
+
+8. `Collections.max()` finds the maximum element.
+
+9. `Collections.min()` finds the minimum element.
+
+10. `Collections.frequency()` counts occurrences.
+
+11. `Collections.binarySearch()` should be used with a list sorted according to the appropriate ordering.
+
+12. `Collections.copy()` requires the destination list to have sufficient size.
+
+13. `Collection` and `Collections` are completely different concepts.
+
+---
+
+***`Collection` vs `Collections` vs `Arrays`***
+
+These three are often confused.
+
+| Feature              | `Collection`                  | `Collections`            | `Arrays`             |
+| -------------------- | ----------------------------- | ------------------------ | -------------------- |
+| Type                 | Interface                     | Utility class            | Utility class        |
+| Package              | `java.util`                   | `java.util`              | `java.util`          |
+| Works primarily with | Collections                   | Collections              | Arrays               |
+| Example              | `Collection<Integer>`         | `Collections.sort(list)` | `Arrays.sort(array)` |
+| Purpose              | Represents a group of objects | Manipulates collections  | Manipulates arrays   |
+
+**Example**
+
+For an array:
+
+```java
+int[] numbers = {30, 10, 20};
+
+Arrays.sort(numbers);
+```
+
+For a list:
+
+```java
+ArrayList<Integer> numbers =
+        new ArrayList<>(Arrays.asList(30, 10, 20));
+
+Collections.sort(numbers);
+```
+
+---
