@@ -1,0 +1,3 @@
+Hello, Buddy!
+This is a Java File Handling example.
+Java can write data into a file.
